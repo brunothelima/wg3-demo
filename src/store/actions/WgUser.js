@@ -1,0 +1,3 @@
+export const WG_USER_REQUEST = 'WG_USER_REQUEST'
+export const WG_USER_SUCCESS = 'WG_USER_SUCCESS'
+export const WG_USER_ERROR = 'WG_USER_ERROR'
