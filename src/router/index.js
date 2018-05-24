@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import WgUser from '@/components/WgUser'
-import WgHome from '@/components/WgHome'
+import WgAdmin from '@/components/WgAdmin'
 import WgLogin from '@/components/WgLogin'
 import store from '@/store'
 
@@ -28,8 +28,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'WgHome',
-      component: WgHome,
+      name: 'WgAdmin',
+      component: WgAdmin,
     },
     {
       path: '/account',

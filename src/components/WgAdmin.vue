@@ -1,5 +1,5 @@
 <template>
-  <section class="home">
+  <section class="admin">
     <div v-if="!isAuthenticated">
       <WgLogin />
     </div>
@@ -20,7 +20,7 @@ import WgLogin from './WgLogin'
 import WgUser from './WgUser'
 
 export default {
-  name: 'WgHome',
+  name: 'WgAdmin',
   components: {
     WgLogin,
     WgUser
