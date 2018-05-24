@@ -1,12 +1,18 @@
 import Vue from 'vue'
-import App from '@/App.vue'
+import WgApp from '@/WgApp.vue'
 import router from '@/router'
 import store from '@/store'
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
+const app = new Vue({
+  render: h => h(WgApp),
   router,
   store,
-}).$mount('#app')
+})
+
+if (process.env.NODE_ENV !== 'production') {
+  setTimeout(() => { app.$mount('#wgApp'); }, 500);
+} else {
+  app.$mount('#wgApp');
+}

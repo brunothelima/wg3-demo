@@ -1,4 +1,5 @@
-/* eslint-disable promise/param-names */
+import 'es6-promise/auto'
+
 import { WG_AUTH_REQUEST, WG_AUTH_ERROR, WG_AUTH_SUCCESS, WG_AUTH_LOGOUT } from '@/store/actions/WgAuth'
 import { WG_USER_REQUEST } from '@/store/actions/WgUser'
 import WgApiCall from '@/utils/WgApi'
@@ -8,18 +9,16 @@ const state = { token: localStorage.getItem('wg-user-token') || '', status: '', 
 const getters = {
   isAuthenticated: state => !!state.token,
   authStatus: state => state.status,
+  hasLoadedOnce: state => state.hasLoadedOnce,
 }
 
 const actions = {
   [WG_AUTH_REQUEST]: ({commit, dispatch}, user) => {
     return new Promise((resolve, reject) => {
       commit(WG_AUTH_REQUEST)
-      WgApiCall({url: 'auth', data: user, method: 'POST'})
+      WgApiCall({url: 'wg_auth_request.php', data: user, method: 'POST'})
       .then(resp => {
         localStorage.setItem('wg-user-token', resp.token)
-        // Here set the header of your ajax library to the token value.
-        // example with axios
-        // axios.defaults.headers.common['Authorization'] = resp.token
         commit(WG_AUTH_SUCCESS, resp)
         dispatch(WG_USER_REQUEST)
         resolve(resp)
@@ -31,8 +30,8 @@ const actions = {
       })
     })
   },
-  [WG_AUTH_LOGOUT]: ({commit, dispatch}) => {
-    return new Promise((resolve, reject) => {
+  [WG_AUTH_LOGOUT]: ({commit}) => {
+    return new Promise((resolve) => {
       commit(WG_AUTH_LOGOUT)
       localStorage.removeItem('wg-user-token')
       resolve()

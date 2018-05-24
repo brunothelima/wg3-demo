@@ -1,13 +1,14 @@
 <template>
   <section class="login wg-center">
     <div class="login__box">
-      <form action="" class="wg-form" @submit.prevent="login">
+      <form class="wg-form" @submit.prevent="login" novalidate>
         <h3 class="login__title wg-h3">WidGrid3</h3>
         <div class="wg-field">
           <label class="wg-field__label">E-mail*</label>
           <input 
             v-model="email" 
             required
+            autocomplete 
             type="email" 
             class="wg-field__input" />
         </div>
@@ -16,24 +17,29 @@
           <input 
             v-model="password" 
             required
+            autocomplete
             type="password" 
             class="wg-field__input" />
         </div>
         <div class="wg-form__submit">
-          <button type="submit" class="wg-btn">
-            Entrar
+          <button type="submit" class="wg-btn" v-if="authStatus !== 'loading'">
+            Login
           </button>
+          <span v-else>
+            Authenticating...
+          </span>
         </div>
       </form>
     </div>
   </section>
 </template>
 
-<script>
+<script>  
+import { mapGetters } from 'vuex'
 import {WG_AUTH_REQUEST} from '@/store/actions/WgAuth'
 
 export default {
-  name: 'WgLogin',
+  name: 'WgAdminLogin',
   data () {
     return {
       email: 'brunothelima@gmail.com',
@@ -44,9 +50,12 @@ export default {
     login: function () {
       const { email, password } = this
       this.$store.dispatch(WG_AUTH_REQUEST, { email, password }).then(() => {
-        this.$router.push('/')
+        this.$router.push('user')
       })
-    }
+    },
+  },
+  computed: {
+    ...mapGetters(['authStatus']),
   },
 }
 </script>

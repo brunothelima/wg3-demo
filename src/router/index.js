@@ -1,26 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import WgUser from '@/components/WgUser'
 import WgAdmin from '@/components/WgAdmin'
-import WgLogin from '@/components/WgLogin'
+import WgAdminLogin from '@/components/WgAdminLogin'
+import WgAdminUser from '@/components/WgAdminUser'
 import store from '@/store'
 
 Vue.use(Router)
 
 const ifNotAuthenticated = (to, from, next) => {
   if (!store.getters.isAuthenticated) {
-    next()
+    next('/login')
     return
   }
-  next('/')
-}
-
-const ifAuthenticated = (to, from, next) => {
-  if (store.getters.isAuthenticated) {
-    next()
-    return
-  }
-  next('/login')
+  next()
 }
 
 export default new Router({
@@ -28,20 +20,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'WgAdmin',
       component: WgAdmin,
-    },
-    {
-      path: '/account',
-      name: 'WgUser',
-      component: WgUser,
-      beforeEnter: ifAuthenticated,
-    },
-    {
-      path: '/login',
-      name: 'WgLogin',
-      component: WgLogin,
       beforeEnter: ifNotAuthenticated,
+      children: [
+        { path: '/user', component: WgAdminUser, },
+      ]
+    },
+    { 
+      path: '/login', 
+      component: WgAdminLogin, 
     },
   ],
 })

@@ -1,40 +1,19 @@
-// import 'whatwg-fetch'
-// const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
-//   fetch(`http://localhost/wg3-api/${url}`, {
-//     method: method,
-//     body: data
-//   })
-//   .then(res => res.json())
-//   .then(data => {
-//     try {
-//       resolve(data)
-//     } catch (err) {
-//       reject(new Error(err))
-//     }
-//   })
-//   .catch(error => console.error(error))
-// }) 
-const mocks = {
-  'auth': { 
-    'POST': { 
-      token: '83n-fmdow2310sskx-ss2' 
-    } 
-  },
-  'user/me': { 
-    'GET': { 
-      name: 'Bruno Lima', 
-      email: 'brunothelima@gmail.com'
-    } 
-  }
-}
+import 'whatwg-fetch'
+
 const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
-  setTimeout(() => {
+  fetch(`http://localhost/wg3-api/${url}`, {
+    method: method,
+    body: data
+  })
+  .then(res => res.json())
+  .then(data => {
     try {
-      resolve(mocks[url][method || 'GET'])
+      resolve(data)
     } catch (err) {
       reject(new Error(err))
     }
-  }, 200)
+  })
+  // .catch(error => console.error(error))
 }) 
 
 export default WgApiCall

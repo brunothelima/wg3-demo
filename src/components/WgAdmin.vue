@@ -1,32 +1,27 @@
 <template>
   <section class="admin">
-    <div v-if="!isAuthenticated">
-      <WgLogin />
-    </div>
-    <div v-else>
-      <div v-if="isProfileLoaded">
-        <WgUser />
-      </div>      
-      <div v-else>
-        Carregando...
-      </div>
-    </div>
+    <router-view @logout="logout" />
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import WgLogin from './WgLogin'
-import WgUser from './WgUser'
+import {WG_AUTH_LOGOUT} from '@/store/actions/WgAuth'
+import {WG_USER_REQUEST} from '@/store/actions/WgUser'
 
 export default {
   name: 'WgAdmin',
-  components: {
-    WgLogin,
-    WgUser
+  methods: {
+    logout: function () {
+      this.$store.dispatch(WG_AUTH_LOGOUT);
+      this.$router.push('/login');
+    },
   },
-  computed: {
-    ...mapGetters(['isAuthenticated', 'authStatus', 'isProfileLoaded']),
+  mounted: function() {
+    if (!this.$store.getters.hasLoadedOnce 
+    && this.$store.getters.isAuthenticated) {
+      this.$store.dispatch(WG_USER_REQUEST);
+      this.$router.push('/user');
+    }
   },
 }
 </script>

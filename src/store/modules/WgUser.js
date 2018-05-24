@@ -13,14 +13,13 @@ const getters = {
 const actions = {
   [WG_USER_REQUEST]: ({commit, dispatch}) => {
     commit(WG_USER_REQUEST)
-    WgApiCall({url: 'user/me'})
+    WgApiCall({url: 'wg_user_request.php'})
       .then(resp => {
         commit(WG_USER_SUCCESS, resp)
       })
       .catch(resp => {
         commit(WG_USER_ERROR)
-        // if resp is unauthorized, logout, to
-        dispatch(WG_AUTH_LOGOUT)
+        dispatch(WG_AUTH_LOGOUT, resp)
       })
   },
 }
