@@ -9,13 +9,13 @@
           <li v-for="(color, colorIndex) in theme.colors" 
             :key="colorIndex" 
             class="color">
-            <div class="color__demo" :style="`background-color: ${color.hex}`">
-              <input class="color__hex" :value="color.hex" />
+            <div class="color__demo" :style="`background-color: ${color.value}`">
+              <input class="color__hex" :value="color.value" />
             </div>
-            <div class="color__var">--color-{{color.id}}</div>
+            <div class="color__var">--color-{{color.type}}</div>
           </li>
           <li class="theme__choose">
-            <WgBtn @click.native="choose(themeIndex)">Choose</WgBtn>
+            <WgBtn @click.native="chooseTheme(themeIndex)">Choose</WgBtn>
           </li>
         </ul>
       </div>
@@ -42,10 +42,10 @@ export default {
     }
   },
   methods: {
-    choose: function (theme) {
+    chooseTheme: function (themeIndex) {
       this.$store.commit(WG_UI_SET_THEME_CSS, {
-        theme: theme,
-        el: document.documentElement
+        index: themeIndex,
+        target: document.documentElement
       });
     }
   }
@@ -99,5 +99,4 @@ export default {
     padding: var(--gutter);
   }
 }
-
 </style>

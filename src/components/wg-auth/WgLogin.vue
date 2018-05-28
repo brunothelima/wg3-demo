@@ -3,26 +3,16 @@
     <div class="wg-login__box">
       <form class="wg-form" @submit.prevent="login" novalidate>
         <h3 class="login__title wg-h3">WidGrid3</h3>
-        <div class="wg-field">
-          <label class="wg-field__label">E-mail*</label>
-          <input 
-            v-model="email" 
-            required
-            autocomplete 
-            type="email" 
-            placeholder="Digite seu e-mail" 
-            class="wg-field__input" />
-        </div>
-        <div class="wg-field wg-field--password">
-          <label class="wg-field__label">Password*</label>
-          <input 
-            v-model="password" 
-            required
-            autocomplete
-            type="password" 
-            placeholder="Digite sua senha" 
-            class="wg-field__input" />
-        </div>
+        <WgField label="E-mail*" 
+          type="email" 
+          placeholder="Digite seu e-mail" 
+          :cols="12"
+          :required="true" />
+        <WgField label="Password*" 
+          type="password" 
+          placeholder="Digite sua senha" 
+          :cols="12"
+          :required="true" />
         <div class="wg-form__submit">
           <button type="submit" class="wg-btn" v-if="authStatus !== 'loading'">
             Login
@@ -39,9 +29,17 @@
 <script>  
 import { mapGetters } from 'vuex'
 import {WG_AUTH_REQUEST} from '@/store/actions/WgAuth'
+import WgForm from '@/components/wg-ui/wg-form/WgForm'
+import WgField from '@/components/wg-ui/wg-form/WgField'
+import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {
   name: 'WgLogin',
+  components: {
+    WgForm,
+    WgField,
+    WgBtn,
+  },
   data () {
     return {
       email: '',

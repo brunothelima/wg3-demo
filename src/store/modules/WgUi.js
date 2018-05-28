@@ -57,11 +57,14 @@ const mutations = {
     state.status = 'success';
     Vue.set(state, 'themes', themes);
   },
-  [WG_UI_SET_THEME_CSS]: (state, options) => {
-    console.log(options);
-    state.themes[options.theme].colors.map(color => {
-      options.el.style.setProperty(`--color-${color.id}`, color.hex)
-    });
+  [WG_UI_SET_THEME_CSS]: (state, theme) => {
+    Object.keys(state.themes[theme.index]).forEach(option => { 
+      if (option.indexOf(['title']) <= -1) {
+        state.themes[theme.index][option].map(prop => {
+          theme.target.style.setProperty(`--${option}-${prop.type}`, prop.value)
+        })
+      }
+    })
   },
 }
 

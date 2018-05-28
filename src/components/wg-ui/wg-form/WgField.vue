@@ -61,7 +61,7 @@ export default {
     height: 40px;
     width: 100%;
     padding: 0 var(--gutter-half);
-    border: 1px solid var(--color-neutral);
+    border: 1px solid var(--colors-neutral);
     outline: none;
   }
 }

@@ -30,10 +30,11 @@ export default {
 .wg-btn {
   display: flex-inline;
   align-items: center;
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background-color: var(--colors-dark);
+  color: var(--colors-light);
   height: 40px;
   padding: 0 var(--gutter);
+  border: none;
   font-size: 0.9em;
   font-weight: 700;
   outline: none;
@@ -54,10 +55,10 @@ export default {
   }
   &--secondary {
     background-color: transparent;
-    border: 3px solid var(--color-dark);
-    color: var(--color-dark);
+    border: 3px solid var(--colors-dark);
+    color: var(--colors-dark);
     &:hover {
-      background-color: var(--color-dark);
+      background-color: var(--colors-dark);
       color: white;
     }
   }

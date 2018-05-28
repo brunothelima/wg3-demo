@@ -17,10 +17,10 @@ const actions = {
     WgApiCall({url: 'wg_user_request.php'})
       .then(resp => {
         commit(WG_USER_SUCCESS, resp)
-        dispatch(WG_UI_THEMES_REQUEST).then(themes => {
+        dispatch(WG_UI_THEMES_REQUEST).then(resp => {
           commit(WG_UI_SET_THEME_CSS, {
-            theme: 0,
-            el: document.documentElement
+            index: 0,
+            target: document.documentElement
           });
         });
       })

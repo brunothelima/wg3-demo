@@ -41,20 +41,20 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import WgThemes from './WgThemes'
-import WgHeading from './WgHeading'
-import WgBtn from './WgBtn'
-import WgForm from './wg-form/WgForm'
-import WgField from './wg-form/WgField'
+import WgThemes from '@/components/wg-ui/WgThemes'
+import WgHeading from '@/components/wg-ui/WgHeading'
+import WgForm from '@/components/wg-ui/wg-form/WgForm'
+import WgField from '@/components/wg-ui/wg-form/WgField'
+import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {
   name: 'WgUi',
   components: {
     WgThemes,
     WgHeading,
-    WgBtn,
     WgForm,
     WgField,
+    WgBtn,
   },
   computed: mapGetters({
     themes: 'getThemes'

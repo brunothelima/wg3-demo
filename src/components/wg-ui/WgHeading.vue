@@ -27,21 +27,21 @@ export default {
   margin-bottom: var(--gutter);
 }
 h1 {
-  font-size: 2em;
+  font-size: var(--headings-h1);
 }
 h2 {
-  font-size: 1.6em;
+  font-size: var(--headings-h2);
 }
 h3 {
-  font-size: 1.2em;
+  font-size: var(--headings-h3);
 }
 h4 {
-  font-size: 1.1em;
+  font-size: var(--headings-h4);
 }
 h5 {
-  font-size: 1.05em;
+  font-size: var(--headings-h5);
 }
 h6 {
-  font-size: 1.025em;
+  font-size: var(--headings-h6);
 }
 </style>
