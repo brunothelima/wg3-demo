@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import { WG_USER_REQUEST, WG_USER_ERROR, WG_USER_SUCCESS } from '@/store/actions/WgUser'
 import { WG_AUTH_LOGOUT } from '@/store/actions/WgAuth'
-import Vue from 'vue'
+import { WG_UI_THEMES_REQUEST, WG_UI_SET_THEME_CSS } from '@/store/actions/WgUi'
 import WgApiCall from '@/utils/WgApi'
 
 const state = { status: '', profile: {} }
@@ -16,6 +17,12 @@ const actions = {
     WgApiCall({url: 'wg_user_request.php'})
       .then(resp => {
         commit(WG_USER_SUCCESS, resp)
+        dispatch(WG_UI_THEMES_REQUEST).then(themes => {
+          commit(WG_UI_SET_THEME_CSS, {
+            theme: 0,
+            el: document.documentElement
+          });
+        });
       })
       .catch(resp => {
         commit(WG_USER_ERROR)

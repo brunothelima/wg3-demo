@@ -3,22 +3,3 @@
   align-items: center;
   justify-content: center;
 }
-.wg-btn {
-  background-color: var(--color-dark);
-  color: var(--color-light);
-  height: 40px;
-  padding: var(--gutter-half) var(--gutter-double);
-  font-size: 0.9em;
-  font-weight: 700;
-  outline: none;
-  transition: all var(--speed) var(--cubic-bezier);
-  &:hover {
-    filter: brightness(140%);
-  }
-  &:active {
-    filter: brightness(200%);
-  }
-  &[disabled] {
-    opacity: 0.5;
-  }
-}

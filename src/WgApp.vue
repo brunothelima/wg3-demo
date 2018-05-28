@@ -15,8 +15,12 @@ export default {
 @import './assets/scss/_wg-vars';
 @import './assets/scss/_wg-uikit';
 @import './assets/scss/_wg-text';
-@import './assets/scss/_wg-form';
 html, body {
+  padding: 0;
+  margin: 0;
+}
+ul, ol {
+  list-style: none;
   padding: 0;
   margin: 0;
 }

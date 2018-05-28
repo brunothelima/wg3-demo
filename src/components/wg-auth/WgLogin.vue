@@ -1,6 +1,6 @@
 <template>
-  <section class="login wg-center">
-    <div class="login__box">
+  <section class="wg-ogin wg-center">
+    <div class="wg-login__box">
       <form class="wg-form" @submit.prevent="login" novalidate>
         <h3 class="login__title wg-h3">WidGrid3</h3>
         <div class="wg-field">
@@ -10,6 +10,7 @@
             required
             autocomplete 
             type="email" 
+            placeholder="Digite seu e-mail" 
             class="wg-field__input" />
         </div>
         <div class="wg-field wg-field--password">
@@ -19,6 +20,7 @@
             required
             autocomplete
             type="password" 
+            placeholder="Digite sua senha" 
             class="wg-field__input" />
         </div>
         <div class="wg-form__submit">
@@ -39,18 +41,18 @@ import { mapGetters } from 'vuex'
 import {WG_AUTH_REQUEST} from '@/store/actions/WgAuth'
 
 export default {
-  name: 'WgAdminLogin',
+  name: 'WgLogin',
   data () {
     return {
-      email: 'brunothelima@gmail.com',
-      password: 'dogy',
+      email: '',
+      password: ''
     }
   },
   methods: {
     login: function () {
       const { email, password } = this
       this.$store.dispatch(WG_AUTH_REQUEST, { email, password }).then(() => {
-        this.$router.push('user')
+        this.$router.push('/')
       })
     },
   },
@@ -61,7 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.wg-login {
   background-color: var(--color-light);
   width: 100vw;
   min-height: 100vh;
