@@ -1,39 +1,62 @@
 <template>
   <div class="wg-ui">
     <section>
-      <WgHeading level="h2" >Headings</WgHeading>
+      <wg-heading level="h2" >Themes</wg-heading>
+      <div class="wg-ui__themes">      
+        <wg-themes :themes="themes" />
+      </div>
+    </section>
+    <section v-if="currentTheme && currentTheme.headings.length">
+      <wg-heading level="h2" >Headings</wg-heading>
       <div class="wg-ui__headings">
-        <WgHeading level="h1" >Heading Level 1 - H1</WgHeading>
-        <WgHeading level="h2" >Heading Level 2 - H2</WgHeading>
-        <WgHeading level="h3" >Heading Level 3 - H3</WgHeading>
-        <WgHeading level="h4" >Heading Level 4 - H4</WgHeading>
-        <WgHeading level="h5" >Heading Level 5 - H5</WgHeading>
-        <WgHeading level="h6" >Heading Level 6 - H6</WgHeading>
+        <wg-heading v-for="(heading, index) in currentTheme.headings" 
+          :key="index"
+          :level="heading.type" >
+          Heading Level {{index}} - {{heading.type.toUpperCase()}} / <wg-form-input :value="heading.value"/>
+        </wg-heading>
       </div>
     </section>
     <section>
-      <WgHeading level="h2" >Themes</WgHeading>
-      <div class="wg-ui__themes">
-        <WgThemes :themes="themes" />
-      </div>
+      <wg-heading level="h2" >Typos</wg-heading>
+      <wg-text class="wg-ui__typos">
+         <p>
+            <b>Paragraph</b> <br>
+            Lorem ipsum dolor sit amet, <b>consectetur</b> adipisicing elit. Molestias quasi nulla, <a href="">neque ducimus nesciunt</a> neque ducimus nesciunt ad voluptate, minima modi <i>iure nam expedita</i> voluptatem! Saepe iure, <small>officia impedit</small> excepturi obcaecati eligendi quibusdam.
+         </p>
+      </wg-text>
     </section>
     <section>
-      <WgHeading level="h2" >Form Inputs</WgHeading>
+      <wg-heading level="h2" >Form Inputs</wg-heading>
       <div class="wg-ui__form">
-        <WgForm>
-          <WgField label="Input Text" placeholder="Type here your text" />
-          <WgField type="email" label="Input Email" placeholder="ex: email@example.com" />
-          <WgField type="tel" label="Input Tel" placeholder="(xx) xxxxx-xxxx" />
-        </WgForm>
+        <wg-form-example />
       </div>
     </section>
     <section>
-      <WgHeading level="h2">Buttons</WgHeading>
+      <wg-heading level="h2">Buttons</wg-heading>
       <div class="wg-ui__btn">
-        <WgBtn>Button Primary</WgBtn>
-        <WgBtn :secondary="true">Button Secondary</WgBtn>
-        <WgBtn :small="true">Button Small Primary</WgBtn>
-        <WgBtn :small="true" :secondary="true">Button Small Secondary</WgBtn>
+        <wg-btn>Primary</wg-btn>
+        <wg-btn :hover="true">:Hover</wg-btn>
+        <wg-btn :active="true">:Active</wg-btn>
+        <wg-btn :disabled="true">:Disabled</wg-btn>
+        <wg-btn status="loading">:Loading</wg-btn>
+        <br>
+        <wg-btn model="outline">Outlined</wg-btn>
+        <wg-btn model="outline" :hover="true">:Hover</wg-btn>
+        <wg-btn model="outline" :active="true">:Active</wg-btn>
+        <wg-btn model="outline" :disabled="true">:Disabled</wg-btn>
+        <wg-btn model="outline" status="loading">:Loading</wg-btn>
+        <hr>
+        <wg-btn :small="true">Small</wg-btn>
+        <wg-btn :small="true" :hover="true">:Hover</wg-btn>
+        <wg-btn :small="true" :active="true">:Active</wg-btn>
+        <wg-btn :small="true" :disabled="true">:Disabled</wg-btn>
+        <wg-btn :small="true" status="loading">:Loading</wg-btn>
+        <br>
+        <wg-btn :small="true" model="outline">Outlined</wg-btn>
+        <wg-btn :small="true" model="outline" :hover="true">:Hover</wg-btn>
+        <wg-btn :small="true" model="outline" :active="true">:Active</wg-btn>
+        <wg-btn :small="true" model="outline" :disabled="true">:Disabled</wg-btn>
+        <wg-btn :small="true" model="outline" status="loading">:Loading</wg-btn>
       </div>
     </section>
   </div>
@@ -42,22 +65,25 @@
 <script>
 import { mapGetters } from 'vuex'
 import WgThemes from '@/components/wg-ui/WgThemes'
+import WgFormExample from '@/components/wg-ui/wg-form/WgFormExample'
+import WgFormInput from '@/components/wg-ui/wg-form/WgFormInput'
 import WgHeading from '@/components/wg-ui/WgHeading'
-import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import WgField from '@/components/wg-ui/wg-form/WgField'
 import WgBtn from '@/components/wg-ui/WgBtn'
+import WgText from '@/components/wg-ui/WgText'
 
 export default {
   name: 'WgUi',
   components: {
-    WgThemes,
-    WgHeading,
-    WgForm,
-    WgField,
-    WgBtn,
+    'wg-themes': WgThemes,
+    'wg-form-example': WgFormExample,
+    'wg-heading': WgHeading,
+    'wg-btn': WgBtn,
+    'wg-form-input': WgFormInput,
+    'wg-text': WgText,
   },
   computed: mapGetters({
-    themes: 'getThemes'
+    themes: 'getThemes',
+    currentTheme: 'getCurrentTheme'
   }),
 }
 </script>
@@ -67,10 +93,9 @@ export default {
   box-sizing: border-box;
   padding: var(--gutter-double) 0;
   margin: auto;
-  max-width: 800px;
+  max-width: 900px;
   > section {
     margin-bottom: calc(var(--gutter-double) * 2);
-
     > [class*="wg-ui__"] { 
       padding: var(--gutter-double);
       border-radius: 4px;
@@ -78,10 +103,21 @@ export default {
     }
   }
 }
+.wg-ui__headings {
+  input {
+    display: inline-block;
+    vertical-align: middle;
+    width: 120px;
+    border: none;
+    &::placeholder {
+      font-size: 0;
+    }
+  }
+}
 .wg-ui__btn {
-    margin: 0  calc(var(--gutter-half) * -1);
+    margin: 0 -5px;
   .wg-btn {
-    margin: var(--gutter-half);
+    margin: 5px;
   }
 }
 </style>

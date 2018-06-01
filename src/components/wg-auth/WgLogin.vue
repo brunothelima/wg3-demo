@@ -1,27 +1,22 @@
 <template>
   <section class="wg-ogin wg-center">
     <div class="wg-login__box">
-      <form class="wg-form" @submit.prevent="login" novalidate>
-        <h3 class="login__title wg-h3">WidGrid3</h3>
-        <WgField label="E-mail*" 
+      <WgForm @onSubmit="login()">
+        <WgHeading level="h3">WidGrid3</WgHeading>
+        <!-- <WgField label="E-mail*" 
           type="email" 
           placeholder="Digite seu e-mail" 
           :cols="12"
           :required="true" />
-        <WgField label="Password*" 
+        <WgFormGroup label="Password*" 
           type="password" 
           placeholder="Digite sua senha" 
           :cols="12"
-          :required="true" />
-        <div class="wg-form__submit">
-          <button type="submit" class="wg-btn" v-if="authStatus !== 'loading'">
-            Login
-          </button>
-          <span v-else>
-            Authenticating...
-          </span>
-        </div>
-      </form>
+          :required="true" /> -->
+        <WgFormSubmit :status="authStatus">
+          Login
+        </WgFormSubmit>
+      </WgForm>
     </div>
   </section>
 </template>
@@ -29,16 +24,17 @@
 <script>  
 import { mapGetters } from 'vuex'
 import {WG_AUTH_REQUEST} from '@/store/actions/WgAuth'
+import WgHeading from '@/components/wg-ui/WgHeading'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import WgField from '@/components/wg-ui/wg-form/WgField'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgFormSubmit from '@/components/wg-ui/wg-form/WgFormSubmit'
+// import WgFormGroup from '@/components/wg-ui/wg-form/WgFormGroup'
 
 export default {
   name: 'WgLogin',
   components: {
+    WgHeading,
     WgForm,
-    WgField,
-    WgBtn,
+    WgFormSubmit,
   },
   data () {
     return {

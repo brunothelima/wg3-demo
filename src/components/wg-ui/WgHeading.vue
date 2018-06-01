@@ -25,6 +25,7 @@ export default {
   margin: 0;
   font-weight: 700;
   margin-bottom: var(--gutter);
+  font-family: var(--default-headings-font-family);
 }
 h1 {
   font-size: var(--headings-h1);

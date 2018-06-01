@@ -4,8 +4,8 @@
       <div v-for="(theme, themeIndex) in themes" 
         :key="themeIndex"
         class="theme">
-        <WgHeading level="h3">{{theme.title}}</WgHeading>
-        <ul>
+        <wg-heading level="h5">{{theme.title}}</wg-heading>
+        <ul class="theme__colors">
           <li v-for="(color, colorIndex) in theme.colors" 
             :key="colorIndex" 
             class="color">
@@ -15,7 +15,7 @@
             <div class="color__var">--color-{{color.type}}</div>
           </li>
           <li class="theme__choose">
-            <WgBtn @click.native="chooseTheme(themeIndex)">Choose</WgBtn>
+            <wg-btn @click.native="chooseTheme(themeIndex)">Choose</wg-btn>
           </li>
         </ul>
       </div>
@@ -32,8 +32,8 @@ import { WG_UI_SET_THEME_CSS } from '@/store/actions/WgUi'
 export default {
   name: 'WgThemes',
   components: {
-    WgHeading,
-    WgBtn
+    'wg-heading': WgHeading,
+    'wg-btn': WgBtn
   },
   props: {
     themes: {

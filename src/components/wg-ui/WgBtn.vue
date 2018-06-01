@@ -1,8 +1,15 @@
 <template>
   <component :is="tag" 
-    :class="{'wg-btn--secondary': secondary, 'wg-btn--small': small}"
-    class="wg-btn">
-      <slot/>
+    :disabled="disabled"
+    :hover="hover"
+    :active="active"
+    :status="status"
+    :class="[
+      `wg-btn--${model}`,
+      {'wg-btn--small': small}
+    ]" class="wg-btn">
+      <i class="fa fa-circle-notch fa-spin" v-if="status === 'loading'"></i>
+      <slot v-else/>
   </component>
 </template>
 
@@ -12,13 +19,32 @@ export default {
   props: {
     tag: {
       type: String,
-      default: "button",
+      default: 'button',
+    },
+    status: {
+      type: String,
+      default: ''
+    },
+    model: {
+      type: String,
+      default: 'default',
+       validator: value => {
+        return value.match(/(default|outline)/)
+      },
     },
     small: {
       type: Boolean,
       default: false
     },
-    secondary: {
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    hover: {
+      type: Boolean,
+      default: false
+    },
+    active: {
       type: Boolean,
       default: false
     },
@@ -28,7 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .wg-btn {
-  display: flex-inline;
+  display: inline-flex;
   align-items: center;
   background-color: var(--colors-dark);
   color: var(--colors-light);
@@ -37,42 +63,55 @@ export default {
   border: none;
   font-size: 0.9em;
   font-weight: 700;
+  font-family: var(--default-headings-font-family);
   outline: none;
   transition: all var(--speed) var(--cubic-bezier);
   cursor: pointer;
-  &:hover {
-    filter: brightness(140%);
-  }
-  &:active {
-    filter: brightness(200%);
-  }
-  &[disabled] {
-    opacity: 0.5;
+  &--default {
+    &:hover, 
+    &[hover] {
+      background-color: var(--colors-neutral);
+      color: var(--colors-dark);
+    }
+    &:active,  
+    &[active] {
+      background-color: var(--colors-light);
+      color: var(--colors-dark);
+    }
   }
   &--small {
     height: 32px;
     font-size: 0.7em;
   }
-  &--secondary {
+  &--outline {
     background-color: transparent;
     border: 3px solid var(--colors-dark);
     color: var(--colors-dark);
-    &:hover {
-      background-color: var(--colors-dark);
-      color: white;
+    &:hover, 
+    &[hover] {
+      border-color: var(--colors-neutral);
+      color: var(--colors-dark);
     }
+    &:active, 
+    &[active] {
+      border-color: var(--colors-light);
+      color: var(--colors-dark);
+    }
+  }
+  &[class*="wg-btn--"][disabled],
+  &[class*="wg-btn--"][status="loading"] {
+    cursor: default;
+    background-color: #DDDDDD;
+    border-color: #DDDDDD;
+    color: #AAAAAA;
   }
   span {
     font: inherit;
-    &:first-child {
-      margin-right: var(--gutter-half);
-    }
+    line-height: inherit;
   }
   i {
     font-size: inherit;
-    &:first-child {
-      margin-right: var(--gutter-half);
-    }
+    line-height: inherit;
   }
 }
 </style>

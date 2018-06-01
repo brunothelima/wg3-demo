@@ -10,22 +10,18 @@ import {
 import WgApiCall from '@/utils/WgApi'
 
 const defaultTheme = [
-  {id: 'light', hex: '#F0F0F0'},
-  {id: 'neutral', hex: '#C5C5C5'},
-  {id: 'dark', hex: '#0F0F0F'},
-  {id: 'error', hex: '#ff4444'},
-  {id: 'warning', hex: '#ffbb33'},
-  {id: 'success', hex: '#00C851'},
-  {id: 'info', hex: '#33b5e5'},
+  {"status":1,"themes":[{"title":"Default","default":[{"type":"background-color","value":"#CCCCCC"},{"type":"font-family","value":"Avenir"},{"type":"font-size","value":"16px"}],"colors":[{"type":"light","value":"#F0F0F0"},{"type":"neutral","value":"#C5C5C5"},{"type":"dark","value":"#0F0F0F"},{"type":"error","value":"#ff4444"},{"type":"warning","value":"#ffbb33"},{"type":"success","value":"#00C851"},{"type":"info","value":"#33b5e5"}],"headings":[{"type":"h1","value":"2.6em"},{"type":"h2","value":"2.4em"},{"type":"h3","value":"2em"},{"type":"h4","value":"1.6em"},{"type":"h5","value":"1.4em"},{"type":"h6","value":"1.2em"}],"typo":[{"type":"p","value":"1em"},{"type":"span","value":"0.9em"},{"type":"small","value":"0.8em"}],"border":[{"type":"radius","value":"5px"},{"type":"width","value":"2px"}],"shadow":[{"type":"x","value":"5px"},{"type":"y","value":"2px"},{"type":"blur","value":"10px"}]}]}
 ]
 
 const state = {
   status: '',
-  themes: []
+  themes: [],
+  current: null
 }
 
 const getters = {
-  getThemes: state => state.themes
+  getThemes: state => state.themes,
+  getCurrentTheme: state => state.current
 }
 
 const actions = {
@@ -58,7 +54,8 @@ const mutations = {
     Vue.set(state, 'themes', themes);
   },
   [WG_UI_SET_THEME_CSS]: (state, theme) => {
-    Object.keys(state.themes[theme.index]).forEach(option => { 
+    Vue.set(state, 'current', state.themes[theme.index]); 
+    Object.keys(state.current).forEach(option => { 
       if (option.indexOf(['title']) <= -1) {
         state.themes[theme.index][option].map(prop => {
           theme.target.style.setProperty(`--${option}-${prop.type}`, prop.value)
