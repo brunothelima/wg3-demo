@@ -72,9 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$inputs: '.wg-select';
-
-#{$inputs} {
+.wg-select {
   position: relative;
   display: flex;
   align-items: center;

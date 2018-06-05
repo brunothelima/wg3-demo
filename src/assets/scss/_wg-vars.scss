@@ -1,6 +1,4 @@
-:root {
-  --border-radius: 4px;
-  
+:root {  
   --gutter: 20px;
   --gutter-half: calc(var(--gutter) / 2);
   --gutter-double: calc(var(--gutter) * 2);
@@ -9,6 +7,4 @@
   --speed-slower: calc(var(--normal-speed) / 2);
   --speed-faster: calc(var(--normal-speed) * 2);
   --cubic-bezier: cubic-bezier(.67,-1.07,.26,1.93);
-
-  --base-font-size: 16px;
 }

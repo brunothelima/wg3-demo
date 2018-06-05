@@ -12,7 +12,7 @@
             <div class="color__demo" :style="`background-color: ${color.value}`">
               <input class="color__hex" :value="color.value" />
             </div>
-            <div class="color__var">--color-{{color.type}}</div>
+            <div class="color__var">--colors-{{color.type}}</div>
           </li>
           <li class="theme__choose">
             <wg-btn @click.native="chooseTheme(themeIndex)">Choose</wg-btn>

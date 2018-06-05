@@ -65,9 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$inputs: '.wg-input-file';
-
-#{$inputs} {
+.wg-input-file {
   position: relative;
   display: flex;
   align-items: center;

@@ -28,10 +28,6 @@ export default {
       type: String,
       default: ''
     },
-    value: {
-      type: String,
-      default: ''
-    },
     placeholder: {
       type: String,
       default: 'Type Here'
@@ -53,6 +49,11 @@ export default {
       default: () => []
     },
   },
+  data() {
+    return {
+      value: this.value
+    }
+  }
 }
 </script>
 

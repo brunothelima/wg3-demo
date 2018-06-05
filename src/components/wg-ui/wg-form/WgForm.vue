@@ -7,8 +7,8 @@
     },'wg-form']">
       <wg-form-field v-for="(field, fieldIndex) in schema" 
         :key="fieldIndex"
-        :layout="field.layout"
-        :state="$v.form[field.name]"
+        :v="$v.form[field.name]"
+        v-bind="field.layout"
       >
         {{$v.form[field.name].$model}}
         <wg-form-textarea v-bind="field" 

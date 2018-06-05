@@ -49,7 +49,7 @@ export default {
   &--radio {
     box-sizing: border-box;
     padding: var(--gutter-half);
-    background-color: rgba(black, 0.05);
+    background-color: var(--colors-light);
   }
 }
 .wg-radio {

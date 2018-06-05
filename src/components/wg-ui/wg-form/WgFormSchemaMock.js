@@ -406,7 +406,7 @@ export default [
       { name: 'checkbox_3', text: 'Checkbox 3'}, 
     ],
     layout: {
-      cols: 4,
+      cols: 6,
       label: 'Checkboxes',
     },
     validations: {
@@ -424,7 +424,7 @@ export default [
       {value: 3, text: 'Radio Option 3'}, 
     ],
     layout: {
-      cols: 4,
+      cols: 6,
       label: 'Radio Buttons',
     },
     validations: {

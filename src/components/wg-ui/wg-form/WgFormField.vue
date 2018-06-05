@@ -1,9 +1,9 @@
 <template>
   <div class="wg-field" :class="[{
-    'wg-field--error': state.$error || layout.error,
-    'wg-field--success': !state.$invalid || layout.success,
-  }, `wg-field--col-${layout.cols}`]">
-    <label v-if="layout.label" class="wg-field__label">{{layout.label}}</label>
+    'wg-field--error':  (v && v.$error) || error,
+    'wg-field--success': (v && !v.$invalid) || success,
+  }, `wg-field--col-${cols}`]">
+    <label v-if="label" class="wg-field__label">{{label}}</label>
     <slot/>
   </div>
 </template>
@@ -16,14 +16,26 @@ export default {
       type: String,
       default: 'div'
     },
-    layout: {
+    cols: {
+      type: Number,
+      default: 4
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    error: {
+      type: Boolean,
+      default: false
+    },
+    success: {
+      type: Boolean,
+      default: false
+    },
+    v: {
       type: Object,
       default: () => {}
-    },
-    state: {
-      type: Object,
-      default: () => {}
-    },
+    }
   },
 }
 </script>

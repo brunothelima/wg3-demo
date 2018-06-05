@@ -8,7 +8,7 @@
     :hover="hover"
     :disabled="disabled"    
     v-model="text"
-    @input="$emit('input', value)"> 
+    @input="$emit('input', text)"> 
   </textarea>
 </template>
 
