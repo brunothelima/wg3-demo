@@ -1,10 +1,86 @@
-:root {  
-  --gutter: 20px;
-  --gutter-half: calc(var(--gutter) / 2);
-  --gutter-double: calc(var(--gutter) * 2);
-  
-  --speed: 200ms;
-  --speed-slower: calc(var(--normal-speed) / 2);
-  --speed-faster: calc(var(--normal-speed) * 2);
-  --cubic-bezier: cubic-bezier(.67,-1.07,.26,1.93);
-}
+/**
+  * This file contains the scss variables 
+  * with initial values and properties 
+  * used by css custom properties across the app  
+  * on further calculations for alternative sizes,
+  * and/or themification by user interaction.
+  * It is loaded in every file via Webpack configuration
+  * located in the vue.config.js file, on root path.
+*/
+
+// Brakepoints limits 
+$wg-brakepoint-large: 1200px; // Wide
+$wg-brakepoint-medium: 972px; // Tablets
+$wg-brakepoint-small: 768px; // Mobile
+$wg-brakepoint-minimal: 480px; // Mobile
+
+
+// Initial base gutter size
+$wg-gutter: 8px; 
+
+// Initial border properties values
+$wg-border-width: 1px;
+$wg-border-style: solid;
+$wg-border-radius: 4px;
+
+// Initial box-shadow properties values
+$wg-box-shadow-x: 0.001px;
+$wg-box-shadow-y: 2px;
+$wg-box-shadow-blur: 8px;
+$wg-box-shadow-alpha: 0.08;
+$wg-box-shadow-color: 0,0,0;
+
+/**
+  * Default set of grayscale colors.
+  * This colors can't be used as css custom properties,
+  * as they are immutable by user interaction.
+*/
+$wg-color-sys-a: #000000; 
+$wg-color-sys-b: #22272C; 
+$wg-color-sys-c: #43515D; 
+$wg-color-sys-d: #5E6878; 
+$wg-color-sys-e: #768091; 
+$wg-color-sys-f: #8C95A3; 
+$wg-color-sys-g: #BABFC8; 
+$wg-color-sys-h: #E5E7EB; 
+$wg-color-sys-i: #F2F3F5; 
+$wg-color-sys-j: #F7F8F9; 
+$wg-color-sys-k: #FFFFFF; 
+
+/**
+  * Default set of messages/warnings colors.
+  * This colors can't be used as css custom properties
+  * as they are immutable by user interaction.
+*/
+$wg-color-error: #FF4444; 
+$wg-color-warning: #FFbb33; 
+$wg-color-success: #00C851; 
+$wg-color-info: #33B5E5; 
+
+// Initial primary color value
+$wg-color-primary: #0BD57D;
+
+// Initial primary color value
+$wg-color-secondary: #6F5BED;
+
+// Initial typo configuration
+$wg-font-size: 14px; // Base font-size
+$wg-font-family: 'Montserrat', Helvetica; // Primary font-family
+$wg-font-weight-light: 100; // Light 
+$wg-font-weight-regular: 400; // Regular
+$wg-font-weight-semi-bold: 600; // Semi Bold
+$wg-font-weight-bold: 700; // Bold 
+$wg-font-weight-heavy: 900; // Heavy
+$wg-line-height: 100%;
+$wg-line-height-l: 125%;
+$wg-line-height-xl: 150%;
+$wg-line-height-xxl: 175%;
+$wg-line-height-body: 200%; 
+
+$wg-input-height: 48px; 
+
+
+// Initial transition properties values
+$wg-transition-duration: 1s; // Transition speed
+$wg-cubic-bezier: cubic-bezier(0.5,0,0,1); // Trasition timing function
+

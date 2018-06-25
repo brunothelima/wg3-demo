@@ -1,17 +1,24 @@
 import { validationMixin } from 'vuelidate'
 import { required, email, between, minLength } from 'vuelidate/lib/validators'
 
-export const WgFormValidationMixin = {
+export const WgFormMixin = {
 	mixins: [validationMixin],
 	methods: {
-		setFormModel: function (formSchema) {
+		getFormModel: function (formSchema) {
 			var formModel = {};
 			formSchema.map(field => {
-				formModel[field.name] = field.value
+				formModel[field.props.name] = field.props.value
 			});
 			return formModel;
 		},
-		getValidator: function(validations) {
+		getFormValidations: function (formSchema) {
+			var validationSchema = {}
+			formSchema.map(field => {
+				validationSchema[field.props.name] = this.getFieldValidations(field.validations || {})
+			})
+			return validationSchema
+		},
+		getFieldValidations: function(validations) {
 			let fieldValidations = {};
 			Object.keys(validations).map(validation => {
 				if (validation === 'required') {
@@ -32,12 +39,5 @@ export const WgFormValidationMixin = {
 			})
 			return fieldValidations
 		},
-		setValidations: function (formSchema) {
-			var validationSchema = {}
-			formSchema.map(field => {
-				validationSchema[field.name] = this.getValidator(field.validations || {})
-			})
-			return validationSchema
-		}
 	}
 }

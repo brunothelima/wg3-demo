@@ -1,10 +1,7 @@
 <template>
   <div class="wg-form-group wg-form-group--checkboxes"> 
-    <label class="wg-checkbox" 
-      v-for="(checkbox, checkboxIndex) in options"
-      :key="checkboxIndex">
-      <input autocomplete
-        type="checkbox"
+    <label class="wg-checkbox" v-for="(checkbox, index) in options" :key="index">
+      <input type="checkbox"
         :checked="checked.indexOf(checkbox.name) > -1"    
         :name="checkbox.name"
         @change="onChange(checkbox)"/>
@@ -44,21 +41,20 @@ export default {
 
 <style lang="scss" scoped>
 .wg-form-group {
-  &--checkboxes {
+  &--checkbox {
     box-sizing: border-box;
-    padding: var(--gutter-half);
-    background-color: var(--colors-light);
+    padding: var(--wg-gutter-l);
   }
 }
 .wg-checkbox {
   display: flex;
   align-items: center;
-  height: 30px;
-  font-size: 0.9em;
-  color: var(--colors-dark);
+  min-height: $wg-input-height / 2;
+  font-size: var(--wg-font-size);
+  color: $wg-color-sys-f;
   cursor: pointer;
   input {
-    margin-right: var(--gutter-half);
+    margin-right: var(--wg-gutter);
   }
 }
 </style>

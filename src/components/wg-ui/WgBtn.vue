@@ -4,10 +4,13 @@
     :hover="hover"
     :active="active"
     :status="status"
+    :to="to"
     :class="[
       `wg-btn--${model}`,
       {'wg-btn--small': small}
-    ]" class="wg-btn">
+    ]" 
+    @click="$emit('click')"
+    class="wg-btn">
       <i class="fa fa-circle-notch fa-spin" v-if="status === 'loading'"></i>
       <slot v-else/>
   </component>
@@ -31,6 +34,10 @@ export default {
        validator: value => {
         return value.match(/(default|outline)/)
       },
+    },
+    to: {
+      type: String,
+      default: ''
     },
     small: {
       type: Boolean,
@@ -56,54 +63,39 @@ export default {
 .wg-btn {
   display: inline-flex;
   align-items: center;
-  background-color: var(--colors-dark);
-  color: var(--colors-light);
-  height: 40px;
-  padding: 0 var(--gutter);
+  justify-content: center;
+  height: 56px;
+  min-width: 140px;
+  padding: 0 var(--wg-gutter-l);
+  border-radius: var(--wg-border-radius);
   border: none;
-  font-size: 0.9em;
-  font-weight: 700;
-  font-family: var(--default-headings-font-family);
+  background-color: var(--wg-color-primary);
+  font-size: var(--wg-font-size-s);
+  font-weight: $wg-font-weight-bold;
+  text-transform: uppercase;
+  color: $wg-color-sys-k;
   outline: none;
-  transition: all var(--speed) var(--cubic-bezier);
   cursor: pointer;
+  transition-duration: var(--wg-transition-duration);
+  transition-timing-function: var(--wg-cubic-bezier);
+  transition-property: background-color, color; 
+  text-decoration: none;
   &--default {
     &:hover, 
     &[hover] {
-      background-color: var(--colors-neutral);
-      color: var(--colors-dark);
+      background-color: var(--wg-color-primary-light);
     }
     &:active,  
     &[active] {
-      background-color: var(--colors-light);
-      color: var(--colors-dark);
-    }
-  }
-  &--small {
-    height: 32px;
-    font-size: 0.7em;
-  }
-  &--outline {
-    background-color: transparent;
-    border: 3px solid var(--colors-dark);
-    color: var(--colors-dark);
-    &:hover, 
-    &[hover] {
-      border-color: var(--colors-neutral);
-      color: var(--colors-dark);
-    }
-    &:active, 
-    &[active] {
-      border-color: var(--colors-light);
-      color: var(--colors-dark);
+      background-color: var(--wg-color-primary-lightest);
     }
   }
   &[class*="wg-btn--"][disabled],
   &[class*="wg-btn--"][status="loading"] {
     cursor: default;
-    background-color: #DDDDDD;
-    border-color: #DDDDDD;
-    color: #AAAAAA;
+    background-color: $wg-color-sys-i;
+    border-color: $wg-color-sys-h;
+    color: $wg-color-sys-g;
   }
   span {
     font: inherit;

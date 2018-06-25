@@ -17,17 +17,17 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit(WG_AUTH_REQUEST)
       WgApiCall({url: 'wg_auth_request.php', data: user, method: 'POST'})
-      .then(resp => {
-        localStorage.setItem('wg-user-token', resp.token)
-        commit(WG_AUTH_SUCCESS, resp)
-        dispatch(WG_USER_REQUEST)
-        resolve(resp)
-      })
-      .catch(err => {
-        commit(WG_AUTH_ERROR, err)
-        localStorage.removeItem('wg-user-token')
-        reject(err)
-      })
+        .then(resp => {
+          localStorage.setItem('wg-user-token', resp.token)
+          commit(WG_AUTH_SUCCESS, resp)
+          dispatch(WG_USER_REQUEST)
+          resolve(resp)
+        })
+        .catch(err => {
+          commit(WG_AUTH_ERROR, err)
+          localStorage.removeItem('wg-user-token')
+          reject(err)
+        })
     })
   },
   [WG_AUTH_LOGOUT]: ({commit}) => {

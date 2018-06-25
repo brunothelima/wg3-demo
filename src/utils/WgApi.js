@@ -1,5 +1,3 @@
-import 'whatwg-fetch'
-
 const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
   fetch(`http://localhost/wg3-api/${url}`, {
     method: method,
@@ -13,7 +11,7 @@ const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
       reject(new Error(err))
     }
   })
-  // .catch(error => console.error(error))
+  .catch(error => console.error(error))
 }) 
 
 export default WgApiCall

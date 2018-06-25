@@ -1,54 +1,33 @@
 <template>
-  <div class="wg-select"
-    :hover="hover"
-    :focus="focus"
-    :disabled="disabled"
-  >
-    <select ref="select"
-      :name="name"
-      :value="value"
+  <div class="wg-select" :disabled="disabled">
+    <select :name="name"
       @change="onChange($event.target.value)">
-        <option v-for="(option, optionIndex) in options"
-          :selected="option.value == selected.value"
-          :key="optionIndex"
-          :value="option.value">
+        <option v-for="(option, index) in options" :key="index"
+          :value="option.value"
+          :selected="option === selected">
             {{option.text}}
         </option>
     </select>
-    {{selected.text || placeholder}}
-    <i class="fa fa-chevron-down"></i>
+    <span>
+      {{selected.text || placeholder}}
+    </span>
+    <i class="fa fa-carret-down"></i>
   </div>
 </template>
 
 <script>  
+const optMock = { text: null, value: null }
 export default {
   name: 'WgFormSelect',
-  data () {
-    return {
-      selected: this.getSelected(this.value)
-    }
-  },
   props: {
-     name: {
+    name: {
       type: String,
-      default: ''
-    },
-    value: {
-      type: String,
-      default: ''
+      default: null
     },
     placeholder: {
       type: String,
-      default: 'Type Here'
-    },
-    hover: {
-      type: Boolean,
-      default: false
-    },
-    focus: {
-      type: Boolean,
-      default: false
-    },
+      default: null
+    }, 
     disabled: {
       type: Boolean,
       default: false
@@ -58,16 +37,17 @@ export default {
       default: () => []
     },  
   },
-  methods: {
-    getSelected: function (value) {
-      let selected = this.options.filter(option => option.value == value)
-      return selected[0] || false
-    },
-    onChange: function (value) {
-      this.selected = this.getSelected(value)
-      this.$emit('change', value)
+  data () {
+    return {
+      selected: this.options.find(opt => opt.selected === true) || optMock
     }
-  }
+  },
+  methods: {
+    onChange: function (value) {
+      this.selected = this.options.find(opt => opt.value == value)
+      this.$emit('change', this.selected.value)
+    }
+  },
 }
 </script>
 
@@ -78,14 +58,19 @@ export default {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  height: 40px;
+  height: $wg-input-height;
   width: 100%;
-  padding: 0 var(--gutter-half);
-  border: 2px solid var(--colors-neutral);
+  padding: 0 var(--wg-gutter-l);
+  background-color: $wg-color-sys-k;
+  border: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-h;
+  border-radius: var(--wg-border-radius);
   outline: none;
-  font-size: 0.7em;
   cursor: pointer;
-  transition: all var(--speed) var(--cubic-bezier);
+  transition-duration: var(--wg-transition-duration);
+  transition-timing-function: var(--wg-cubic-bezier);
+  transition-property: border-color, box-shadow, color; 
+  font: #{$wg-font-weight-regular} var(--wg-font-size) var(--wg-font-family);
+  color: $wg-color-sys-f;
   select {
     position: absolute;
     top: 0;
@@ -94,8 +79,11 @@ export default {
     height: 100%;
     opacity: 0;
   }
-  &[disabled] select {
-    display: none;
-  }
+  &[disabled] {
+    cursor: default;
+    select {
+      display: none;
+    }
+  } 
 }
 </style>

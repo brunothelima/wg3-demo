@@ -1,15 +1,13 @@
 <template>
   <input class="wg-input"
-    autocomplete
     :type="type"
     :name="name"
+    :value="value"
     :placeholder="placeholder"
-    :focus="focus"
-    :hover="hover"
+    :autocomplete="autocomplete"
     :disabled="disabled"
     v-mask="masks"
-    v-model="value"
-    @input="$emit('input', value)"/> 
+    @input="onInput($event.target.value)"/> 
 </template>
 
 <script>  
@@ -26,32 +24,32 @@ export default {
     },
     name: {
       type: String,
-      default: ''
+      default: null
+    },
+    value: {
+      type: String,
+      default: null
     },
     placeholder: {
       type: String,
-      default: 'Type Here'
-    },
-    focus: {
-      type: Boolean,
-      default: false
-    },
-    hover: {
-      type: Boolean,
-      default: false
+      default: null
     },
     disabled: {
       type: Boolean,
       default: false
+    },
+    autocomplete: {
+      type: Boolean,
+      default: true
     },
     masks: {
       type: Array,
       default: () => []
     },
   },
-  data() {
-    return {
-      value: this.value
+  methods: {
+    onInput: function (value) {
+      this.$emit('input', value)
     }
   }
 }
@@ -60,12 +58,14 @@ export default {
 <style lang="scss" scoped>
 .wg-input {
   box-sizing: border-box;
-  height: 40px;
+  height: $wg-input-height;
   width: 100%;
-  padding: 0 var(--gutter-half);
-  border: 2px solid var(--colors-neutral);
+  padding: 0 var(--wg-gutter-l);
+  background-color: $wg-color-sys-k;
+  border: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-h;
+  border-radius: var(--wg-border-radius);
+  font: #{$wg-font-weight-regular} var(--wg-font-size) var(--wg-font-family);
+  color: $wg-color-sys-f;
   outline: none;
-  font-size: 0.7em;
-  transition: all var(--speed) var(--cubic-bezier);
 }
 </style>

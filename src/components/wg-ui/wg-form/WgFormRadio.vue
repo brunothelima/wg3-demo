@@ -48,19 +48,18 @@ export default {
 .wg-form-group {
   &--radio {
     box-sizing: border-box;
-    padding: var(--gutter-half);
-    background-color: var(--colors-light);
+    padding: var(--wg-gutter-l);
   }
 }
 .wg-radio {
   display: flex;
   align-items: center;
-  height: 30px;
-  font-size: 0.9em;
-  color: var(--colors-dark);
+  height: 48px;
+  font-size: var(--wg-font-size-s);
+  color: $wg-color-sys-f;
   cursor: pointer;
   input {
-    margin-right: var(--gutter-half);
+    margin-right: var(--wg-gutter-l);
   }
 }
 </style>

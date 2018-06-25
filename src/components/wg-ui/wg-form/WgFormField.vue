@@ -1,9 +1,9 @@
 <template>
   <div class="wg-field" :class="[{
-    'wg-field--error':  (v && v.$error) || error,
-    'wg-field--success': (v && !v.$invalid) || success,
+    'wg-field--error':  (v && v.$error),
+    'wg-field--success': (v && !v.$invalid && v.$dirty),
   }, `wg-field--col-${cols}`]">
-    <label v-if="label" class="wg-field__label">{{label}}</label>
+    <label v-if="label.length" class="wg-field__label">{{label}}</label>
     <slot/>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     },
     cols: {
       type: Number,
-      default: 4
+      default: 12
     },
     label: {
       type: String,
@@ -41,15 +41,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$inputs: '.wg-input,   
+$inputs: '.wg-input,
+  .wg-number,   
   .wg-textarea,
   .wg-select, 
   .wg-input-file';
 .wg-field {
   box-sizing: border-box;
-  padding: 0 var(--gutter-half);
-  margin-bottom: var(--gutter);
-  min-width: 200px;
+  padding: 0 var(--wg-gutter-l);
+  margin-bottom: var(--wg-gutter-xl);
   @for $i from 12 through 1 {
     &--col-#{$i} {
      width: percentage((1 / 12) * $i);
@@ -57,39 +57,46 @@ $inputs: '.wg-input,
   }
   &__label {
     display: block;
-    margin-bottom: 5px;
-    font-size: 0.9em;
+    margin-bottom: var(--wg-gutter);
+    padding-left: var(--wg-gutter);
+    font-size: var(--wg-font-size-xs);
+    font-weight: $wg-font-weight-regular;
+    color: $wg-color-sys-f;
+    text-transform: uppercase;
+    transition: color var(--wg-transition-duration) var(--wg-cubic-bezier);
   }
   #{$inputs} {
+    transition: all var(--wg-transition-duration) var(--wg-cubic-bezier);
+    &::placeholder {
+      color: inherit;
+    }
     &:not([disabled]) {
       &:hover,
       &[hover] {
-        box-shadow: 0 0 10px rgba(black, 0.1);
+        box-shadow: var(--wg-box-shadow);
       }
       &:focus,
       &[focus] {
-        border-color: var(--colors-dark);
+        border-color: $wg-color-sys-g;
       }
     }
     &[disabled] {
       opacity: 0.6;
+      background-color: $wg-color-sys-j;
     }
   }
   &--error {
     label {
-      color: var(--colors-error);
+      color: $wg-color-error
     }
     #{$inputs} {
-      border-color: var(--colors-error);
-      color: var(--colors-error);
-      &::placeholder {
-        color: inherit;
-      }
+      border-color: $wg-color-error;
+      color: $wg-color-error;
     }
   }
   &--success {
     #{$inputs} {
-      border-color: var(--colors-success);
+      border-color: $wg-color-success;
     }
   }
 }

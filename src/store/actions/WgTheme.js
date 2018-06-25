@@ -1,0 +1,3 @@
+export const WG_THEME_REQUEST = 'WG_THEME_REQUEST'
+export const WG_THEME_ERROR = 'WG_THEME_ERROR'
+export const WG_THEME_SUCCESS = 'WG_THEME_SUCCESS'

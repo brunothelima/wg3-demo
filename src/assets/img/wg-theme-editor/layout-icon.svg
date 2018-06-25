@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="card" transform="translate(-158.000000, -50.000000)">
+            <g id="Group-10" transform="translate(144.000000, 48.000000)">
+                <g id="Group" transform="translate(12.000000, 0.000000)">
+                    <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
+                    <path d="M3,7 L3,21 L13,21 L13,8 C13,7.44771525 12.5522847,7 12,7 L3,7 Z" id="Rectangle-11" stroke="#000000" stroke-width="2"></path>
+                    <path d="M9,3 L12,3 C14.7614237,3 17,5.23857625 17,8 L17,11.0178344" id="Path-2" stroke="#8C95A3" stroke-width="2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

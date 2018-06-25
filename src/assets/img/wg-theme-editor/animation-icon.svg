@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="18px" viewBox="0 0 10 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="13 3 7 14 11 14 11 21 17 10 13 10"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="card" transform="translate(-235.000000, -51.000000)" fill-rule="nonzero">
+            <g id="Group-11" transform="translate(208.000000, 48.000000)">
+                <g id="Group" transform="translate(20.000000, 0.000000)">
+                    <g id="Shape">
+                        <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
+                        <path stroke="#000000" stroke-width="3" d="M14.4731867,11.5 L17,11.5 L15.6831566,9.2817218 L14.4731867,11.5 Z M12.5,15.117509 L9.68315664,20.2817218 L12.5,21 L12.5,15.117509 Z M9.52681328,12.5 L7,12.5 L8.31684336,14.7182782 L9.52681328,12.5 Z M11.5,8.88249102 L14.3168434,3.7182782 L11.5,3 L11.5,8.88249102 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,7 +1,7 @@
 <template>
   <div class="wg-form__submit">
     <wg-btn :status="status">
-      {{text}}
+      <slot />
     </wg-btn>
   </div>
 </template>
@@ -19,10 +19,6 @@ export default {
       type: String,
       default: 'normal'
     },
-    text: {
-      type: String,
-      default: 'Send'
-    }
   }
 }
 </script>

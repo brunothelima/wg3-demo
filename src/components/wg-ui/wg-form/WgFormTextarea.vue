@@ -43,7 +43,7 @@ export default {
   },
   data () {
     return {
-      text: this.value
+      currentValue: this.value
     }
   }
 }
@@ -52,12 +52,17 @@ export default {
 <style lang="scss" scoped>
 .wg-textarea {
   box-sizing: border-box;
-  height: 90px;
+  height: $wg-input-height * 2;
   width: 100%;
-  padding: var(--gutter-half);
-  border: 2px solid var(--colors-neutral);
+  padding: 0 var(--wg-gutter-l);
+  background-color: $wg-color-sys-k;
+  border: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-h;
+  border-radius: var(--wg-border-radius);
+  font-size: var(--wg-font-size);
+  color: $wg-color-sys-f;
   outline: none;
-  font-size: 0.7em;
-  transition: all var(--speed) var(--cubic-bezier);
+  transition-duration: var(--wg-transition-duration);
+  transition-timing-function: var(--wg-cubic-bezier);
+  transition-property: border-color, box-shadow, color; 
 }
 </style>

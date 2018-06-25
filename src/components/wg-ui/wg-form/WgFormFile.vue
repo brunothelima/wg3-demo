@@ -8,7 +8,7 @@
       ref="input" 
       :name="name"
       @change="onChange($event.target.files)"/> 
-    <span>{{selected || placeholder}}</span>
+    <span>{{selected.name || placeholder}}</span>
     <wg-btn :small="true"
      :disabled="disabled" 
      @click.native="open()">
@@ -18,7 +18,6 @@
 </template>
 
 <script>  
-import { VueMaskDirective } from 'v-mask'
 import WgBtn  from '@/components/wg-ui/WgBtn'
 export default {
   name: 'WgFormFile',
@@ -33,6 +32,10 @@ export default {
     placeholder: {
       type: String,
       default: 'Type Here'
+    },
+    value: {
+      type: Object,
+      default: () => {}
     },
     focus: {
       type: Boolean,
@@ -49,12 +52,12 @@ export default {
   },
   data() {
     return {
-      selected: '',
+      selected: {},
     }
   },
   methods: {
     onChange(files) {
-     this.selected = files[0].name
+     this.selected = files[0]
      this.$emit('change', files[0])
     },
     open() {
@@ -73,17 +76,22 @@ export default {
   box-sizing: border-box;
   height: 40px;
   width: 100%;
-  padding: 0 var(--gutter-half);
-  border: 2px solid var(--colors-neutral);
+  padding: 0 var(--wg-gutter-l);
+  background-color: $wg-color-sys-k;
+  border: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-h;
+  border-radius: var(--wg-border-radius);
+  font-size: var(--wg-font-size);
+  color: $wg-color-sys-f;
   outline: none;
-  font-size: 0.7em;
-  transition: all var(--speed) var(--cubic-bezier);
+  transition-duration: var(--wg-transition-duration);
+  transition-timing-function: var(--wg-cubic-bezier);
+  transition-property: border-color, box-shadow, color; 
   .wg-btn {
     position: absolute;
-    right: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 12px;
+    height: 38px;
+    right: var(--wg-border-width);
+    padding: 0 var(--wg-gutter);
+    font-size: var(--wg-font-size-s);
   }
   input {
     display: none;

@@ -1,0 +1,129 @@
+<template>
+  <section class="wg-login">
+    <wg-container>
+      <div class="panel">
+        <wg-heading level="h2" weight="regular">Welcome to Widgrid</wg-heading>
+        <div class="panel__box">
+          <div class="panel__head">Login to continue</div>
+          <div class="panel__form">
+            <wg-form :schema="schema" :noSubmit="true" @valid="login($event)">
+               <wg-form-submit :status="authStatus">Login</wg-form-submit>
+            </wg-form>
+            <div class="panel__footer">
+              <a href="">Forgot your password?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </wg-container>
+  </section>
+</template>
+
+<script>  
+import { mapGetters } from 'vuex'
+import { WgAuthMixin } from '@/mixins/WgAuthMixin'
+
+import WgHeading from '@/components/wg-ui/WgHeading'
+import WgContainer from '@/components/wg-ui/WgContainer'
+import WgForm from '@/components/wg-ui/wg-form/WgForm'
+import WgFormSubmit from '@/components/wg-ui/wg-form/WgFormSubmit'
+
+const schema = [
+  {
+    props:{ type: 'text', name: 'username', value: '', placeholder: 'Type your username', },
+    layout: { cols: 12, label: 'Username', },
+    validations: { required: true, }
+  },
+  {
+    props: { type: 'password', name: 'password', value: '', placeholder: 'Type your password', },
+    layout: { cols: 12, label: 'Password', },
+    validations: { required: true, }
+  },
+];
+
+export default {
+  name: 'WgLogin',
+  mixins: [WgAuthMixin],
+  components: {
+    'wg-heading': WgHeading,
+    'wg-container': WgContainer,
+    'wg-form': WgForm,
+    'wg-form-submit': WgFormSubmit,
+  },
+  data () {
+    return {
+      schema: schema,
+    }
+  },
+  computed: {
+    ...mapGetters(['authStatus']),
+  },
+  mounted: function () {
+    this.$emit('toggleShapeVisibility', true)
+  },
+  destroyed: function () {
+    this.$emit('toggleShapeVisibility', false)
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.wg-login {
+  height: 100%;
+  .wg-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100%;
+    @media screen and (max-width: #{$wg-brakepoint-small}) { 
+      align-items: flex-start;
+    }
+    h2 {
+      margin-bottom: var(--wg-gutter-xl);
+      text-align: center;
+      color: $wg-color-sys-c;
+    }
+  }
+}
+.panel {
+  position: relative;
+  z-index: 3;  
+  &__box {
+    overflow: hidden;
+    width: 100%;
+    max-width: 368px;
+    border-radius: var(--wg-border-radius-l);
+    box-shadow: var(--wg-box-shadow-xxl);
+    background-color: $wg-color-sys-k;
+  }
+  &__head {
+    text-align: center;
+    padding: var(--wg-gutter-l);
+    background-color: $wg-color-sys-j;
+    font-size: var(--wg-font-size-s);
+    font-weight: 700;
+    color: $wg-color-sys-c;
+  }
+  &__form {    
+    padding: var(--wg-gutter-xxl) var(--wg-gutter-l);
+  }
+  .wg-form__submit {
+    padding-top: var(--wg-gutter);
+    margin-bottom: var(--wg-gutter-xl);
+    text-align: center;
+  }
+  &__footer {
+    text-align: center;
+    a {
+      color: $wg-color-sys-f;
+      font-weight: $wg-font-weight-light;
+      transition: color var(--wg-transition-duration) var(--wg-cubic-bezier);
+      &:hover {
+        color: $wg-color-sys-d;
+      }
+    }
+  }
+}
+</style>
