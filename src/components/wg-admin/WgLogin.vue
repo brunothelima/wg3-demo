@@ -7,7 +7,6 @@
           <div class="panel__head">Login to continue</div>
           <div class="panel__form">
             <wg-form :schema="schema" :noSubmit="true" @valid="login($event)">
-               <wg-form-submit :status="authStatus">Login</wg-form-submit>
             </wg-form>
             <div class="panel__footer">
               <a href="">Forgot your password?</a>
@@ -26,7 +25,6 @@ import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 import WgHeading from '@/components/wg-ui/WgHeading'
 import WgContainer from '@/components/wg-ui/WgContainer'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import WgFormSubmit from '@/components/wg-ui/wg-form/WgFormSubmit'
 
 const schema = [
   {
@@ -48,7 +46,6 @@ export default {
     'wg-heading': WgHeading,
     'wg-container': WgContainer,
     'wg-form': WgForm,
-    'wg-form-submit': WgFormSubmit,
   },
   data () {
     return {

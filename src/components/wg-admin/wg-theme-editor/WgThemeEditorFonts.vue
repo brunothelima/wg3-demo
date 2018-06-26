@@ -5,11 +5,6 @@
 
 <script>
 import WgHeading from '@/components/wg-ui/WgHeading'
-import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
-import WgFormSelect from '@/components/wg-ui/wg-form/WgFormSelect'
-import WgFormRange from '@/components/wg-ui/wg-form/WgFormRange'
-import WgFormNumber from '@/components/wg-ui/wg-form/WgFormNumber'
-import WgFormBtnGroup from '@/components/wg-ui/wg-form/WgFormBtnGroup'
 
 const primaryFontOptions =  [
   { value: 'montserrat', text: 'Montserrat', selected: true },

@@ -1,8 +1,7 @@
 <template>
   <div class="wg-newsletter">
     <wg-heading level="h4">Sign up to our daily mail</wg-heading>
-    <wg-form :action="'wg_newsletter_request.php'" :schema="schema">
-      <wg-form-submit :status="formStatus">Sign up</wg-form-submit>
+    <wg-form :action="'wg_newsletter_request.php'">
     </wg-form>  
   </div>
 </template>
@@ -12,7 +11,6 @@ import { mapGetters } from 'vuex'
 
 import WgHeading from '@/components/wg-ui/WgHeading'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import WgFormSubmit from '@/components/wg-ui/wg-form/WgFormSubmit'
 
 const schema = [
   {
@@ -45,7 +43,6 @@ export default {
   components: {
     'wg-heading': WgHeading,
     'wg-form': WgForm,
-    'wg-form-submit': WgFormSubmit,
   },
   data () {
     return {

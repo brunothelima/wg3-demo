@@ -4,40 +4,40 @@ import { required, email, between, minLength } from 'vuelidate/lib/validators'
 export const WgFormMixin = {
 	mixins: [validationMixin],
 	methods: {
-		getFormModel: function (formSchema) {
-			var formModel = {};
+		generateFormDataModel: function (formSchema) {
+			let formModel = {};
 			formSchema.map(field => {
-				formModel[field.props.name] = field.props.value
+				formModel[field.name] = field.value || null
 			});
 			return formModel;
 		},
-		getFormValidations: function (formSchema) {
-			var validationSchema = {}
+		generateFormVuelidateModel: function (formSchema) {
+			let vuelidateModel = {}
 			formSchema.map(field => {
-				validationSchema[field.props.name] = this.getFieldValidations(field.validations || {})
+				if (field.validations) {
+					vuelidateModel[field.name] = {}
+					Object.keys(field.validations).map(validation => {
+						vuelidateModel[field.name][validation] = this.getVuelidation(validation, field.validations[validation])
+					})
+				}
 			})
-			return validationSchema
+			return vuelidateModel
 		},
-		getFieldValidations: function(validations) {
-			let fieldValidations = {};
-			Object.keys(validations).map(validation => {
-				if (validation === 'required') {
-					fieldValidations['required'] = required
-				}
-				if (validation === 'email') {
-					fieldValidations['email'] = email
-				}
-				if (validation === 'between') {
-					let min = validations['between'][0] || 0;
-					let max = validations['between'][1] || 1000;
-					fieldValidations['between'] = between(min, max)
-				}
-				if (validation === 'minLength') {
-					let length = validations['minLength'];
-					fieldValidations['minLength'] = minLength(length)
-				}
-			})
-			return fieldValidations
+		getVuelidation: function(validation, value) {
+			if (validation === 'required') {
+				return required
+			}
+			if (validation === 'email') {
+				return email
+			}
+			if (validation === 'between') {
+				let min = value[0] || 0;
+				let max = value[1] || 1000;
+				return between(min, max)
+			}
+			if (validation === 'minLength') {
+				return minLength(value)
+			}
 		},
 	}
 }
