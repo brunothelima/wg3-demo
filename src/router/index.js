@@ -4,7 +4,6 @@ import WgAdmin from '@/components/WgAdmin'
 import WgUser from '@/components/wg-admin/WgUser'
 import WgTheme from '@/components/wg-admin/WgTheme'
 import WgLogin from '@/components/wg-admin/WgLogin'
-import WgFormTest from '@/components/wg-admin/WgFormTest'
 import store from '@/store'
 
 Vue.use(Router)
@@ -30,7 +29,6 @@ export default new Router({
         { path: '', component: WgUser,},
         { path: '/admin/theme', component: WgTheme },
         { path: '/admin/login', component: WgLogin },
-        { path: '/admin/form', component: WgFormTest },
       ]
     },
   ],

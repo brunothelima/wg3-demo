@@ -3,6 +3,12 @@ import { required, email, between, minLength } from 'vuelidate/lib/validators'
 
 export const WgFormMixin = {
 	mixins: [validationMixin],
+	props: {
+		vuelidate: {
+			type: Boolean,
+			default: true
+		},
+	},
 	methods: {
 		generateFormDataModel: function (formSchema) {
 			let formModel = {};
@@ -14,8 +20,8 @@ export const WgFormMixin = {
 		generateFormVuelidateModel: function (formSchema) {
 			let vuelidateModel = {}
 			formSchema.map(field => {
-				if (field.validations) {
-					vuelidateModel[field.name] = {}
+				vuelidateModel[field.name] = {}
+				if (field.validations && this.vuelidate) {
 					Object.keys(field.validations).map(validation => {
 						vuelidateModel[field.name][validation] = this.getVuelidation(validation, field.validations[validation])
 					})

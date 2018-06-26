@@ -1,22 +1,31 @@
 <template>
   <form ref="WgForm" 
-    :class="['wg-form']" 
+    :class="[{
+      'wg-form--disabled': status === 'disabled',
+      'wg-form--loading': status === 'loading'
+    },'wg-form']" 
     :action="action" 
     @submit.prevent="onSubmit($event)">
       <slot name="before" />
       <component v-for="(field, index) in schema" :key="index"
         v-bind="field"
+        :is="getComponentByFieldType(field.type)"
         :success="!$v.form[field.name].$invalid && $v.form[field.name].$dirty"
         :error="$v.form[field.name].$error"
-        :is="`wg-input-${field.type}`"
         @change="$v.form[field.name].$model = $event"/>
-      <slot/>
+      <slot />
+      <div class="wg-form__footer">
+        <wg-btn v-if="button" :status="status">
+          <slot name="submit">Submit</slot>
+        </wg-btn>
+        <slot name="footer" />
+      </div>
   </form>
 </template>
 
 <script>  
 import { WgFormMixin } from '@/mixins/WgFormMixin'    
-import WgInputText from '@/components/wg-ui/wg-form/wg-input/WgInputText'    
+import WgInputText from '@/components/wg-ui/wg-form/wg-input/WgInputText'     
 import WgBtn from '@/components/wg-ui/WgBtn'    
 
 export default {
@@ -24,12 +33,27 @@ export default {
   mixins: [WgFormMixin],
   components: {
     'wg-input-text': WgInputText,
+    'wg-input-select': () => import('./wg-input/WgInputSelect'),
+    'wg-input-checkbox': () => import('./wg-input/WgInputCheckbox'),
+    'wg-input-range': () => import('./wg-input/WgInputRange'),
+    'wg-input-number': () => import('./wg-input/WgInputNumber'),
     'wg-btn': WgBtn,
   },
   props: {
     action: {
       type: String,
       default: null
+    },
+    status: {
+      type: String,
+      default: null,
+      validator: value => {
+        return value.match(/(loading|disabled)/)
+      },
+    },
+    button: {
+      type: Boolean,
+      default: true,
     },
     schema: {
       type: Array,
@@ -47,11 +71,20 @@ export default {
     }
   },
   methods: {
-    onChange: function (v) {
-      console.log(v)
+    getComponentByFieldType: function (type) {
+      if (['text', 'email', 'password', 'tel'].indexOf(type) > -1) {
+        return 'wg-input-text'
+      } 
+      return `wg-input-${type}`
     },
-    onSubmit: function ($event) {
-      console.log(this)
+    onSubmit: function () {
+      this.$emit('submit', this.form)
+      this.$v.$touch()
+      if (!this.$v.$invalid) {
+        this.$emit('success', this.form)
+      } else { 
+        this.$emit('error')
+      }
     },
   },
 }
@@ -62,5 +95,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0 calc(var(--wg-gutter-l) * -1);
+  transition: opacity var(--wg-transition-duration) var(--wg-cubic-bezier);
+  &--loading {
+    opacity: 0.6;
+  }
+  &__footer {
+    width: 100%;
+    padding: 0 var(--wg-gutter-l);
+  }
 }
 </style>

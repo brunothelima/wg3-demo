@@ -1,50 +1,71 @@
 <template>
   <div class="wg-theme-editor-fonts fonts">
+    <wg-form :vuelidate="false" :button="false" :schema="schema" />
   </div>
 </template>
 
 <script>
-import WgHeading from '@/components/wg-ui/WgHeading'
+import WgForm from '@/components/wg-ui/wg-form/WgForm'
 
-const primaryFontOptions =  [
-  { value: 'montserrat', text: 'Montserrat', selected: true },
-  { value: 'lato', text: 'Lato' },
-  { value: 'open-sans', text: 'Open Sans' },
+const schema = [
+  {
+    label: 'Primary font family',
+    type: 'select', 
+    id: 'primaryFont',
+    name: 'primary_font', 
+    placeholder: 'Select a font family',
+    value: 'montserrat',
+    options: [
+      { title: 'Montserrat', value: 'montserrat' },
+      { title: 'Lato', value: 'lato' },
+      { title: 'Open Sans', value: 'open-sans' },
+    ],
+  },
+  {
+    label: 'Secondary font family',
+    type: 'select', 
+    id: 'secondaryFont',
+    name: 'secondary_font', 
+    placeholder: 'Select a font family',
+    value: 'montserrat',
+    options: [
+      { title: 'Montserrat', value: 'montserrat' },
+      { title: 'Lato', value: 'lato' },
+      { title: 'Open Sans', value: 'open-sans' },
+    ]
+  },
+  {
+    cols: 7,
+    label: 'Base font size',
+    type: 'range', 
+    name: 'base_font_size', 
+    id: 'baseFontSizeRange',
+    value: 14,
+    min: 12,
+    max: 24,
+  },
+  {
+    cols: 5,
+    type: 'number', 
+    name: 'base_font_size', 
+    id: 'baseFontSizeNumber',
+    value: 14,
+    min: 12,
+    max: 24,
+    unit: 'px'
+  },
 ]
-
-const secondaryFontOptions = primaryFontOptions
 
 export default {
   name: 'WgThemeEditorFonts',
   components: {
-    'wg-heading': WgHeading,
-  },
-  props: {
-    fontPrimary: {
-      type: String,
-      default: null
-    },
-    fontSecondary: {
-      type: String,
-      default: null
-    },
-    fontBaseSize: {
-      type: Number,
-      default: 16
-    },
-    headingBaseSize: {
-      type: String,
-      default: 'Medium'
-    },
+    'wg-form': WgForm,
   },
   data () {
     return {
-      primaryFontOptions: primaryFontOptions,
-      secondaryFontOptions: secondaryFontOptions,
-      fontBaseSizeMin: 12,
-      fontBaseSizeMax: 24,
+      schema: schema
     }
-  },
+  }
 }
 </script>
 

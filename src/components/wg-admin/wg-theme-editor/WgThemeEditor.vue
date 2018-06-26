@@ -25,8 +25,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 import WgDragResize from '@/components/wg-ui/WgDragResize'
 import WgThemeEditorIntro from './WgThemeEditorIntro'
 import WgThemeEditorFonts from './WgThemeEditorFonts'
@@ -168,11 +166,11 @@ export default {
   &__blocks {
     position: relative;
     height: calc(100% - #{$tabs-nav-height});
-    > * {
+    /deep/ .wg-form {
       box-sizing: border-box;
       overflow: auto;
       height: 100%;
-      padding: var(--wg-gutter-xl) 0;
+      padding: var(--wg-gutter-xl) var(--wg-gutter-l);
       background-color: $wg-color-sys-k;
     }
   }

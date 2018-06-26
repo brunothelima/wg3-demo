@@ -1,8 +1,7 @@
 <template>
   <div class="wg-newsletter">
     <wg-heading level="h4">Sign up to our daily mail</wg-heading>
-    <wg-form :action="'wg_newsletter_request.php'">
-    </wg-form>  
+    <wg-form :schema="schema" />
   </div>
 </template>
 
@@ -14,27 +13,51 @@ import WgForm from '@/components/wg-ui/wg-form/WgForm'
 
 const schema = [
   {
-    props: { type: 'text', name: 'name', value: '', placeholder: 'Your name', },
-    layout: { cols: 12, label: '' },
-    validations: { required: true, }
+    type: 'text', 
+    id: 'name',
+    name: 'name', 
+    placeholder: 'Your name',
+    validations: { 
+      required: true, 
+    }
   },
   {
-    props: { type: 'select', name: 'subject', value: '', placeholder: 'Subject', },
-    options: [ { text: 'Report', value: 1 }, { text: 'Suggestion', value: 2 }, { text: 'Complement', value: 3 }, ],
-    layout: { cols: 12, label: '' },
-    validations: { required: true, }
-  },
-  {
-    props: { type: 'email', name: 'email', value: '', placeholder: 'Your Email', },
-    layout: { cols: 12, label: '', },
-    validations: { required: true, email: true }
-  },
-   {
-    props: { type: 'checkbox', name: 'single_checkbox', value: [], },
+    type: 'select', 
+    id: 'subject',
+    name: 'subject', 
+    placeholder: 'Subject',
+    value: 'error_report',
     options: [
-      { name: 'terms_conditions', text: 'I accept the terms and conditions'}, 
+      { title: 'Report Error', value: 'error_report' },
+      { title: 'Sugestion', value: 'sugestion' },
+      { title: 'Complement', value: 'complement' },
     ],
-    layout: { cols: 12, label: '', },
+    validations: { 
+      required: true, 
+    }
+  },
+  {
+    type: 'email', 
+    id: 'email',
+    name: 'email', 
+    placeholder: 'Your Email',
+    validations: { 
+      required: true, 
+      email: true
+    }
+  },
+  {
+    type: 'checkbox', 
+    id: 'terms',
+    name: 'terms', 
+    placeholder: 'Subject',
+    value: ['terms_conditions'],
+    options: [
+      { title: 'I accept the terms and conditions', name: 'terms_conditions' },
+    ],
+    validations: { 
+      required: true, 
+    }
   },
 ];
 
@@ -61,8 +84,10 @@ export default {
   h4 {
     margin-bottom: var(--wg-gutter-xl);
   }
-}
-.wg-form__submit {
-  text-align: center;
+  /deep/ .wg-form__footer {
+    padding-top: var(--wg-gutter);
+    margin-bottom: var(--wg-gutter-xl);
+    text-align: center;
+  }
 }
 </style>

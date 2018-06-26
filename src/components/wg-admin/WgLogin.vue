@@ -6,7 +6,8 @@
         <div class="panel__box">
           <div class="panel__head">Login to continue</div>
           <div class="panel__form">
-            <wg-form :schema="schema" :noSubmit="true" @valid="login($event)">
+            <wg-form :schema="schema" :status="authStatus" @success="login($event)">
+              <template slot="submit">Login</template>
             </wg-form>
             <div class="panel__footer">
               <a href="">Forgot your password?</a>
@@ -25,17 +26,30 @@ import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 import WgHeading from '@/components/wg-ui/WgHeading'
 import WgContainer from '@/components/wg-ui/WgContainer'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
+import WgBtn from '@/components/wg-ui/WgBtn'
 
 const schema = [
   {
-    props:{ type: 'text', name: 'username', value: '', placeholder: 'Type your username', },
-    layout: { cols: 12, label: 'Username', },
-    validations: { required: true, }
+    label: 'Username',
+    type: 'text', 
+    id: 'username',
+    name: 'username', 
+    placeholder: 'Type your username',
+    // value: '', 
+    validations: { 
+      required: true, 
+    }
   },
   {
-    props: { type: 'password', name: 'password', value: '', placeholder: 'Type your password', },
-    layout: { cols: 12, label: 'Password', },
-    validations: { required: true, }
+    label: 'Password',
+    type: 'password', 
+    id: 'password',
+    name: 'passowrd', 
+    placeholder: 'Type your password',
+    // value: '', 
+    validations: { 
+      required: true, 
+    }
   },
 ];
 
@@ -46,6 +60,7 @@ export default {
     'wg-heading': WgHeading,
     'wg-container': WgContainer,
     'wg-form': WgForm,
+    'wg-btn': WgBtn,
   },
   data () {
     return {
@@ -106,7 +121,7 @@ export default {
   &__form {    
     padding: var(--wg-gutter-xxl) var(--wg-gutter-l);
   }
-  .wg-form__submit {
+  /deep/ .wg-form__footer {
     padding-top: var(--wg-gutter);
     margin-bottom: var(--wg-gutter-xl);
     text-align: center;

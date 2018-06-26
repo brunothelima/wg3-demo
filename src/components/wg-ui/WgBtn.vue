@@ -26,7 +26,10 @@ export default {
     },
     status: {
       type: String,
-      default: ''
+      default: null,
+      validator: value => {
+        return value.match(/(loading|disabled|hover|focus)/)
+      },
     },
     model: {
       type: String,
@@ -76,7 +79,7 @@ export default {
   color: $wg-color-sys-k;
   outline: none;
   cursor: pointer;
-  transition-duration: var(--wg-transition-duration);
+  transition-duration: var(--wg-transition-duration-faster);
   transition-timing-function: var(--wg-cubic-bezier);
   transition-property: background-color, color; 
   text-decoration: none;
