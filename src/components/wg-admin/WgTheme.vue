@@ -1,8 +1,8 @@
 <template>
   <section class="wg-theme">
-    <div class="wg-theme__loading" v-if="WgThemeStatus === 'loading'"></div>
+    <div class="wg-theme__loading" v-if="WgThemeRequestStatus === 'loading'"></div>
     <div class="wg-theme__editor" v-else>
-      <wg-theme-editor :theme="WgThemeCurrent" :intro="!hasLoadedOnce" />
+      <wg-theme-editor :theme="WgThemeCurrentTheme" :intro="!hasLoadedOnce" />
       <wg-post />
     </div>
   </section>
@@ -23,7 +23,11 @@ export default {
     'wg-post': WgPost,
   },
   computed: {
-    ...mapGetters(['hasLoadedOnce', 'WgThemeStatus', 'WgThemeCurrent']),
+    ...mapGetters([
+      'hasLoadedOnce', 
+      'WgThemeRequestStatus', 
+      'WgThemeCurrentTheme'
+    ]),
   },
   async created () {
     await this.$store.dispatch(WG_THEME_REQUEST, {id: 1})

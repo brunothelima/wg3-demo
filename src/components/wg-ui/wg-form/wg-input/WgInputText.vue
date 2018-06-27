@@ -60,6 +60,14 @@ export default {
   }
 }
 .wg-form-field {
+  &--success {
+    /deep/ .wg-form-field__label {
+      color: $wg-color-success;
+    }
+    [class*="wg-input"] {
+      border-color: $wg-color-success;
+    }
+  }
   &--error {
     /deep/ .wg-form-field__label {
       color: $wg-color-error;

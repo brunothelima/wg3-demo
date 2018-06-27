@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import WgHeader from '@/components/wg-ui/WgHeader'
+import WgHeader from '@/components/wg-ui/wg-layout/WgHeader'
 export default {
   name: 'WgContainer',
   components: {

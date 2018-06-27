@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import WgHeading from '@/components/wg-ui/WgHeading'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {

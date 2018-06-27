@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import WgHeading from '@/components/wg-ui/WgHeading'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 export default {
   name: 'WgPostRelated',
   components: {

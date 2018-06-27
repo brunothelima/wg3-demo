@@ -14,8 +14,8 @@ const state = {
 }
 
 const getters = {
-  WgThemeStatus: state => state.status,
-  WgThemeCurrent: state => state.theme,
+  WgThemeRequestStatus: state => state.status,
+  WgThemeCurrentTheme: state => state.theme,
 }
 
 const actions = {
@@ -46,6 +46,10 @@ const mutations = {
   [WG_THEME_ERROR]: (state) => {
     state.status = 'error';
     Vue.set(state, 'theme', {});  
+  },
+  [WG_THEME_SET_CSS_PROP]: (state, prop) => {
+    state.status = 'error';
+    Vue.set(state.theme, prop.name, prop.value);  
   },
 }
 

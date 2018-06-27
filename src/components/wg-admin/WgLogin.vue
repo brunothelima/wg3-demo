@@ -23,8 +23,8 @@
 import { mapGetters } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 
-import WgHeading from '@/components/wg-ui/WgHeading'
-import WgContainer from '@/components/wg-ui/WgContainer'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
+import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
 import WgBtn from '@/components/wg-ui/WgBtn'
 

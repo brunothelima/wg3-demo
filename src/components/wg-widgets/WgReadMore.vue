@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import WgHeading from '@/components/wg-ui/WgHeading'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 import WgCard from '@/components/wg-widgets/WgCard'
 
 export default {

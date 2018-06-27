@@ -8,7 +8,7 @@
 <script>  
 import { mapGetters } from 'vuex'
 
-import WgHeading from '@/components/wg-ui/WgHeading'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
 
 const schema = [

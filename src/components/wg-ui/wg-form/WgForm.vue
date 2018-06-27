@@ -7,15 +7,15 @@
     :action="action" 
     @submit.prevent="onSubmit($event)">
       <slot name="before" />
+      <!-- :success="!$v.form.$anyError && $v.form.$dirty" -->
       <component v-for="(field, index) in schema" :key="index"
         v-bind="field"
         :is="getComponentByFieldType(field.type)"
-        :success="!$v.form[field.name].$invalid && $v.form[field.name].$dirty"
         :error="$v.form[field.name].$error"
-        @change="$v.form[field.name].$model = $event"/>
+        @change="onInputChange(field, $event)"/>
       <slot />
       <div class="wg-form__footer">
-        <wg-btn v-if="button" :status="status">
+        <wg-btn v-if="button && !$slots.footer" :status="status">
           <slot name="submit">Submit</slot>
         </wg-btn>
         <slot name="footer" />
@@ -26,7 +26,7 @@
 <script>  
 import { WgFormMixin } from '@/mixins/WgFormMixin'    
 import WgInputText from '@/components/wg-ui/wg-form/wg-input/WgInputText'     
-import WgBtn from '@/components/wg-ui/WgBtn'    
+import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {
   name: 'WgForm',
@@ -37,6 +37,7 @@ export default {
     'wg-input-checkbox': () => import('./wg-input/WgInputCheckbox'),
     'wg-input-range': () => import('./wg-input/WgInputRange'),
     'wg-input-number': () => import('./wg-input/WgInputNumber'),
+    'wg-input-btn-group': () => import('./wg-input/WgInputBtnGroup'),
     'wg-btn': WgBtn,
   },
   props: {
@@ -76,6 +77,10 @@ export default {
         return 'wg-input-text'
       } 
       return `wg-input-${type}`
+    },
+    onInputChange: function (field, value) {
+      this.$v.form[field.name].$model = value
+      this.$emit('change', { ...field, value: value })
     },
     onSubmit: function () {
       this.$emit('submit', this.form)

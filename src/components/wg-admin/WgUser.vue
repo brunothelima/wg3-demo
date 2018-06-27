@@ -30,8 +30,8 @@ import { mapGetters } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 import { WG_USER_REQUEST } from '@/store/actions/WgUser'
 
-import WgHeading from '@/components/wg-ui/WgHeading'
-import WgContainer from '@/components/wg-ui/WgContainer'
+import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
+import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
 import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {
