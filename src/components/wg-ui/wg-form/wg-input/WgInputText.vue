@@ -40,7 +40,9 @@ export default {
   font: #{$wg-font-weight-regular} var(--wg-font-size) var(--wg-font-family);
   color: $wg-color-sys-f;
   outline: none;
-  transition: all var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+  transition-duration: var(--wg-transition-duration-faster);
+  transition-timing-function: var(--wg-transition-timing-function);
+  transition-property: border-color, box-shadow, color, transform;
   &::placeholder {
     color: inherit;
   }

@@ -84,5 +84,5 @@ $wg-input-height: 48px;
 
 // Initial transition properties values
 $wg-transition-duration: 1s; // Transition speed
-$wg-cubic-bezier: cubic-bezier(0.5,0,0,1); // Trasition timing function
+$wg-transition-timing-function: 'ease'; // Trasition timing function
 

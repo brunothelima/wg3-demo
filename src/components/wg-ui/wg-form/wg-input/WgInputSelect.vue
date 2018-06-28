@@ -69,7 +69,9 @@ export default {
   color: $wg-color-sys-f;
   cursor: pointer;
   outline: none;
-  transition: all var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+  transition-duration: var(--wg-transition-duration-faster);
+  transition-timing-function: var(--wg-transition-timing-function);
+  transition-property: border-color, box-shadow, color, transform;
   select {
 		position: absolute;
 		z-index: 2;

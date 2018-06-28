@@ -77,7 +77,7 @@ export default {
   outline: none;
   cursor: pointer;
   transition-duration: var(--wg-transition-duration-faster);
-  transition-timing-function: var(--wg-cubic-bezier);
+  transition-timing-function: var(--wg-transition-timing-function);
   transition-property: background-color, color; 
   text-decoration: none;
   &--default {

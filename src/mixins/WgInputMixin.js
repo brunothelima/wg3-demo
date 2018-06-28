@@ -50,5 +50,10 @@ export const WgInputMixin = {
     onChange: function (value) {
       this.$emit('change', this.model)
     }
+  },
+  watch: {
+    value: function (newVal, oldVal) {
+      this.model = newVal
+    }
   }
 }

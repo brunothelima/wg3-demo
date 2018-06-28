@@ -13,10 +13,21 @@
             </a>
           </nav>
           <div class="tabs__blocks" v-if="theme">
-           <wg-theme-editor-fonts v-bind="theme.fonts" v-if="currentTab === 'fonts'"/>
-           <wg-theme-editor-colors v-bind="theme.colors" v-if="currentTab === 'colors'"/>
-           <wg-theme-editor-layout v-bind="theme.layout" v-if="currentTab === 'layout'"/>
-           <wg-theme-editor-animation v-bind="theme.animation" v-if="currentTab === 'animation'"/>
+           <wg-theme-editor-fonts v-if="currentTab === 'fonts'"
+            :fontFamilyPrimary="theme.fontFamilyPrimary"
+            :fontFamilySecondary="theme.fontFamilySecondary"
+            :fontSize="theme.fontSize"
+            :headingSize="theme.headingSize" />
+           <wg-theme-editor-colors v-if="currentTab === 'colors'"
+            :colorPrimary="theme.colorPrimary"
+            :colorSecondary="theme.colorSecondary"/>
+           <wg-theme-editor-layout v-bind="theme" v-if="currentTab === 'layout'"
+            :gutter="theme.gutter"
+            :borderRadius="theme.borderRadius"
+            :boxShadow="theme.boxShadow"/>
+           <wg-theme-editor-animation v-bind="theme" v-if="currentTab === 'animation'"
+            :transitionDuration="theme.transitionDuration"
+            :cubicBezier="theme.cubicBezier"/>
           </div>
         </div> 
       </div>
@@ -101,7 +112,7 @@ export default {
     height: 100vh;
     width: 100vw;
     background-color: rgba($wg-color-sys-g, 0.8);
-    transition: all var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   }
   &--active {
     .panel {
@@ -130,8 +141,8 @@ export default {
   position: fixed;
   border-radius: var(--wg-border-radius);
   background-color: $wg-color-sys-k; 
-  animation: panel-animation var(--wg-transition-duration) var(--wg-cubic-bezier) forwards;
-  transition: all var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+  animation: panel-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
+  transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   &.wg-dr--active {
     transition: none;
     opacity: 1;
@@ -181,7 +192,7 @@ export default {
   height: 100%;
   cursor: pointer;
   opacity: 0.4;
-  transition: opacity var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+  transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   &:hover, 
   &--active {
     opacity: 1;

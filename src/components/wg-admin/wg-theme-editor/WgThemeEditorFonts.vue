@@ -11,7 +11,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import { WG_THEME_SET_CSS_PROP } from '@/store/actions/WgTheme'
+import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 
 export default {
   name: 'WgThemeEditorFonts',
@@ -21,11 +21,11 @@ export default {
   props: {
     fontFamilyPrimary: {
       type: String,
-      default: 'montserrat'
+      default: 'Montserrat'
     },
     fontFamilySecondary: {
       type: String,
-      default: 'montserrat'
+      default: 'Montserrat'
     },
     fontSize: {
       type: Number,
@@ -50,6 +50,10 @@ export default {
             { title: 'Arial', value: 'Arial' },
             { title: 'Helvetica', value: 'Helvetica' },
             { title: 'Open Sans', value: 'Open Sans' },
+            { title: 'Montserrat', value: 'Montserrat' },
+            { title: 'Avenir', value: 'Avenir' },
+            { title: 'Roboto Slab', value: 'Roboto Slab' },
+            { title: 'Lora', value: 'Lora' },
           ],
         },
         {
@@ -63,6 +67,10 @@ export default {
             { title: 'Arial', value: 'Arial' },
             { title: 'Helvetica', value: 'Helvetica' },
             { title: 'Open Sans', value: 'Open Sans' },
+            { title: 'Montserrat', value: 'Montserrat' },
+            { title: 'Avenir', value: 'Avenir' },
+            { title: 'Roboto Slab', value: 'Roboto Slab' },
+            { title: 'Lora', value: 'Lora' },
           ]
         },
         {
@@ -105,7 +113,10 @@ export default {
   },
   methods: {
     onChange: function (field) {
-      this.$store.commit(WG_THEME_SET_CSS_PROP, field)
+      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
+        target: document.querySelector('.wg-theme__edit-area'), 
+        props: { [field.name]: field.value }
+      })
     }
   },
 }

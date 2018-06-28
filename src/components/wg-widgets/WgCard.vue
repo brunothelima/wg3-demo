@@ -52,7 +52,7 @@ export default {
     box-shadow: var(--wg-box-shadow-l);
     background-color: $wg-color-sys-k;
     text-decoration: none;
-    transition: all var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
     &:hover {
       transform: translateY(calc(var(--wg-gutter) * -1));
       box-shadow: var(--wg-box-shadow-xxl);
@@ -74,7 +74,7 @@ export default {
     border-top-right-radius: var(--wg-border-radius);
   }
   &__img {
-    transition: opacity var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   }
   &__info {
     display: block;
@@ -92,7 +92,7 @@ export default {
     font-weight: $wg-font-weight-bold;
     color: $wg-color-sys-b;
     line-height: $wg-line-height-xl;
-    transition: color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   }
   &__subtitle {
     margin: 0 0 var(--wg-gutter-l);

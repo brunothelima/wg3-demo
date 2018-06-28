@@ -28,7 +28,7 @@ export default {
   /deep/ a {
     font-weight: $wg-font-weight-bold;
     color: var(--wg-color-secondary);
-    transition: color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
     &:hover {
       color: var(--wg-color-primary);
     }
@@ -46,7 +46,6 @@ export default {
       display: block;
     }
     li {
-      font-size: var(--wg-font-size-l);
       line-height: $wg-line-height-xl;
       padding-right: var(--wg-gutter-l);
       @media screen and (max-width: #{$wg-brakepoint-small}) {
@@ -115,7 +114,7 @@ export default {
       position: relative;
       z-index: 1;
       margin-bottom: var(--wg-gutter);
-      font-size: calc(var(--wg-font-size) * 1.6);
+      font-size: var(--wg-font-size-xl);
       font-weight: $wg-font-weight-bold;
       color: $wg-color-sys-b;
       line-height: $wg-line-height-xl;

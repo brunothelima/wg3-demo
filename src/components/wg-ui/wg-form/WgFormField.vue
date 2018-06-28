@@ -49,7 +49,7 @@ export default {
     font-size: var(--wg-font-size-xs);
     color: $wg-color-sys-f;
     text-transform: uppercase;
-    transition: color var(--wg-transition-duration) var(--wg-cubic-bezier);
+    transition: color var(--wg-transition-duration) var(--wg-transition-timing-function);
   }
 }
 </style>

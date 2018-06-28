@@ -68,7 +68,7 @@ export default {
       img {
         display: block;
         border-radius: inherit;
-        transition: opacity var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+        transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
       }
       ~ .post__info {
         padding-left: var(--wg-gutter-l);
@@ -76,10 +76,10 @@ export default {
     }
     &__title {
       display: block;
-      font-size: calc(var(--wg-font-size) * 1.2);
+      font-size: var(--wg-font-size-l);
       color: $wg-color-sys-c;
       font-weight: $wg-font-weight-bold;
-      transition: color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+      transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
       ~ .post__subtitle {
         padding-top: var(--wg-gutter);
       }
@@ -89,7 +89,7 @@ export default {
       line-height: $wg-line-height-xl;
       color: $wg-color-sys-e;
       font-weight: $wg-font-weight-light;
-      transition: color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+      transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
     }
     a {
       display: flex;

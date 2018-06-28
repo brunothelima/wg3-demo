@@ -68,7 +68,7 @@ export default {
     // text-transform: uppercase;
     color: $wg-color-sys-e;
     cursor: pointer;
-    transition: background-color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+    transition: background-color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
     &:hover {
       background-color: $wg-color-sys-j;      
     }

@@ -12,7 +12,6 @@
 
 <script>
 import WgHeader from '@/components/wg-ui/wg-layout/WgHeader'
-import { WG_THEME_REQUEST } from '@/store/actions/WgTheme'
 export default {
   name: 'WgContainer',
   components: {
@@ -23,12 +22,6 @@ export default {
       shapeVisibility: false
     }
   },
-  async created () {
-    await this.$store.dispatch(WG_THEME_REQUEST, {id: 1})
-      // .then(theme => {
-        
-      // })
-  }
 }
 </script>
 <style lang="scss" scoped>
@@ -54,10 +47,10 @@ export default {
       background-size: auto 100%;
     }
     &-enter-active {  
-      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-cubic-bezier) forwards;
+      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
     }
     &-leave-active {
-      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-cubic-bezier) forwards reverse;
+      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards reverse;
     }
   }
 }
@@ -74,10 +67,10 @@ export default {
     z-index: 2;
   }
   &-enter-active {  
-    animation: wg-router-transition var(--wg-transition-duration) var(--wg-cubic-bezier) forwards;
+    animation: wg-router-transition var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
   }
   &-leave-active {
-    animation: wg-router-transition var(--wg-transition-duration) var(--wg-cubic-bezier) forwards reverse;
+    animation: wg-router-transition var(--wg-transition-duration) var(--wg-transition-timing-function) forwards reverse;
   }
 }
 @keyframes wg-router-transition {

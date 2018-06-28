@@ -22,7 +22,7 @@ export default {
     i {
       color: var(--wg-color-secondary);
       font-size: var(--wg-font-size-xl);
-      transition: color var(--wg-transition-duration-faster) var(--wg-cubic-bezier);
+      transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
     }
     &:hover i {
       color: var(--wg-color-primary);

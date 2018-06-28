@@ -77,7 +77,12 @@ export default {
       return `wg-input-${type}`
     },
     onInputChange: function (field, value) {
+      
       this.$v.form[field.name].$model = value
+      this.schema.filter(schemaField => schemaField.name === field.name)
+        .map(sameNameField => {
+          sameNameField.value = value
+        })
       this.$emit('change', { ...field, value: value })
     },
     onSubmit: function () {
@@ -98,7 +103,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0 calc(var(--wg-gutter-l) * -1);
-  transition: opacity var(--wg-transition-duration) var(--wg-cubic-bezier);
+  transition: opacity var(--wg-transition-duration) var(--wg-transition-timing-function);
   &--loading {
     opacity: 0.6;
   }

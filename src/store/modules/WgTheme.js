@@ -4,12 +4,12 @@ import {
   WG_THEME_REQUEST, 
   WG_THEME_ERROR, 
   WG_THEME_SUCCESS,
-  WG_THEME_SET_CSS_PROP,
+  WG_THEME_SET_CSS_PROPS,
 } from '@/store/actions/WgTheme'
 
 import WgApiCall from '@/utils/WgApi'
 
-function camelCaseToDash(str) {
+function camelCaseToDash (str) {
   return str
       .replace(/[^a-zA-Z0-9]+/g, '-')
       .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
@@ -18,6 +18,46 @@ function camelCaseToDash(str) {
       .replace(/([^0-9])([0-9])/g, '$1-$2')
       .replace(/-+/g, '-')
       .toLowerCase();
+}
+
+function setFontSizeCCP (target, name, value) {
+  target.style.setProperty(name, `${value}px`)
+  target.style.setProperty(`${name}-l`, `calc(var(${name}) + 2px)`)
+  target.style.setProperty(`${name}-xl`, `calc(var(${name}) + 4px)`)
+  target.style.setProperty(`${name}-s`, `calc(var(${name}) - 2px)`)
+  target.style.setProperty(`${name}-xs`, `calc(var(${name}) - 4px)`)
+}
+
+function setProgressiveCCP (target, name, value) {
+  target.style.setProperty(name, `${value}px`)
+  target.style.setProperty(`${name}-l`, `calc(var(${name}) * 2)`)
+  target.style.setProperty(`${name}-xl`, `calc(var(${name}) * 3)`)
+  target.style.setProperty(`${name}-xxl`, `calc(var(${name}) * 4)`)
+}
+
+function setTransitionDurationCCP (target, name, value) {
+  target.style.setProperty(name, `${value}ms`)
+  target.style.setProperty(`${name}-faster`, `calc(var(${name}) / 2)`)
+  target.style.setProperty(`${name}-slower`, `calc(var(${name}) * 2)`)
+}
+
+function setCCPs (target, CCPs) { 
+  Object.keys(CCPs).forEach(CCP => {
+    let CCPValue = CCPs[CCP]
+    let CCPName = `--wg-${camelCaseToDash(CCP)}`
+    if (['fontSize', 'headingSize'].indexOf(CCP) > -1) {
+      setFontSizeCCP(target, CCPName, CCPValue)
+    } else if (['gutter', 'borderRadius'].indexOf(CCP) > -1) {
+      setProgressiveCCP(target, CCPName, CCPValue)
+    } else if (['transitionDuration'].indexOf(CCP) > -1) {
+      setTransitionDurationCCP(target, CCPName, CCPValue)
+    } else {
+      if (typeof CCPValue === 'number') {
+        CCPValue += 'px'
+      }
+      target.style.setProperty(CCPName, CCPValue)
+    }
+  });
 }
 
 const state = {
@@ -59,13 +99,8 @@ const mutations = {
     state.status = 'error';
     Vue.set(state, 'theme', {});  
   },
-  [WG_THEME_SET_CSS_PROP]: (state, prop) => {
-    let val = prop.value
-    console.log(typeof val)
-    if (typeof val == 'number') {
-      val += 'px'
-    }
-    document.documentElement.style.setProperty(`--wg-${camelCaseToDash(prop.name)}`, val)
+  [WG_THEME_SET_CSS_PROPS]: (state, payload) => {
+    setCCPs(payload.target, payload.props)
   },
 }
 

@@ -131,7 +131,7 @@ export default {
     a {
       color: $wg-color-sys-f;
       font-weight: $wg-font-weight-light;
-      transition: color var(--wg-transition-duration) var(--wg-cubic-bezier);
+      transition: color var(--wg-transition-duration) var(--wg-transition-timing-function);
       &:hover {
         color: $wg-color-sys-d;
       }
