@@ -27,6 +27,10 @@ export default {
     'wg-form-field': WgFormField
   },
   props: {
+    value: {
+      type: Number,
+      default: 14
+    },
     options: {
       type: Array,
       default: () => []

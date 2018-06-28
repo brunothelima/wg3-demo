@@ -4,12 +4,11 @@ import { WG_AUTH_REQUEST, WG_AUTH_ERROR, WG_AUTH_SUCCESS, WG_AUTH_LOGOUT } from 
 import { WG_USER_REQUEST } from '@/store/actions/WgUser'
 import WgApiCall from '@/utils/WgApi'
 
-const state = { token: localStorage.getItem('wg-user-token') || '', status: '', hasLoadedOnce: false }
+const state = { token: localStorage.getItem('wg-user-token') || '', status: '', loadedOnce: false }
 
 const getters = {
-  isAuthenticated: state => !!state.token,
-  authStatus: state => state.status,
-  hasLoadedOnce: state => state.hasLoadedOnce,
+  WgAuthStatus: state => state.status,
+  WgAuthAuthenticated: state => !!state.token,
 }
 
 const actions = {
@@ -46,11 +45,9 @@ const mutations = {
   [WG_AUTH_SUCCESS]: (state, resp) => {
     state.status = 'success'
     state.token = resp.token
-    state.hasLoadedOnce = true
   },
   [WG_AUTH_ERROR]: (state) => {
     state.status = 'error'
-    state.hasLoadedOnce = true
   },
   [WG_AUTH_LOGOUT]: (state) => {
     state.token = ''

@@ -19,21 +19,21 @@ export default {
     'wg-form': WgForm,
   },
   props: {
-    fontPrimary: {
+    fontFamilyPrimary: {
       type: String,
       default: 'montserrat'
     },
-    fontSecondary: {
+    fontFamilySecondary: {
       type: String,
       default: 'montserrat'
     },
-    fontBaseSize: {
+    fontSize: {
       type: Number,
       default: 14
     },
-    headingBaseSize: {
-      type: String,
-      default: 'small'
+    headingSize: {
+      type: Number,
+      default: 14
     },
   },
   data () {
@@ -42,45 +42,45 @@ export default {
         {
           label: 'Primary font family',
           type: 'select', 
-          id: 'fontPrimary',
-          name: 'primary_font', 
-          placeholder: 'Select a font family',
-          value: this.fontPrimary,
+          id: 'fontFamilyPrimary',
+          name: 'fontFamilyPrimary', 
+          placeholder: 'Select a font',
+          value: this.fontFamilyPrimary,
           options: [
-            { title: 'Montserrat', value: 'montserrat' },
-            { title: 'Lato', value: 'lato' },
-            { title: 'Open Sans', value: 'open-sans' },
+            { title: 'Arial', value: 'Arial' },
+            { title: 'Helvetica', value: 'Helvetica' },
+            { title: 'Open Sans', value: 'Open Sans' },
           ],
         },
         {
           label: 'Secondary font family',
           type: 'select', 
-          id: 'fontSecondary',
-          name: 'secondary_font', 
-          placeholder: 'Select a font family',    
-          value: this.fontSecondary,
+          id: 'fontFamilySecondary',
+          name: 'fontFamilySecondary', 
+          placeholder: 'Select a font',    
+          value: this.fontFamilySecondary,
           options: [
-            { title: 'Montserrat', value: 'montserrat' },
-            { title: 'Lato', value: 'lato' },
-            { title: 'Open Sans', value: 'open-sans' },
+            { title: 'Arial', value: 'Arial' },
+            { title: 'Helvetica', value: 'Helvetica' },
+            { title: 'Open Sans', value: 'Open Sans' },
           ]
         },
         {
           cols: 7,
           label: 'Base font size',
           type: 'range', 
-          name: 'base_font_size', 
-          id: 'fontBaseSizeRange',
-          value: this.fontBaseSize,
+          name: 'fontSize', 
+          id: 'fontSizeRange',
+          value: this.fontSize,
           min: 12,
           max: 24,
         },
         {
           cols: 5,
           type: 'number', 
-          name: 'base_font_size', 
-          id: 'fontBaseSizeNumber',
-          value: this.fontBaseSize,
+          name: 'fontSize', 
+          id: 'fontSizeNumber',
+          value: this.fontSize,
           min: 12,
           max: 24,
           unit: 'px'
@@ -88,13 +88,13 @@ export default {
         {
           label: 'Headings size',
           type: 'btn-group', 
-          id: 'headingBaseSize',
-          name: 'heading_base_font', 
-          value: this.headingBaseSize,
+          id: 'headingSize',
+          name: 'headingSize', 
+          value: this.headingSize,
           options: [
-            { title: 'Small', value: 'small' },
-            { title: 'Medium', value: 'medium' },
-            { title: 'Large', value: 'large' },
+            { title: 'Small', value: 14 },
+            { title: 'Medium', value: 16 },
+            { title: 'Large', value: 18 },
           ]
         },
       ]
@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     onChange: function (field) {
-      // this.$strore.dispatch(WG_THEME_SET_CSS_PROP, { name: })
+      this.$store.commit(WG_THEME_SET_CSS_PROP, field)
     }
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <section class="user">
     <wg-container> 
-      <div class="intro" v-if="isProfileLoaded">
+      <div class="intro" v-if="WgUserDataLoaded">
         <div class="user__avatar">
           <i class="fa fa-user"></i>
         </div>
@@ -44,13 +44,15 @@ export default {
   },
   computed: {
     profile: function () {
-      return this.$store.getters.getProfile
+      return this.$store.getters.WgUserData
     },
-    ...mapGetters(['isProfileLoaded']),
+    ...mapGetters([
+      'WgUserData', 
+      'WgUserDataLoaded'
+    ]),
   },
   created: function() {
-    if (!this.$store.getters.hasLoadedOnce 
-    && this.$store.getters.isAuthenticated) {
+    if (this.$store.getters.WgAuthAuthenticated) {
       this.$store.dispatch(WG_USER_REQUEST)
     }
   },

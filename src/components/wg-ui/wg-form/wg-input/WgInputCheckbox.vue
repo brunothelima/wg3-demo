@@ -62,7 +62,7 @@ export default {
   min-height: var(--wg-gutter-xxl);
   input + label {
     padding-left: var(--wg-gutter);
-    font: #{$wg-font-weight-regular} var(--wg-font-size) var(--wg-font-family);
+    font: #{$wg-font-weight-regular} var(--wg-font-size);
     color: $wg-color-sys-d;
     cursor: pointer;
   }

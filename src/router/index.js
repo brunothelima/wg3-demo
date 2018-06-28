@@ -10,7 +10,7 @@ Vue.use(Router)
 
 const ifNotAuthenticated = (to, from, next) => {  
   let authFallBackUrl = '/admin/login'
-  if (!store.getters.isAuthenticated 
+  if (!store.getters.WgAuthAuthenticated 
     && to.path != authFallBackUrl) {
       next(authFallBackUrl)
       return

@@ -39,7 +39,7 @@ export default {
   },
   data () {
     return {
-      text: this.options.find(opt => opt.value === this.value).title
+      text: this.options.find(opt => opt.value === this.value).title || ''
     }
   },
   methods: {

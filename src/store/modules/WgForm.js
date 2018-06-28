@@ -11,7 +11,7 @@ const state = {
 }
 
 const getters = {
-  formStatus: state => state.status,
+  WgFormStatus: state => state.status,
 }
 
 const actions = {

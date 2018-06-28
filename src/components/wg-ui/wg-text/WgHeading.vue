@@ -38,6 +38,7 @@ export default {
   margin: 0;
   margin-bottom: var(--wg-gutter); 
   color: $wg-color-sys-b;
+  font-family: var(--wg-font-family-secondary);
   &--light {
     font-weight: $wg-font-weight-light;
   }
@@ -59,27 +60,27 @@ export default {
   }
 }
 h1 {
-  font-size: calc(var(--wg-font-size) * 2.6);
+  font-size: calc(var(--wg-heading-size) * 2.6);
   line-height: $wg-line-height-l;
 }
 h2 {
-  font-size: calc(var(--wg-font-size) * 2.2);
+  font-size: calc(var(--wg-heading-size) * 2.2);
   line-height: $wg-line-height-l;
 }
 h3 {
-  font-size: calc(var(--wg-font-size) * 1.8);
+  font-size: calc(var(--wg-heading-size) * 1.8);
   line-height: $wg-line-height-l;
 }
 h4 {
-  font-size: calc(var(--wg-font-size) * 1.6);
+  font-size: calc(var(--wg-heading-size) * 1.6);
   line-height: $wg-line-height-xl;
 }
 h5 {
-  font-size: calc(var(--wg-font-size) * 1.4);
+  font-size: calc(var(--wg-heading-size) * 1.4);
   line-height: $wg-line-height-xl;
 }
 h6 {
-  font-size: calc(var(--wg-font-size) * 1.2);
+  font-size: calc(var(--wg-heading-size) * 1.2);
   line-height: $wg-line-height-xl;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="wg-post">
     <wg-container class="wg-grid">
       <main class="wg-post__content">
-        <div class="wg-post__loading placeholder" v-if="postStatus === 'loading'">
+        <div class="wg-post__loading placeholder" v-if="WgPostStatus === 'loading'">
             <img src="@/assets/img/wg-post-mockup.svg">
         </div>
         <article v-else>
@@ -67,7 +67,11 @@ export default {
     }
   },
   computed: {
-     ...mapGetters(['postStatus', 'postRelatedStatus']),
+     ...mapGetters([
+      'WgPostStatus', 
+      'WgPostRelatedStatus',
+      'WgReadMoreStatus',
+    ]),
   },
   async created () {
     this.post = await this.$store.dispatch(WG_POST_REQUEST, {id: 1})

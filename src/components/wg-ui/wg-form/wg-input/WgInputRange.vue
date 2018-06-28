@@ -22,6 +22,9 @@ import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
 export default {
   name: 'WgInputRange',
   mixins: [WgInputMixin],
+  components: {
+    'wg-form-field': WgFormField
+  },
   props: {
     value: {
       type: Number,
@@ -36,9 +39,11 @@ export default {
       default: 1000 
     },
   },
-  components: {
-    'wg-form-field': WgFormField
-  },
+  methods: {
+    onChange: function (value) {
+      this.$emit('change', parseInt(this.model))
+    }
+  }
 }
 </script>
 

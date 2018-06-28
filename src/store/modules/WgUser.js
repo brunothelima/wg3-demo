@@ -4,11 +4,11 @@ import { WG_AUTH_LOGOUT } from '@/store/actions/WgAuth'
 // import { WG_UI_THEMES_REQUEST, WG_UI_SET_THEME_CSS } from '@/store/actions/WgUi'
 import WgApiCall from '@/utils/WgApi'
 
-const state = { status: '', profile: {} }
+const state = { status: '', user: {} }
 
 const getters = {
-  getProfile: state => state.profile,
-  isProfileLoaded: state => !!state.profile.name,
+  WgUserData: state => state.user,
+  WgUserDataLoaded: state => Object.keys(state.user).length > 0,
 }
 
 const actions = {
@@ -17,12 +17,6 @@ const actions = {
     WgApiCall({url: 'wg_user_request.php'})
       .then(resp => {
         commit(WG_USER_SUCCESS, resp)
-        // dispatch(WG_UI_THEMES_REQUEST).then((resp) => {
-        //   commit(WG_UI_SET_THEME_CSS, {
-        //     index: 0,
-        //     target: document.documentElement
-        //   });
-        // });
       })
       .catch(err => {
         commit(WG_USER_ERROR)
@@ -37,7 +31,7 @@ const mutations = {
   },
   [WG_USER_SUCCESS]: (state, resp) => {
     state.status = 'success'
-    Vue.set(state, 'profile', resp)
+    Vue.set(state, 'user', resp)
   },
   [WG_USER_ERROR]: (state) => {
     state.status = 'error'

@@ -65,7 +65,9 @@ $wg-color-secondary: #6F5BED;
 
 // Initial typo configuration
 $wg-font-size: 14px; // Base font-size
-$wg-font-family: 'Montserrat', Helvetica; // Primary font-family
+$wg-heading-size: 14px; // Base font-size
+$wg-font-family-primary: 'Montserrat', Helvetica; // Primary font-family
+$wg-font-family-secondary: 'Open Sans', Helvetica; // Primary font-family
 $wg-font-weight-light: 100; // Light 
 $wg-font-weight-regular: 400; // Regular
 $wg-font-weight-semi-bold: 600; // Semi Bold

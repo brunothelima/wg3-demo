@@ -6,7 +6,7 @@
         <div class="panel__box">
           <div class="panel__head">Login to continue</div>
           <div class="panel__form">
-            <wg-form :schema="schema" :status="authStatus" @success="login($event)">
+            <wg-form :schema="schema" :status="WgAuthStatus" @success="login($event)">
               <template slot="submit">Login</template>
             </wg-form>
             <div class="panel__footer">
@@ -68,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['authStatus']),
+    ...mapGetters(['WgAuthStatus']),
   },
   mounted: function () {
     this.$emit('toggleShapeVisibility', true)

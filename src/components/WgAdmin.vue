@@ -12,6 +12,7 @@
 
 <script>
 import WgHeader from '@/components/wg-ui/wg-layout/WgHeader'
+import { WG_THEME_REQUEST } from '@/store/actions/WgTheme'
 export default {
   name: 'WgContainer',
   components: {
@@ -21,6 +22,12 @@ export default {
     return {
       shapeVisibility: false
     }
+  },
+  async created () {
+    await this.$store.dispatch(WG_THEME_REQUEST, {id: 1})
+      // .then(theme => {
+        
+      // })
   }
 }
 </script>

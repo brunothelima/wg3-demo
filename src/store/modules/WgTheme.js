@@ -4,9 +4,21 @@ import {
   WG_THEME_REQUEST, 
   WG_THEME_ERROR, 
   WG_THEME_SUCCESS,
+  WG_THEME_SET_CSS_PROP,
 } from '@/store/actions/WgTheme'
 
 import WgApiCall from '@/utils/WgApi'
+
+function camelCaseToDash(str) {
+  return str
+      .replace(/[^a-zA-Z0-9]+/g, '-')
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+      .replace(/([a-z])([A-Z])/g, '$1-$2')
+      .replace(/([0-9])([^0-9])/g, '$1-$2')
+      .replace(/([^0-9])([0-9])/g, '$1-$2')
+      .replace(/-+/g, '-')
+      .toLowerCase();
+}
 
 const state = {
   status: '',
@@ -48,8 +60,12 @@ const mutations = {
     Vue.set(state, 'theme', {});  
   },
   [WG_THEME_SET_CSS_PROP]: (state, prop) => {
-    state.status = 'error';
-    Vue.set(state.theme, prop.name, prop.value);  
+    let val = prop.value
+    console.log(typeof val)
+    if (typeof val == 'number') {
+      val += 'px'
+    }
+    document.documentElement.style.setProperty(`--wg-${camelCaseToDash(prop.name)}`, val)
   },
 }
 

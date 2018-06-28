@@ -27,9 +27,6 @@ export default {
     status: {
       type: String,
       default: null,
-      validator: value => {
-        return value.match(/(loading|disabled|hover|focus)/)
-      },
     },
     model: {
       type: String,

@@ -60,13 +60,20 @@ export default {
   --wg-color-secondary-lighter: #{lighten($wg-color-secondary, 10%)};
   --wg-color-secondary-lightest: #{lighten($wg-color-secondary, 15%)};
   
-  --wg-font-family: #{$wg-font-family};
+  --wg-font-family-primary: #{$wg-font-family-primary};
+  --wg-font-family-secondary: #{$wg-font-family-secondary};
   
   --wg-font-size: #{$wg-font-size};
   --wg-font-size-l: calc(var(--wg-font-size) + 2px);
   --wg-font-size-xl: calc(var(--wg-font-size) + 4px);
   --wg-font-size-s: calc(var(--wg-font-size) - 2px);
   --wg-font-size-xs: calc(var(--wg-font-size) - 4px);
+  
+  --wg-heading-size: #{$wg-heading-size};
+  --wg-heading-size-l: calc(var(--wg-heading-size) + 2px);
+  --wg-heading-size-xl: calc(var(--wg-heading-size) + 4px);
+  --wg-heading-size-s: calc(var(--wg-heading-size) - 2px);
+  --wg-heading-size-xs: calc(var(--wg-heading-size) - 4px);
   
   --wg-transition-duration: #{$wg-transition-duration};
   --wg-transition-duration-slower: calc(var(--wg-transition-duration) * 2);
@@ -78,7 +85,7 @@ html, body {
   padding: 0;
   margin: 0;
   font-size: var(--wg-font-size);
-  font-family: var(--wg-font-family);
+  font-family: var(--wg-font-family-primary);
    -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

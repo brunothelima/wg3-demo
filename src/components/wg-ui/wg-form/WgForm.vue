@@ -12,7 +12,8 @@
         v-bind="field"
         :is="getComponentByFieldType(field.type)"
         :error="$v.form[field.name].$error"
-        @change="onInputChange(field, $event)"/>
+        @change="onInputChange(field, $event
+        )"/>
       <slot />
       <div class="wg-form__footer">
         <wg-btn v-if="button && !$slots.footer" :status="status">
@@ -48,9 +49,6 @@ export default {
     status: {
       type: String,
       default: null,
-      validator: value => {
-        return value.match(/(loading|disabled)/)
-      },
     },
     button: {
       type: Boolean,

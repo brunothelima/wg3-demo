@@ -9,7 +9,7 @@ import WgApiCall from '@/utils/WgApi'
 const state = { status: '' }
 
 const getters = {
-  readMoreStatus: state => state.status,
+  WgReadMoreStatus: state => state.status,
 }
 
 const actions = {
