@@ -50,6 +50,7 @@ export default {
 <style lang="scss" scoped>
 .wg-input-range {
   width: 100%;
+  opacity: 0.6;
 }
 
 </style>

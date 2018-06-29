@@ -100,9 +100,11 @@ export default {
     z-index: 1;
     right: 0;
     top: 0;
+    bottom: 0;
+    margin: auto;
     width: var(--wg-gutter-xxl);
-    height: $wg-input-height;
-    line-height: $wg-input-height;
+    height: var(--wg-font-size);
+    line-height: var(--wg-font-size);
     text-align: center;
   }
 }

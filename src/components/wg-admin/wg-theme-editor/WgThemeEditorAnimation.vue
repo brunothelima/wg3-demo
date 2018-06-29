@@ -1,9 +1,14 @@
 <template>
-  <div class="wg-theme-editor-animation animation">
+  <div ref="animationElm" class="wg-theme-editor-animation animation">
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
       @change="onChange($event)">
+        <div :class="[{
+          'toggle': toggleAnimation 
+        }, 'animation__demo']">
+          <i class="fa fa-bolt"></i>
+        </div>
     </wg-form>
   </div>
 </template>
@@ -30,6 +35,8 @@ export default {
   },
   data () {
     return {
+      toggleAnimation: false,
+      toggleInterval: null,
       schema: [
       	{
           cols: 6,
@@ -74,6 +81,14 @@ export default {
   },
   methods: {
     onChange: function (field) {
+      clearInterval(this.toggleInterval)
+      this.toggleInterval = setTimeout(() => {
+        this.toggleAnimation = !this.toggleAnimation
+        this.$store.commit(WG_THEME_SET_CSS_PROPS, {
+          target: document.querySelector('.animation__demo'), 
+          props: { [field.name]: field.value }
+        })
+      }, 500);
       this.$store.commit(WG_THEME_SET_CSS_PROPS, {
         target: document.querySelector('.wg-theme__edit-area'), 
         props: { [field.name]: field.value }
@@ -87,5 +102,26 @@ export default {
 .animation {
   display: flex;
   flex-wrap: wrap;
+  /deep/ &__demo {
+    width: 100%;
+    height: $wg-input-height / 1.5;
+    padding: 0 var(--wg-gutter-l);
+    i {
+      display: block;
+      content: '';
+      width: $wg-input-height;
+      height: 100%;
+      margin-top: calc(var(--wg-gutter-l) * -1);
+      background-color: var(--wg-color-secondary);
+      border-radius: var(--wg-border-radius);
+      transition: transform var(--wg-transition-duration) var(--wg-transition-timing-function);
+      text-align: center;
+      line-height: $wg-input-height / 1.5;
+      color: $wg-color-sys-k;
+    }
+    &.toggle i {
+      transform: translateX(200px);
+    }
+  }
 }
 </style>

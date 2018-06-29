@@ -35,6 +35,10 @@ export default {
       type: Number,
       default: 0
     },
+    boxShadow: {
+      type: Number,
+      default: 0
+    },
   },
   data () {
     return {
@@ -67,8 +71,8 @@ export default {
           name: 'borderWidth', 
           id: 'borderWidthRange',
           value: this.borderWidth,
-          min: 1,
-          max: 4,
+          min: 0,
+          max: 8,
         },
         {
           cols: 5,
@@ -76,12 +80,12 @@ export default {
 					name: 'borderWidth', 
           id: 'borderWidthNumber',
           value: this.borderWidth,
-          min: 1,
-          max: 4,
+          min: 0,
+          max: 8,
           unit: 'px'
         },
         //
-      	{
+        {
           cols: 7,
           label: 'Border radius',
           type: 'range', 
@@ -89,17 +93,30 @@ export default {
           id: 'borderRadiusRange',
           value: this.borderRadius,
           min: 0,
-          max: 8,
+          max: 24,
         },
         {
           cols: 5,
           type: 'number', 
-					name: 'borderRadius', 
+          name: 'borderRadius', 
           id: 'borderRadiusNumber',
           value: this.borderRadius,
           min: 0,
-          max: 8,
+          max: 24,
           unit: 'px'
+        },
+        //
+        {
+          label: 'Box shadow',
+          type: 'btn-group', 
+          name: 'boxShadow', 
+          id: 'boxShadow',
+          value: this.boxShadow,
+          options: [
+            { title: 'Small', value: 8 },
+            { title: 'Medium', value: 16 },
+            { title: 'Large', value: 24 },
+          ]
         },
       ]
     }

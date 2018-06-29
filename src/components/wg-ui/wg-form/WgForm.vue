@@ -39,6 +39,7 @@ export default {
     'wg-input-range': () => import('./wg-input/WgInputRange'),
     'wg-input-number': () => import('./wg-input/WgInputNumber'),
     'wg-input-btn-group': () => import('./wg-input/WgInputBtnGroup'),
+    'wg-input-color': () => import('./wg-input/WgInputColor'),
     'wg-btn': WgBtn,
   },
   props: {

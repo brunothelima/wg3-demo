@@ -66,6 +66,7 @@ export default {
   }
   picture {
     background-color: var(--wg-color-primary); 
+    width: 100%;
   }
   &__img, picture {
     display: block;

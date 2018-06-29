@@ -35,10 +35,10 @@ export default {
   --wg-box-shadow-alpha: #{$wg-box-shadow-alpha};
   --wg-box-shadow-color: #{$wg-box-shadow-color};
   
-  --wg-box-shadow: var(--wg-box-shadow-x) var(--wg-box-shadow-y) var(--wg-box-shadow-blur) rgba(var(--wg-box-shadow-color), var(--wg-box-shadow-alpha));
-  // --wg-box-shadow-l: calc(var(--wg-box-shadow-x) * 2) calc(var(--wg-box-shadow-y) * 2) calc(var(--wg-box-shadow-blur) * 2) rgba(var(--wg-box-shadow-color), var(--wg-box-shadow-alpha));
-  // --wg-box-shadow-xl: calc(var(--wg-box-shadow-x) * 4) calc(var(--wg-box-shadow-y) * 4) calc(var(--wg-box-shadow-blur) * 3) rgba(var(--wg-box-shadow-color), var(--wg-box-shadow-alpha));
-  // --wg-box-shadow-xxl: calc(var(--wg-box-shadow-x) * 8) calc(var(--wg-box-shadow-y) * 8) calc(var(--wg-box-shadow-blur) * 4) rgba(var(--wg-box-shadow-color), var(--wg-box-shadow-alpha));
+  --wg-box-shadow: #{$wg-box-shadow-x} #{$wg-box-shadow-y} var(--wg-box-shadow-blur) rgba(#{$wg-box-shadow-x}, #{$wg-box-shadow-alpha});
+  --wg-box-shadow-l: $wg-box-shadow-x #{$wg-box-shadow-y * 2} calc(var(--wg-box-shadow-blur) * 2) rgba(#{$wg-box-shadow-x}, #{$wg-box-shadow-alpha});
+  --wg-box-shadow-xl: $wg-box-shadow-x #{$wg-box-shadow-y * 4} calc(var(--wg-box-shadow-blur) * 3) rgba(#{$wg-box-shadow-x}, #{$wg-box-shadow-alpha});
+  --wg-box-shadow-xxl: $wg-box-shadow-x #{$wg-box-shadow-y * 6} calc(var(--wg-box-shadow-blur) * 4) rgba(#{$wg-box-shadow-x}, #{$wg-box-shadow-alpha});
   
   --wg-color-primary: #{$wg-color-primary};
   // --wg-color-primary-dark: #{darken($wg-color-primary, 5%)};
@@ -98,7 +98,7 @@ ul, ol {
 }
 
 .placeholder {
-  animation: placeholder-animation var(--wg-transition-duration-faster) infinite alternate;
+  animation: placeholder-animation 600ms infinite alternate;
 }
 @keyframes placeholder-animation {
   from {

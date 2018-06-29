@@ -71,6 +71,7 @@ export default {
         transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
       }
       ~ .post__info {
+        box-sizing: border-box;
         padding-left: var(--wg-gutter-l);
       }
     }
