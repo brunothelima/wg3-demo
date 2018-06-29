@@ -124,6 +124,7 @@ export default {
   &__resize-handle {
     width: 100%;
     cursor: ns-resize;
+    background-color: $wg-color-sys-k;
   }
   &__content {
     height: calc(100% - #{$handle-height * 2});

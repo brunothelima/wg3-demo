@@ -11,7 +11,7 @@ const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
       reject(new Error(err))
     }
   })
-  .catch(error => console.error(error))
+  // .catch(error => console.error(error))
 }) 
 
 export default WgApiCall

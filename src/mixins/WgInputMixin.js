@@ -47,12 +47,12 @@ export const WgInputMixin = {
     }
   },
   methods: {
-    onChange: function (value) {
+    onChange: function () {
       this.$emit('change', this.model)
     }
   },
   watch: {
-    value: function (newVal, oldVal) {
+    value: function (newVal) {
       this.model = newVal
     }
   }

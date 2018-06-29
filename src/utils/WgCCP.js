@@ -1,3 +1,5 @@
+const TinyColor = require('tinycolor2/dist/tinycolor-min.js')
+
 export const camelCaseToDash = (str) =>  {
   return str
       .replace(/[^a-zA-Z0-9]+/g, '-')
@@ -32,4 +34,13 @@ export const setBoxShadowCCP = (target, name, value) => {
   target.style.setProperty(`${name}-l`, `${x}px ${value / 2.66}px ${value / 1.66}px  rgba(${rgb}, ${value * 0.010})`)
   target.style.setProperty(`${name}-xl`, `${x}px ${value / 2.33}px ${value / 1.33}px rgba(${rgb}, ${value * 0.12})`)
   target.style.setProperty(`${name}-xxl`, `${x}px ${value / 2}px ${value}px rgba(${rgb}, ${value * 0.014})`)
+}
+export const setColorsCCP = (target, name, value) => {
+  target.style.setProperty(name, value)
+  target.style.setProperty(`${name}-dark`, TinyColor(value).darken(5).toString())
+  target.style.setProperty(`${name}-darken`, TinyColor(value).darken(10).toString())
+  target.style.setProperty(`${name}-darkest`, TinyColor(value).darken(15).toString())
+  target.style.setProperty(`${name}-light`, TinyColor(value).lighten(5).toString())
+  target.style.setProperty(`${name}-lighter`, TinyColor(value).lighten(10).toString())
+  target.style.setProperty(`${name}-lightest`, TinyColor(value).lighten(15).toString())
 }

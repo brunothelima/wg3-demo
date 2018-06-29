@@ -66,11 +66,11 @@ export default {
   }
   picture {
     background-color: var(--wg-color-primary); 
-    width: 100%;
   }
   &__img, picture {
     display: block;
     max-width: 100%;
+    width: 100%;
     border-top-left-radius: var(--wg-border-radius);
     border-top-right-radius: var(--wg-border-radius);
   }

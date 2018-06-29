@@ -12,7 +12,8 @@ import {
   setFontSizeCCP,
   setProgressiveCCP,
   setTransitionDurationCCP,
-  setBoxShadowCCP
+  setBoxShadowCCP,
+  setColorsCCP
 } from '@/utils/WgCCP'
 
 import WgApiCall from '@/utils/WgApi'
@@ -27,6 +28,8 @@ function setCCP (target, CCPKey, CCPValue) {
     setBoxShadowCCP(target, CCPName, CCPValue)
   } else if (['transitionDuration'].indexOf(CCPKey) > -1) {
     setTransitionDurationCCP(target, CCPName, CCPValue)
+  } else if (['colorPrimary', 'colorSecondary'].indexOf(CCPKey) > -1) {
+    setColorsCCP(target, CCPName, CCPValue)
   } else {
     if (typeof CCPValue === 'number') {
       CCPValue += 'px'

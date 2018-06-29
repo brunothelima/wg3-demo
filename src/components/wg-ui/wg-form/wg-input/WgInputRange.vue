@@ -40,7 +40,7 @@ export default {
     },
   },
   methods: {
-    onChange: function (value) {
+    onChange: function () {
       this.$emit('change', parseInt(this.model))
     }
   }

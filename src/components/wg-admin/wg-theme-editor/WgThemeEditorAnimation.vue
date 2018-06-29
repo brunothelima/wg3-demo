@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
 import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 
@@ -38,9 +37,9 @@ export default {
       toggleAnimation: false,
       toggleInterval: null,
       schema: [
-      	{
+      {
           cols: 6,
-          label: 'Gutter size',
+          label: 'Animation speed',
           type: 'range', 
           name: 'transitionDuration', 
           id: 'transitionDurationRange',
@@ -75,9 +74,6 @@ export default {
         },
       ]
     }
-  },
-  computed: {
-    // ...mapGetters(['authStatus']),
   },
   methods: {
     onChange: function (field) {

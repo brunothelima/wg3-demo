@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
 import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 
@@ -43,7 +42,7 @@ export default {
   data () {
     return {
       schema: [
-      	{
+        {
           cols: 7,
           label: 'Gutter size',
           type: 'range', 
@@ -63,8 +62,7 @@ export default {
           max: 16,
           unit: 'px'
         },
-        //
-      	{
+        {
           cols: 7,
           label: 'Border width',
           type: 'range', 
@@ -84,7 +82,6 @@ export default {
           max: 8,
           unit: 'px'
         },
-        //
         {
           cols: 7,
           label: 'Border radius',
@@ -105,7 +102,6 @@ export default {
           max: 24,
           unit: 'px'
         },
-        //
         {
           label: 'Box shadow',
           type: 'btn-group', 
@@ -120,9 +116,6 @@ export default {
         },
       ]
     }
-  },
-  computed: {
-    // ...mapGetters(['authStatus']),
   },
   methods: {
     onChange: function (field) {

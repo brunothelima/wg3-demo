@@ -143,6 +143,7 @@ export default {
   img {
     display: block;
     margin: 0 auto;
+    border-radius: var(--wg-border-radius);
   }
 }
 </style>
