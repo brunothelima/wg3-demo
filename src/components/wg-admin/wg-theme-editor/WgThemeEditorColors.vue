@@ -3,14 +3,13 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
-      @change="onChange($event)">
+      @change="$emit('change', $event)">
     </wg-form>
   </div>
 </template>
 
 <script>
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 
 export default {
   name: 'WgThemeEditorColors',
@@ -45,14 +44,6 @@ export default {
           value: this.colorSecondary,
         },
       ]
-    }
-  },
-  methods: {
-    onChange: function (field) {
-      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-        target: document.querySelector('.wg-theme__edit-area'), 
-        props: { [field.name]: field.value }
-      })
     }
   },
 }

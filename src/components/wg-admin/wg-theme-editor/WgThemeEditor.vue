@@ -17,17 +17,21 @@
             :fontFamilyPrimary="theme.fontFamilyPrimary"
             :fontFamilySecondary="theme.fontFamilySecondary"
             :fontSize="theme.fontSize"
-            :headingSize="theme.headingSize" />
+            :headingSize="theme.headingSize" 
+            @change="onChange($event)"/>
            <wg-theme-editor-colors v-if="currentTab === 'colors'"
             :colorPrimary="theme.colorPrimary"
-            :colorSecondary="theme.colorSecondary"/>
-           <wg-theme-editor-layout v-bind="theme" v-if="currentTab === 'layout'"
+            :colorSecondary="theme.colorSecondary"
+            @change="onChange($event)"/>
+           <wg-theme-editor-layout v-if="currentTab === 'layout'"
             :gutter="theme.gutter"
             :borderRadius="theme.borderRadius"
-            :boxShadow="theme.boxShadow"/>
-           <wg-theme-editor-animation v-bind="theme" v-if="currentTab === 'animation'"
+            :boxShadow="theme.boxShadow"
+            @change="onChange($event)"/>
+           <wg-theme-editor-animation v-if="currentTab === 'animation'"
             :transitionDuration="theme.transitionDuration"
-            :cubicBezier="theme.cubicBezier"/>
+            :cubicBezier="theme.cubicBezier"
+            @change="onChange($event)"/>
           </div>
         </div> 
       </div>
@@ -36,6 +40,8 @@
 </template>
 
 <script>
+import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
+
 import WgDragResize from '@/components/wg-ui/WgDragResize'
 import WgThemeEditorIntro from './WgThemeEditorIntro'
 import WgThemeEditorFonts from './WgThemeEditorFonts'
@@ -83,6 +89,12 @@ export default {
     }
   },
   methods: {
+    onChange: function (field) {
+      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
+        props: { [field.name]: field.value },
+        elem: document.querySelector('.wg-theme__edit-area')
+      })
+    },
     initEditor: function () {
       this.showIntro = false
       this.$refs.panel.setCoords({

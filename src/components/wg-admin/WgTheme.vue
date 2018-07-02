@@ -3,9 +3,9 @@
     <div class="wg-theme__loading" v-if="WgThemeRequestStatus === 'loading'"></div>
     <div class="wg-theme__editor" v-else>
       <div class="wg-theme__edit-area" ref="editArea">
-        <wg-post ref="post" />
+        <wg-post/>
       </div>
-      <wg-theme-editor :theme="WgThemeCurrentTheme" />
+      <wg-theme-editor :theme="WgThemeCurrentTheme"/>
     </div>
   </section>
 </template>
@@ -32,11 +32,9 @@ export default {
   async created () {
     await this.$store.dispatch(WG_THEME_REQUEST, {id: 1})
       .then(themeProps => {
-        console.log(this.$refs.editArea._scopeId)
-        console.log()
         this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-          scope: `.wg-theme__edit-area[${this.$options._scopeId}]`,
-          props: themeProps 
+          props: themeProps,
+          elem: this.$refs.editArea
         })
       })
   }

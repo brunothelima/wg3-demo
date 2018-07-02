@@ -42,26 +42,19 @@ const mutations = {
   [WG_THEME_REQUEST]: (state) => {
     state.status = 'loading'
   },
-  [WG_THEME_SUCCESS]: (state, theme) => {
+  [WG_THEME_SUCCESS]: (state, payload) => {
     state.status = 'success';
-    Vue.set(state, 'theme', theme);
+    Vue.set(state, 'theme', payload);
   },
   [WG_THEME_ERROR]: (state) => {
     state.status = 'error';
     Vue.set(state, 'theme', {});  
   },
   [WG_THEME_SET_CSS_PROPS]: (state, payload) => {
-    Vue.set(state, 'theme', payload.props) 
-    let css = `${payload.scope} {`
     Object.keys(payload.props).forEach(prop => {
-      css += getCCP(prop, payload.props[prop])
+      Vue.set(state.theme, prop, payload.props[prop]) 
     }); 
-    css += '}'
-    let head = document.head || document.getElementsByTagName('head')[0]
-    let style = document.createElement('style')
-    style.type = 'text/css'
-    style.appendChild(document.createTextNode(css));
-    head.appendChild(style);
+    setCCP(payload.elem, state.theme)
   },
 }
 

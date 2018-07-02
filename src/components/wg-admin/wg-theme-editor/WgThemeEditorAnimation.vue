@@ -4,9 +4,10 @@
       :vuelidate="false"
       :button="false"
       @change="onChange($event)">
-        <div :class="[{
-          'toggle': toggleAnimation 
-        }, 'animation__demo']">
+        <div ref="animationDemo"
+          :class="[{
+            'toggle': toggleAnimation 
+          }, 'animation__demo']">
           <i class="fa fa-bolt"></i>
         </div>
     </wg-form>
@@ -81,14 +82,11 @@ export default {
       this.toggleInterval = setTimeout(() => {
         this.toggleAnimation = !this.toggleAnimation
         this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-          target: document.querySelector('.animation__demo'), 
-          props: { [field.name]: field.value }
+          props: { [field.name]: field.value },
+          elem: this.$refs.animationDemo
         })
       }, 500);
-      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-        target: document.querySelector('.wg-theme__edit-area'), 
-        props: { [field.name]: field.value }
-      })
+      this.$emit('change', field)
     }
   },
 }

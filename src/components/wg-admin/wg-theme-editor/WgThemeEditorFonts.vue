@@ -3,7 +3,7 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
-      @change="onChange($event)">
+      @change="$emit('change', $event)">
     </wg-form>
   </div>
 </template>
@@ -105,14 +105,6 @@ export default {
           ]
         },
       ]
-    }
-  },
-  methods: {
-    onChange: function (field) {
-      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-        target: document.querySelector('.wg-theme__edit-area'), 
-        props: { [field.name]: field.value }
-      })
     }
   },
 }
