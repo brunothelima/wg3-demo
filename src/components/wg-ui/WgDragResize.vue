@@ -57,6 +57,20 @@ export default {
       this.size.w = coords.w || this.size.w
       this.size.h = coords.h || this.size.h
     },
+    normalizeCoords: function () {
+      if (this.pos.x < 0) {
+        this.pos.x = 0
+      }
+      if ((this.pos.x + this.size.w) > window.innerWidth) {
+        this.pos.x = window.innerWidth - this.size.w
+      }
+      if (this.pos.y < 0) {
+        this.pos.y = 0
+      }
+      if ((this.pos.y + this.size.h) > window.innerHeight) {
+        this.pos.y = window.innerHeight - this.size.h
+      }
+    },
     onDragStart: function (dragStart) {   
       this.$emit('dragStart')   
       this.isMoving = true
@@ -73,6 +87,7 @@ export default {
         this.$emit('dragStop')   
         this.isMoving = false
         document.onmousemove = null
+        this.normalizeCoords()
       }
     },
     onResizeStart: function (resizeStart) {

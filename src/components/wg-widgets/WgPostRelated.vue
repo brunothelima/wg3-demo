@@ -80,6 +80,7 @@ export default {
       font-size: var(--wg-font-size-l);
       color: $wg-color-sys-c;
       font-weight: $wg-font-weight-bold;
+      line-height: $wg-line-height-xl;
       transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
       ~ .post__subtitle {
         padding-top: var(--wg-gutter);

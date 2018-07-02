@@ -22,6 +22,7 @@ export default {
   font-weight: $wg-font-weight-light;
   color: $wg-color-sys-a;
   /deep/ p {
+    font-size: inherit;
     line-height: $wg-line-height-body;
     margin: 0 0 var(--wg-gutter-xl);
   }
