@@ -17,9 +17,9 @@
 import { mapGetters } from 'vuex'
 
 import WgDragResize from '@/components/wg-ui/WgDragResize'
-import WgBtn from '@/components/wg-ui/WgBtn'
 import WgThemeEditorTutorial from './WgThemeEditorTutorial'
 import WgThemeEditorForm from './WgThemeEditorForm'
+import WgBtn from '@/components/wg-ui/WgBtn'
 
 export default {
   name: 'WgThemeEditor',
