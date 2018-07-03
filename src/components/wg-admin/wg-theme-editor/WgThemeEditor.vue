@@ -1,109 +1,64 @@
 <template>
-  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': !showIntro}">
+  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': currentTab != 'tutorial'}">
     <wg-drag-resize v-bind="panel" ref="panel" class="panel">
       <div class="panel__content">
-        <wg-theme-editor-intro v-if="showIntro" @confirm="initEditor"/>
-        <div class="panel__tabs tabs" v-else>
-          <nav class="tabs__nav">
-            <a v-for="(tab, index) in tabs" :key="index" 
-              :class="['tab', {'tab--active': currentTab === tab.id}]" 
-              @click="currentTab = tab.id">
-                <span class="tab__icon"><img :src="tab.icon" :alt="tab.title" /></span>
-                <span class="tab__title">{{tab.title}}</span>
-            </a>
-          </nav>
-          <div class="tabs__blocks" v-if="theme">
-           <wg-theme-editor-fonts v-if="currentTab === 'fonts'"
-            :fontFamilyPrimary="theme.fontFamilyPrimary"
-            :fontFamilySecondary="theme.fontFamilySecondary"
-            :fontSize="theme.fontSize"
-            :headingSize="theme.headingSize" 
-            @change="onChange($event)"/>
-           <wg-theme-editor-colors v-if="currentTab === 'colors'"
-            :colorPrimary="theme.colorPrimary"
-            :colorSecondary="theme.colorSecondary"
-            @change="onChange($event)"/>
-           <wg-theme-editor-layout v-if="currentTab === 'layout'"
-            :gutter="theme.gutter"
-            :borderRadius="theme.borderRadius"
-            :boxShadow="theme.boxShadow"
-            @change="onChange($event)"/>
-           <wg-theme-editor-animation v-if="currentTab === 'animation'"
-            :transitionDuration="theme.transitionDuration"
-            :cubicBezier="theme.cubicBezier"
-            @change="onChange($event)"/>
-          </div>
-        </div> 
+        <wg-theme-editor-tutorial v-if="currentTab === 'tutorial'" @confirm="initEditor"/>
+        <wg-theme-editor-form v-if="currentTab === 'form'" />
+        <div class="panel__actions">
+          <wg-btn class="panel__preview" model="outline">Preview</wg-btn>
+          <wg-btn class="panel__publish">Publish</wg-btn>
+        </div>
       </div>
     </wg-drag-resize>
   </div>
 </template>
 
 <script>
-import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
+import { mapGetters } from 'vuex'
 
 import WgDragResize from '@/components/wg-ui/WgDragResize'
-import WgThemeEditorIntro from './WgThemeEditorIntro'
-import WgThemeEditorFonts from './WgThemeEditorFonts'
-import WgThemeEditorColors from './WgThemeEditorColors'
-import WgThemeEditorLayout from './WgThemeEditorLayout'
-import WgThemeEditorAnimation from './WgThemeEditorAnimation'
-
-const tabs = [
-  { id: 'fonts', title: 'Fonts', icon: require('@/assets/img/wg-theme-editor/fonts-icon.svg') },
-  { id: 'colors', title: 'Colors', icon: require('@/assets/img/wg-theme-editor/colors-icon.svg') },
-  { id: 'layout', title: 'Layout', icon: require('@/assets/img/wg-theme-editor/layout-icon.svg') },
-  { id: 'animation', title: 'Animation', icon: require('@/assets/img/wg-theme-editor/animation-icon.svg') },
-]
+import WgBtn from '@/components/wg-ui/WgBtn'
+import WgThemeEditorTutorial from './WgThemeEditorTutorial'
+import WgThemeEditorForm from './WgThemeEditorForm'
 
 export default {
   name: 'WgThemeEditor',
   components: {
     'wg-drag-resize': WgDragResize,
-    'wg-theme-editor-intro': WgThemeEditorIntro,
-    'wg-theme-editor-fonts': WgThemeEditorFonts,
-    'wg-theme-editor-colors': WgThemeEditorColors,
-    'wg-theme-editor-layout': WgThemeEditorLayout,
-    'wg-theme-editor-animation': WgThemeEditorAnimation,
+    'wg-theme-editor-tutorial': WgThemeEditorTutorial,
+    'wg-theme-editor-form': WgThemeEditorForm,
+    'wg-btn': WgBtn,
   },
   props: {
-    intro: {
+    tutorial: {
       type: Boolean,
       default: true
-    },
-    theme: {
-      type: Object,
-      default: () => {}
     },
   }, 
   data () {
     return {
-      tabs: tabs,
-      currentTab: 'fonts',
-      showIntro: this.intro,
+      currentTab: (this.tutorial) ? 'tutorial' : 'form',
       panel: {
-        w: 495, h: 588,
+        w: 495, 
+        h: 588,
         x: (window.innerWidth - 495) / 2,
         y: (window.innerHeight - 588) / 2,
       },
     }
   },
   methods: {
-    onChange: function (field) {
-      this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-        props: { [field.name]: field.value },
-        elem: document.querySelector('.wg-theme__edit-area')
-      })
-    },
     initEditor: function () {
-      this.showIntro = false
+      this.currentTab = 'form'
       this.$refs.panel.setCoords({
-        x: 24,  y: 80, w: 287,  h: 505,
+        x: 24, 
+        y: 80, 
+        w: 300,
+        h: 613,
       });
     },
   },
   mounted: function () {
-    if (!this.showIntro) {
+    if (!this.tutorial) {
       this.initEditor()
     }
   },
@@ -130,7 +85,7 @@ export default {
     .panel {
       animation: none;
       opacity: 0.6;
-      width: 287px;
+      width: 300px;
       height: 505px;
       &:hover {
         opacity: 1;
@@ -139,6 +94,9 @@ export default {
       /deep/ .wg-dr__drag-handle,
       /deep/ .wg-dr__resize-handle {
         display: flex;
+      }
+      &__actions {
+        opacity: 1;
       }
     }
     &:before {
@@ -155,6 +113,23 @@ export default {
   background-color: $wg-color-sys-k; 
   animation: panel-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
   transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+  &__actions {
+    display: flex;
+    padding: var(--wg-gutter-xl) var(--wg-gutter) 0;
+    border-top: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-i;
+    opacity: 0;
+    > * {
+      margin: 0 var(--wg-gutter);
+    }
+  }
+  &__preview,
+  &__editor{
+    filter: grayscale(100%);
+    opacity: 0.6;
+  }
+  &__publish {
+    flex: 1;
+  }
   &.wg-dr--active {
     transition: none;
     opacity: 1;
@@ -173,56 +148,6 @@ export default {
       box-shadow: var(--wg-box-shadow-xxl);
       opacity: 1;
     }
-  }
-}
-
-.tabs {
-  height: 100%;
-  $tabs-nav-height: 50px;
-  &__nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    height: $tabs-nav-height;
-    text-align: center;
-  }
-  &__blocks {
-    position: relative;
-    height: calc(100% - #{$tabs-nav-height});
-    /deep/ .wg-form {
-      box-sizing: border-box;
-      overflow: auto;
-      height: 100%;
-      padding: var(--wg-gutter-xl) var(--wg-gutter-l);
-      background-color: $wg-color-sys-k;
-    }
-  }
-}
-.tab {
-  flex: 1;
-  overflow: hidden;
-  height: 100%;
-  cursor: pointer;
-  opacity: 0.4;
-  transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
-  &:hover, 
-  &--active {
-    opacity: 1;
-  }
-  img {
-    display: block;
-    margin: auto;
-  }
-  &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--wg-gutter);
-    width: 24px;
-    height: 24px;
-  }
-  &__title {
-    font-size: var(--wg-font-size-s);
   }
 }
 </style>

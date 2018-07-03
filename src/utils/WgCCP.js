@@ -77,20 +77,12 @@ export const getCCP = (CCPKey, CCPValue) => {
   }
   return CCPs
 }
-export const setCCP = (elem, props) => {
-  let styleHash = ObjToHash(elem.className.split(' ')).substr(0, 7)
-  let styleTag = document.querySelector(`style[data-wg-${styleHash}]`) || null
-  elem.setAttribute(`data-wg-${styleHash}`, '')
-  if (!styleTag) {
-    styleTag = document.createElement('style')
-    styleTag.setAttribute('type', 'text/css')
-    styleTag.setAttribute(`data-wg-${styleHash}`, '')
-    document.head.appendChild(styleTag);
-  }
-  let css = `[data-wg-${styleHash}] {`
+export const setCCPs = (el, props) => {
+  let styleTag = document.querySelector(`style[data-wg-${el.wgId}]`)
+  let styleText = `[data-wg-${el.wgId}] {`
   Object.keys(props).forEach(prop => {
-    css += getCCP(prop, props[prop])
+    styleText += getCCP(prop, props[prop])
   }); 
-  css += '}'
-  styleTag.innerHTML = css
+  styleText += '}'
+  styleTag.innerHTML = styleText
 }

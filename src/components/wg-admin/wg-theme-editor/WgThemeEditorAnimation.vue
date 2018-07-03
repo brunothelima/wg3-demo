@@ -15,8 +15,10 @@
 </template>
 
 <script>
-import WgForm from '@/components/wg-ui/wg-form/WgForm'
 import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
+import { camelCaseToDash } from '@/utils/WgCCP'
+
+import WgForm from '@/components/wg-ui/wg-form/WgForm'
 
 export default {
   name: 'WgThemeEditorAnimation',
@@ -77,15 +79,17 @@ export default {
     }
   },
   methods: {
-    onChange: function (field) {
+    setAnimationDemoProps: function (field) {
       clearInterval(this.toggleInterval)
+      let propName = `--wg-${camelCaseToDash(field.name)}`
+      let propValue = (typeof field.value == 'number') ? `${field.value}ms` : field.value 
+      this.$refs.animationDemo.style.setProperty(propName, propValue)
       this.toggleInterval = setTimeout(() => {
         this.toggleAnimation = !this.toggleAnimation
-        this.$store.commit(WG_THEME_SET_CSS_PROPS, {
-          props: { [field.name]: field.value },
-          elem: this.$refs.animationDemo
-        })
       }, 500);
+    },
+    onChange: function (field) {
+      this.setAnimationDemoProps(field)
       this.$emit('change', field)
     }
   },

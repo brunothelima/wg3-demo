@@ -1,18 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="10px" height="18px" viewBox="0 0 10 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
-    <title>Shape</title>
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 8</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <polygon id="path-1" points="13 3 7 14 11 14 11 21 17 10 13 10"></polygon>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="137.354031%" id="linearGradient-1">
+            <stop stop-color="#0CEF8C" offset="0%"></stop>
+            <stop stop-color="#6F5BED" offset="100%"></stop>
+        </linearGradient>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="card" transform="translate(-235.000000, -51.000000)" fill-rule="nonzero">
-            <g id="Group-11" transform="translate(208.000000, 48.000000)">
-                <g id="Group" transform="translate(20.000000, 0.000000)">
-                    <g id="Shape">
-                        <use fill="#D8D8D8" fill-rule="evenodd" xlink:href="#path-1"></use>
-                        <path stroke="#000000" stroke-width="3" d="M14.4731867,11.5 L17,11.5 L15.6831566,9.2817218 L14.4731867,11.5 Z M12.5,15.117509 L9.68315664,20.2817218 L12.5,21 L12.5,15.117509 Z M9.52681328,12.5 L7,12.5 L8.31684336,14.7182782 L9.52681328,12.5 Z M11.5,8.88249102 L14.3168434,3.7182782 L11.5,3 L11.5,8.88249102 Z"></path>
+        <g id="controler" transform="translate(-235.000000, -51.000000)">
+            <g id="tabGroup" transform="translate(16.000000, 48.000000)">
+                <g id="animations" transform="translate(192.000000, 0.000000)">
+                    <g id="Group-8" transform="translate(20.000000, 0.000000)">
+                        <g id="icon-/-animationsActive">
+                            <g id="ic-/-animationActive">
+                                <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
+                                <path d="M12.8122104,3.34428086 L7,14 L11,14 L11,20.6078339 C11,20.6630624 11.0447715,20.7078339 11.1,20.7078339 C11.1365944,20.7078339 11.1702662,20.6878452 11.1877896,20.6557191 L17,10 L13,10 L13,3.39216607 C13,3.33693759 12.9552285,3.29216607 12.9,3.29216607 C12.8634056,3.29216607 12.8297338,3.31215477 12.8122104,3.34428086 Z" id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
                     </g>
                 </g>
             </g>

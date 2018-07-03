@@ -65,8 +65,7 @@ export default {
   align-items: center;
   justify-content: center;
   height: 56px;
-  min-width: 140px;
-  padding: 0 var(--wg-gutter-l);
+  padding: 0 var(--wg-gutter-xl);
   border-radius: var(--wg-border-radius);
   border: none;
   background-color: var(--wg-color-primary);
@@ -88,6 +87,21 @@ export default {
     &:active,  
     &[active] {
       background-color: var(--wg-color-primary-lightest);
+    }
+  }
+  &--outline {
+    background-color: transparent;
+    border: var(--wg-border-width) var(--wg-border-style) var(--wg-color-primary);
+    color: var(--wg-color-primary);
+    &:hover, 
+    &[hover] {
+      border-color: var(--wg-color-primary-light);
+      color: var(--wg-color-primary-light);
+    }
+    &:active,  
+    &[active] {
+      border-color: var(--wg-color-primary-lightest);
+      color: var(--wg-color-primary-lightest);
     }
   }
   &[class*="wg-btn--"][disabled],

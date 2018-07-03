@@ -20,7 +20,7 @@ export default {
 .wg-text {
   font-size: var(--wg-font-size-xl);
   font-weight: $wg-font-weight-light;
-  color: $wg-color-sys-a;
+  color: $wg-color-sys-b;
   /deep/ p {
     font-size: inherit;
     line-height: $wg-line-height-body;

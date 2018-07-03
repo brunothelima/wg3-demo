@@ -1,16 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
-    <title>Group</title>
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 7</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="137.354031%" id="linearGradient-1">
+            <stop stop-color="#0CEF8C" offset="0%"></stop>
+            <stop stop-color="#6F5BED" offset="100%"></stop>
+        </linearGradient>
+    </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="card" transform="translate(-158.000000, -50.000000)">
-            <g id="Group-10" transform="translate(144.000000, 48.000000)">
-                <g id="Group" transform="translate(12.000000, 0.000000)">
-                    <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
-                    <path d="M3,7 L3,21 L13,21 L13,8 C13,7.44771525 12.5522847,7 12,7 L3,7 Z" id="Rectangle-11" stroke="#000000" stroke-width="2"></path>
-                    <path d="M9,3 L12,3 C14.7614237,3 17,5.23857625 17,8 L17,11.0178344" id="Path-2" stroke="#8C95A3" stroke-width="2"></path>
+        <g id="controler" transform="translate(-160.000000, -50.000000)">
+            <g id="tabGroup" transform="translate(16.000000, 48.000000)">
+                <g id="layout" transform="translate(128.000000, 0.000000)">
+                    <g id="Group-7" transform="translate(12.000000, 0.000000)">
+                        <g id="icon-/-layoutActive">
+                            <g id="ic-/-layoutActive">
+                                <rect id="Rectangle-path" x="0" y="0" width="24" height="24"></rect>
+                                <path d="M6,8 L6,20 L14,20 L14,8 L6,8 Z M4,6 L14,6 C15.1045695,6 16,6.8954305 16,8 L16,22 L4,22 L4,6 Z" id="Rectangle-11" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                                <path d="M11,4 L11,2 L14,2 C17.3137085,2 20,4.68097887 20,8 L20,11 L18,11 L18,8 C18,5.78336388 16.209139,3.99604463 14,4 L11,4 Z" id="Path-2" fill="#768091" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
                 </g>
             </g>
         </g>

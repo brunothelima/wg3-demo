@@ -4,21 +4,24 @@ import {
   WG_THEME_REQUEST, 
   WG_THEME_ERROR, 
   WG_THEME_SUCCESS,
-  WG_THEME_SET_CSS_PROPS,
+  WG_THEME_SET_PROPS,
+  WG_THEME_SET_TARGET,
 } from '@/store/actions/WgTheme'
 
-import { setCCP, getCCP } from '@/utils/WgCCP'
+import { setCCPs } from '@/utils/WgCCP'
 
 import WgApiCall from '@/utils/WgApi'
 
 const state = {
   status: '',
   theme: {},
+  target: {},
 }
 
 const getters = {
   WgThemeRequestStatus: state => state.status,
   WgThemeCurrentTheme: state => state.theme,
+  WgThemeCurrentTarget: state => state.target
 }
 
 const actions = {
@@ -42,19 +45,22 @@ const mutations = {
   [WG_THEME_REQUEST]: (state) => {
     state.status = 'loading'
   },
-  [WG_THEME_SUCCESS]: (state, payload) => {
+  [WG_THEME_SUCCESS]: (state, theme) => {
     state.status = 'success';
-    Vue.set(state, 'theme', payload);
+    Vue.set(state, 'theme', theme);
   },
   [WG_THEME_ERROR]: (state) => {
     state.status = 'error';
     Vue.set(state, 'theme', {});  
   },
-  [WG_THEME_SET_CSS_PROPS]: (state, payload) => {
-    Object.keys(payload.props).forEach(prop => {
-      Vue.set(state.theme, prop, payload.props[prop]) 
+  [WG_THEME_SET_TARGET]: (state, target) => {
+    Vue.set(state, 'target', target);  
+  },
+  [WG_THEME_SET_PROPS]: (state, newProps) => {
+    Object.keys(newProps).forEach(prop => {
+      Vue.set(state.theme, prop, newProps[prop]) 
     }); 
-    setCCP(payload.elem, state.theme)
+    setCCPs(state.target, state.theme)
   },
 }
 
