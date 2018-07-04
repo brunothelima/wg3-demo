@@ -37,7 +37,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-post-related {
+$component: '.wg-post-related';
+#{$component} {
   margin-bottom: var(--wg-gutter-xl);
   h4 {
     margin-bottom: var(--wg-gutter-xl);
@@ -56,10 +57,6 @@ export default {
   .post {
     box-sizing: border-box;
     margin-bottom: var(--wg-gutter-xl);
-    @media screen and (max-width: #{$wg-brakepoint-medium}) and (min-width: #{$wg-brakepoint-minimal}) {
-      width: 50%;
-      padding-right: var(--wg-gutter);
-    }
     &__img {
       height: 80px;
       width: 80px;
@@ -113,6 +110,24 @@ export default {
         }
       }
     }
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-small) {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .post {
+    width: 50%;
+    padding-right: var(--wg-gutter);
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-minimal) {
+  ul {
+    display: block;
+  }
+  .post {
+    width: auto;
   }
 }
 </style>

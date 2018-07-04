@@ -1,9 +1,14 @@
 <template>
   <section class="wg-theme">
     <div class="wg-theme__loading" v-if="WgThemeRequestStatus === 'loading'"></div>
-    <div class="wg-theme__editor" v-else>
-      <div class="wg-theme__edit-area" ref="editArea" v-wg-id>
-        <wg-post/>
+    <div class="wg-theme__preview" v-else>
+      <div v-wg-id
+        ref="editArea" 
+        :class="[
+          'wg-theme__edit-area', 
+          `wg-preview--${WgThemeCurrentBrakepointPreview}`
+        ]">
+          <wg-post/>
       </div>
       <wg-theme-editor/>
     </div>
@@ -19,7 +24,7 @@ import {
 import { mapGetters } from 'vuex'
 import { WgId } from '@/directives/WgId'
 
-import WgThemeEditor from '@/components/wg-admin/wg-theme-editor/WgThemeEditor'
+import WgThemeEditor from './wg-theme-editor/WgThemeEditor'
 import WgPost from '@/components/wg-admin/WgPost'
 
 export default {
@@ -33,7 +38,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'WgThemeRequestStatus' 
+      'WgThemeRequestStatus',
+      'WgThemeCurrentBrakepointPreview'
     ]),
   },
   data () {
@@ -52,4 +58,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$component: '.wg-theme';
+#{$component} {
+  padding: var(--wg-gutter-xxl) 0;
+  &__edit-area {
+    overflow: auto;
+    display: block;
+    margin: auto;
+    width: $wg-brakepoint-large;
+    padding: var(--wg-gutter-xxl) 0 0;
+    background-color: $wg-color-sys-j;
+    border-radius: var(--wg-border-radius-xxl);
+    box-shadow: 0 0 80px rgba(0,0,0, 0.08);
+    &.wg-preview--medium {
+      width: $wg-brakepoint-medium;
+    }
+    &.wg-preview--small {
+      width: $wg-brakepoint-small;
+    }
+    &.wg-preview--minimal {
+      overflow: auto;
+      width: $wg-brakepoint-minimal;
+      height: 640px;
+    }
+  }
+}
 </style>

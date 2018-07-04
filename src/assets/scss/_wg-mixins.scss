@@ -1,0 +1,30 @@
+@mixin wg-brakepoint($selector, $max, $min: 0) {
+	$class: '.wg-preview';
+	@if $max >= $wg-brakepoint-medium {
+		$class: $class + ', .wg-preview--medium';
+	}
+	@if $max >= $wg-brakepoint-small {
+		$class: $class + ', .wg-preview--small';
+	}
+	@if $max >= $wg-brakepoint-minimal {
+		$class: $class + ', .wg-preview--minimal';
+	}
+	#{$class} {
+		#{$selector} {
+			@content;
+		}
+	}
+	@if $min > 0 {
+		@media screen and (max-width: #{$max}) and (min-width: #{$min}) {
+			#{$selector} {
+	  		@content;    
+			}
+	  }
+	} @else {
+		@media screen and (max-width: #{$max}) { 
+			#{$selector} {
+	  		@content;    
+			}
+	  }
+	}
+}

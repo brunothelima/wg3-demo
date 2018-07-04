@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="14px" viewBox="0 0 20 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 10</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="137.354031%" id="linearGradient-1">
+            <stop stop-color="#0CEF8C" offset="0%"></stop>
+            <stop stop-color="#6F5BED" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="controler" transform="translate(-94.000000, -53.000000)">
+            <g id="tabGroup" transform="translate(16.000000, 48.000000)">
+                <g id="large" transform="translate(64.000000, 0.000000)">
+                    <g id="Group-10" transform="translate(12.000000, 0.000000)">
+                        <g id="icon-/-laptopActive">
+                            <g>
+                                <rect id="Rectangle-20" x="0" y="0" width="24" height="24"></rect>
+                                <path d="M6,13 L18,13 L18,7 L6,7 L6,13 Z M6,5 L18,5 C19.1045695,5 20,5.8954305 20,7 L20,15 L4,15 L4,7 C4,5.8954305 4.8954305,5 6,5 Z M2,17 L22,17 L22,19 L2,19 L2,17 Z" id="Combined-Shape" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

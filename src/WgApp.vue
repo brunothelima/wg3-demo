@@ -73,7 +73,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  background-color: $wg-color-sys-j;
 }
 ul, ol {
   list-style: none;

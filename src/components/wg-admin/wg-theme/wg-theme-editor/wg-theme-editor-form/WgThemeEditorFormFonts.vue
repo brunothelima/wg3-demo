@@ -10,7 +10,6 @@
 
 <script>
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 
 export default {
   name: 'WgThemeEditorFonts',

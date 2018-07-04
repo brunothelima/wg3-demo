@@ -6,6 +6,7 @@ import {
   WG_THEME_SUCCESS,
   WG_THEME_SET_PROPS,
   WG_THEME_SET_TARGET,
+  WG_THEME_SET_BRAKEPOINT_PREVIEW,
 } from '@/store/actions/WgTheme'
 
 import { setCCPs } from '@/utils/WgCCP'
@@ -16,12 +17,14 @@ const state = {
   status: '',
   theme: {},
   target: {},
+  brakepointPreview: 'large',
 }
 
 const getters = {
   WgThemeRequestStatus: state => state.status,
   WgThemeCurrentTheme: state => state.theme,
-  WgThemeCurrentTarget: state => state.target
+  WgThemeCurrentTarget: state => state.target,
+  WgThemeCurrentBrakepointPreview: state => state.brakepointPreview
 }
 
 const actions = {
@@ -61,6 +64,9 @@ const mutations = {
       Vue.set(state.theme, prop, newProps[prop]) 
     }); 
     setCCPs(state.target, state.theme)
+  },
+  [WG_THEME_SET_BRAKEPOINT_PREVIEW]: (state, brakepoint) => {
+    state.brakepointPreview = brakepoint
   },
 }
 

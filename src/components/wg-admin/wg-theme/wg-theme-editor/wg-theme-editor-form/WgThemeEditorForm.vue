@@ -9,16 +9,16 @@
       </a>
     </nav>
     <div class="tabs__blocks">
-      <wg-theme-editor-fonts v-if="currentTab === 'fonts'"
+      <wg-theme-editor-form-fonts v-if="currentTab === 'fonts'"
         v-bind="WgThemeCurrentTheme"
         @change="onChange($event)"/>
-      <wg-theme-editor-colors v-if="currentTab === 'colors'"
+      <wg-theme-editor-form-colors v-if="currentTab === 'colors'"
         v-bind="WgThemeCurrentTheme"
         @change="onChange($event)"/>
-      <wg-theme-editor-layout v-if="currentTab === 'layout'"
+      <wg-theme-editor-form-layout v-if="currentTab === 'layout'"
         v-bind="WgThemeCurrentTheme"
         @change="onChange($event)"/>
-      <wg-theme-editor-animation v-if="currentTab === 'animation'"
+      <wg-theme-editor-form-animation v-if="currentTab === 'animation'"
         v-bind="WgThemeCurrentTheme"
         @change="onChange($event)"/>
     </div>
@@ -29,10 +29,10 @@
 import { WG_THEME_SET_PROPS } from '@/store/actions/WgTheme'
 import { mapGetters } from 'vuex'
 
-import WgThemeEditorFonts from './WgThemeEditorFonts'
-import WgThemeEditorColors from './WgThemeEditorColors'
-import WgThemeEditorLayout from './WgThemeEditorLayout'
-import WgThemeEditorAnimation from './WgThemeEditorAnimation'
+import WgThemeEditorFormFonts from './WgThemeEditorFormFonts'
+import WgThemeEditorFormColors from './WgThemeEditorFormColors'
+import WgThemeEditorFormLayout from './WgThemeEditorFormLayout'
+import WgThemeEditorFormAnimation from './WgThemeEditorFormAnimation'
 import WgBtn from '@/components/wg-ui/WgBtn'
 
 const tabs = [
@@ -45,10 +45,10 @@ const tabs = [
 export default {
   name: 'WgThemeEditorForm',
   components: {
-    'wg-theme-editor-fonts': WgThemeEditorFonts,
-    'wg-theme-editor-colors': WgThemeEditorColors,
-    'wg-theme-editor-layout': WgThemeEditorLayout,
-    'wg-theme-editor-animation': WgThemeEditorAnimation,
+    'wg-theme-editor-form-fonts': WgThemeEditorFormFonts,
+    'wg-theme-editor-form-colors': WgThemeEditorFormColors,
+    'wg-theme-editor-form-layout': WgThemeEditorFormLayout,
+    'wg-theme-editor-form-animation': WgThemeEditorFormAnimation,
     'wg-btn': WgBtn,
   },
   data () {
@@ -97,10 +97,12 @@ export default {
   height: 100%;
   cursor: pointer;
   filter: grayscale(100%);
+  opacity: 0.6;
   transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   &:hover, 
   &--active {
     filter: grayscale(0);
+    opacity: 1;
   }
   img {
     display: block;
@@ -115,7 +117,8 @@ export default {
     height: 24px;
   }
   &__title {
-    font-size: var(--wg-font-size-s);
+    font-size: var(--wg-font-size-xs);
+    font-weight: $wg-font-weight-bold;
   }
 }
 </style>

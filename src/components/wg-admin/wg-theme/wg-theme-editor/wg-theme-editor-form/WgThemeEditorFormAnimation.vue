@@ -15,9 +15,7 @@
 </template>
 
 <script>
-import { WG_THEME_SET_CSS_PROPS } from '@/store/actions/WgTheme'
 import { camelCaseToDash } from '@/utils/WgCCP'
-
 import WgForm from '@/components/wg-ui/wg-form/WgForm'
 
 export default {

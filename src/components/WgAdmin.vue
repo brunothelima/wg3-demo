@@ -25,11 +25,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.wg-admin {
+$component: '.wg-admin';
+#{$component} {
   overflow: auto;
   box-sizing: border-box;
-  padding-top: calc(var(--wg-gutter-xl) + 56px);
   height: 100vh;
+  padding-top: calc(var(--wg-gutter-xl) + 32px);
+  background-color: $wg-color-sys-h;
   .wg-header {
     z-index: 10;
   }
@@ -43,9 +45,6 @@ export default {
     background: url('../assets/img/wg-login-shape.svg') no-repeat;
     background-position: right top; 
     background-size: auto 100%;
-    @media screen and (max-width: #{$wg-brakepoint-medium}) {
-      background-size: auto 100%;
-    }
     &-enter-active {  
       animation: wg-shape-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
     }
@@ -79,6 +78,11 @@ export default {
   }
   to {
     opacity: 1;
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-medium) {
+  .wg-shape {
+    background-size: auto 100%;
   }
 }
 </style>

@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$component: '.wg-read-more';
 .wg-read-more {
   margin-bottom: var(--wg-gutter-xl);
   h4 {
@@ -47,12 +48,6 @@ export default {
     margin: 0 calc(var(--wg-gutter-l) * -1);
     .wg-card, span {
       width: 33.33%;
-      @media screen and (max-width: #{$wg-brakepoint-medium}) {
-        width: 50%;
-      }
-      @media screen and (max-width: #{$wg-brakepoint-minimal}) {
-        width: 100%;
-      }
     }
   }
   &__loading span {
@@ -61,6 +56,22 @@ export default {
     box-sizing: border-box;
     img, svg {
       width: 100%;
+    }
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-small) {
+  #{$component}__cards,
+  #{$component}__loading {
+    .wg-card, span {
+       width: 50%;
+    }
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-minimal) {
+  #{$component}__cards,
+  #{$component}__loading {
+    .wg-card, span {
+       width: 100%;
     }
   }
 }

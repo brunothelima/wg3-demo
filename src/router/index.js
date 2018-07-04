@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import WgAdmin from '@/components/WgAdmin'
 import WgUser from '@/components/wg-admin/WgUser'
-import WgTheme from '@/components/wg-admin/WgTheme'
 import WgLogin from '@/components/wg-admin/WgLogin'
+import WgTheme from '@/components/wg-admin/wg-theme/WgTheme'
 import store from '@/store'
 
 Vue.use(Router)

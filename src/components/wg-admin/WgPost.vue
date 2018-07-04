@@ -1,6 +1,6 @@
 <template>
   <div class="wg-post">
-    <wg-container class="wg-grid">
+    <wg-container class="wg-post__grid">
       <main class="wg-post__content">
         <div class="wg-post__loading placeholder" v-if="WgPostStatus === 'loading'">
             <img src="@/assets/img/wg-post-mockup.svg">
@@ -82,19 +82,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-grid {
-  display: grid;
-  grid-template-columns: auto 320px;
-  grid-template-rows: auto;
-  grid-gap: var(--wg-gutter-xl);
-  box-sizing: border-box;
-  grid-template-areas:
-    "content sidebar";
-  @media screen and (max-width: #{$wg-brakepoint-medium}) {
-    display: block;
+$component: '.wg-post';
+#{$component} {
+  &__grid {
+    display: grid;
+    grid-template-columns: auto 320px;
+    grid-template-rows: auto;
+    grid-gap: var(--wg-gutter-xl);
+    box-sizing: border-box;
+    grid-template-areas:
+      "content sidebar";
   }
-}
-.wg-post {
   &__loading {
     img, svg {
       display: block;
@@ -144,6 +142,11 @@ export default {
     display: block;
     margin: 0 auto;
     border-radius: var(--wg-border-radius);
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-small) {
+  #{$component}__grid {
+    display: block;
   }
 }
 </style>

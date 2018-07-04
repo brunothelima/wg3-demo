@@ -17,19 +17,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-container {
+$component: '.wg-container';
+#{$component} {
   box-sizing: border-box;
-  width: 1200px;
+  width: $wg-brakepoint-large;
   margin: auto;
   padding: 0 var(--wg-gutter-l);
-  @media screen and (max-width: #{$wg-brakepoint-large}) {
-    width: 974px;
-  }
-  @media screen and (max-width: #{$wg-brakepoint-medium}) {
-    width: 767px;
-  }
-  @media screen and (max-width: #{$wg-brakepoint-small}) {
-    width: auto;
-  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-medium) {
+  width: $wg-brakepoint-medium;
+}
+@include wg-brakepoint ($component, $wg-brakepoint-small) {
+  width: $wg-brakepoint-small;
+}
+@include wg-brakepoint ($component, $wg-brakepoint-minimal) {
+  width: $wg-brakepoint-minimal;
 }
 </style>

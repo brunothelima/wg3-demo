@@ -4,8 +4,20 @@
       <div class="panel__content">
         <wg-theme-editor-tutorial v-if="currentTab === 'tutorial'" @confirm="initEditor"/>
         <wg-theme-editor-form v-if="currentTab === 'form'" />
+        <wg-theme-editor-preview v-if="currentTab === 'preview'" />
         <div class="panel__actions">
-          <wg-btn class="panel__preview" model="outline">Preview</wg-btn>
+          <wg-btn v-if="currentTab === 'form'"
+            class="panel__preview" 
+            model="outline"
+            @click="currentTab = 'preview'">
+              Preview
+          </wg-btn>
+          <wg-btn v-if="currentTab === 'preview'"
+            class="panel__editor" 
+            model="outline"
+            @click="currentTab = 'form'">
+              Editor
+          </wg-btn>
           <wg-btn class="panel__publish">Publish</wg-btn>
         </div>
       </div>
@@ -14,20 +26,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 import WgDragResize from '@/components/wg-ui/WgDragResize'
-import WgThemeEditorTutorial from './WgThemeEditorTutorial'
-import WgThemeEditorForm from './WgThemeEditorForm'
 import WgBtn from '@/components/wg-ui/WgBtn'
+import WgThemeEditorTutorial from './wg-theme-editor-tutorial/WgThemeEditorTutorial'
+import WgThemeEditorForm from './wg-theme-editor-form/WgThemeEditorForm'
+import WgThemeEditorPreview from './WgThemeEditorPreview'
 
 export default {
   name: 'WgThemeEditor',
   components: {
     'wg-drag-resize': WgDragResize,
+    'wg-btn': WgBtn,
     'wg-theme-editor-tutorial': WgThemeEditorTutorial,
     'wg-theme-editor-form': WgThemeEditorForm,
-    'wg-btn': WgBtn,
+    'wg-theme-editor-preview': WgThemeEditorPreview,
   },
   props: {
     tutorial: {
@@ -50,8 +62,8 @@ export default {
     initEditor: function () {
       this.currentTab = 'form'
       this.$refs.panel.setCoords({
-        x: 24, 
-        y: 80, 
+        x: 32, 
+        y: 88, 
         w: 300,
         h: 613,
       });

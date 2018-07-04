@@ -17,7 +17,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-text {
+$component: '.wg-text';
+#{$component} {
   font-size: var(--wg-font-size-xl);
   font-weight: $wg-font-weight-light;
   color: $wg-color-sys-b;
@@ -43,23 +44,14 @@ export default {
     padding-left: var(--wg-gutter-l);
     margin-bottom: var(--wg-gutter-xl);
     list-style: disc;
-    @media screen and (max-width: #{$wg-brakepoint-small}) {
-      display: block;
-    }
     li {
       line-height: $wg-line-height-xl;
       padding-right: var(--wg-gutter-l);
-      @media screen and (max-width: #{$wg-brakepoint-small}) {
-        margin-bottom: var(--wg-gutter-l);
-      }
     }
   }
   /deep/ picture {
     display: block;
     margin-left: calc(var(--wg-gutter-l) * -1);
-    @media screen and (max-width: #{$wg-brakepoint-small}) {
-      margin-left: 0;
-    }
     img {
       display: block;
       width: 100%;
@@ -72,9 +64,6 @@ export default {
       font-size: var(--wg-font-size-s);
       line-height: $wg-line-height-xl;
       color: $wg-color-sys-e;
-      @media screen and (max-width: #{$wg-brakepoint-small}) {
-        padding-left: 0;
-      }
     }
     &.right,
     &.left {
@@ -82,10 +71,6 @@ export default {
       margin-top: var(--wg-gutter-l);
       p {
         padding: var(--wg-gutter) 0;
-      }
-      @media screen and (max-width: #{$wg-brakepoint-small}) {
-        float: none;
-        width: 100%;
       }
     }
     &.right {
@@ -97,7 +82,7 @@ export default {
       margin-right: var(--wg-gutter-l);
     }
   }
-  /deep/ .wg-text__quote {
+  /deep/ #{$component}__quote {
     position: relative;
     display: block;
     margin-bottom: var(--wg-gutter-xl);
@@ -128,10 +113,6 @@ export default {
     &.left {
       width: 50%;
       margin-top: var(--wg-gutter-l);
-      @media screen and (max-width: #{$wg-brakepoint-small}) {
-        float: none;
-        width: 100%;
-      }
     }
     &.right {
       float: right;
@@ -140,6 +121,32 @@ export default {
     &.left {
       float: left;
       margin-right: var(--wg-gutter-l);
+    }
+  }
+}
+@include wg-brakepoint($component, $wg-brakepoint-small) {
+  /deep/ ul {
+    display: block;
+    li {
+      margin-bottom: var(--wg-gutter-l);
+    }
+  }
+  /deep/ picture {
+    margin-left: 0;
+    p {
+      padding-left: 0;
+    }
+    &.right,
+    &.left {
+      float: none;
+      width: 100%;
+    }
+  }
+  /deep/ #{$component}__quote {
+    &.right,
+    &.left {
+      float: none;
+      width: 100%;
     }
   }
 }
