@@ -35,6 +35,9 @@ export default {
 $component: '.wg-read-more';
 .wg-read-more {
   margin-bottom: var(--wg-gutter-xl);
+  &:last-child {
+    margin-bottom: 0;
+  }
   h4 {
     margin-bottom: var(--wg-gutter-l);
     text-align: center;

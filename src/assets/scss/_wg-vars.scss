@@ -44,5 +44,5 @@ $wg-line-height-xxl: 175%;
 $wg-line-height-body: 200%; 
 $wg-input-height: 48px; 
 $wg-transition-duration: 1s; 
-$wg-transition-timing-function: 'ease'; 
+$wg-transition-timing-function: cubic-bezier(0.5,0,0,1); 
 

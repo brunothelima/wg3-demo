@@ -115,7 +115,13 @@ export default {
   &--active {
     transition: none;
   }
-  $handle-height: 50px;
+
+  &__drag-handle {
+    height: 50px;
+  }
+  &__resize-handle {
+    height: 32px;
+  }
   &__drag-handle,
   &__resize-handle {
     position: relative;
@@ -123,7 +129,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: $handle-height;
     i {
       position: relative;
       z-index: -1;
@@ -142,7 +147,7 @@ export default {
     background-color: $wg-color-sys-k;
   }
   &__content {
-    height: calc(100% - #{$handle-height * 2});
+    height: calc(100% - 82px);
   }
 }
 </style>

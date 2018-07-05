@@ -1,11 +1,11 @@
 <template>
-  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': currentTab != 'tutorial'}">
+  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': ['tutorial', 'none'].indexOf(currentTab) < 0}">
     <wg-drag-resize v-bind="panel" ref="panel" class="panel">
       <div class="panel__content">
         <wg-theme-editor-tutorial v-if="currentTab === 'tutorial'" @confirm="initEditor"/>
         <wg-theme-editor-form v-if="currentTab === 'form'" />
         <wg-theme-editor-preview v-if="currentTab === 'preview'" />
-        <div class="panel__actions">
+        <div class="panel__actions" v-if="['tutorial', 'none'].indexOf(currentTab) < 0">
           <wg-btn v-if="currentTab === 'form'"
             class="panel__preview" 
             model="outline"
@@ -64,7 +64,7 @@ export default {
       this.$refs.panel.setCoords({
         x: 32, 
         y: 88, 
-        w: 300,
+        w: 282,
         h: 613,
       });
     },
@@ -97,7 +97,7 @@ export default {
     .panel {
       animation: none;
       opacity: 0.6;
-      width: 300px;
+      width: 282px;
       height: 505px;
       &:hover {
         opacity: 1;
@@ -132,15 +132,17 @@ export default {
     opacity: 0;
     > * {
       margin: 0 var(--wg-gutter);
+      height: $wg-input-height;
     }
   }
   &__preview,
   &__editor{
+    width: 95px;
     filter: grayscale(100%);
     opacity: 0.6;
   }
   &__publish {
-    flex: 1;
+    width: 128px;
   }
   &.wg-dr--active {
     transition: none;
