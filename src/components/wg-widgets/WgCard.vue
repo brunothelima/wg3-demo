@@ -5,10 +5,10 @@
         <img class="wg-card__img" :src="post.img">
       </picture> -->
       <picture>
-        <source srcset="http://picsum.photos/372/235" media="(min-width: 1200px)">
-        <source srcset="http://picsum.photos/297/188" media="(min-width: 972px)">
-        <source srcset="http://picsum.photos/352/221" media="(min-width: 480px)">
-        <img src="http://picsum.photos/480/303" class="wg-card__img">
+        <source :srcset="`http://picsum.photos/372/235?image=${img}`" media="(min-width: 1200px)">
+        <source :srcset="`http://picsum.photos/297/188?image=${img}`" media="(min-width: 972px)">
+        <source :srcset="`http://picsum.photos/352/221?image=${img}`" media="(min-width: 480px)">
+        <img :src="`http://picsum.photos/480/303?image=${img}`" class="wg-card__img">
       </picture>
       <span class="wg-card__info">
         <p v-if="post.title" class="wg-card__title">{{post.title}}</p>
@@ -30,6 +30,11 @@ export default {
     post: {
       type: Object,
       default: () => {}
+    }
+  },
+  data () {
+    return {
+      img: Math.floor(Math.random() * Math.floor(16))
     }
   }
 }

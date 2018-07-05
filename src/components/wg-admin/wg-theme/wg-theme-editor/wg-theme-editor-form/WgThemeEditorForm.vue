@@ -3,7 +3,7 @@
     <nav class="tabs__nav">
       <a v-for="(tab, index) in tabs" :key="index" 
         :class="['tab', {'tab--active': currentTab === tab.id}]" 
-        @click="currentTab = tab.id">
+        @click="changeTab(tab.id)">
           <span class="tab__icon"><img :src="tab.icon" :alt="tab.title" /></span>
           <span class="tab__title">{{tab.title}}</span>
       </a>
@@ -11,16 +11,16 @@
     <div class="tabs__blocks">
       <wg-theme-editor-form-fonts v-if="currentTab === 'fonts'"
         v-bind="WgThemeCurrentTheme"
-        @change="onChange($event)"/>
+        @change="onFormChange($event)"/>
       <wg-theme-editor-form-colors v-if="currentTab === 'colors'"
         v-bind="WgThemeCurrentTheme"
-        @change="onChange($event)"/>
+        @change="onFormChange($event)"/>
       <wg-theme-editor-form-layout v-if="currentTab === 'layout'"
         v-bind="WgThemeCurrentTheme"
-        @change="onChange($event)"/>
+        @change="onFormChange($event)"/>
       <wg-theme-editor-form-animation v-if="currentTab === 'animation'"
         v-bind="WgThemeCurrentTheme"
-        @change="onChange($event)"/>
+        @change="onFormChange($event)"/>
     </div>
   </div> 
 </template>
@@ -61,7 +61,11 @@ export default {
     ...mapGetters(['WgThemeCurrentTheme']),
   },
   methods: {
-    onChange: function (field) {
+    changeTab: function (tab) {
+      this.currentTab = tab
+      this.$emit('tabChange', this.currentTab)
+    },
+    onFormChange: function (field) {
       this.$store.commit(WG_THEME_SET_PROPS, { [field.name]: field.value })
     },
   }, 
@@ -70,7 +74,6 @@ export default {
 
 <style lang="scss" scoped>
 .tabs {
-  height: 100%;
   $tabs-nav-height: 50px;
   &__nav {
     display: flex;

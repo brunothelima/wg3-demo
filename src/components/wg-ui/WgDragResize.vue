@@ -3,13 +3,13 @@
     :class="['wg-dr', {'wg-dr--active': isMoving || isResizing }]"
     :style="{'left': `${pos.x}px`, 'top': `${pos.y}px`,
       'width': `${size.w}px`, 'height': `${size.h}px`,}"> 
-      <div class="wg-dr__drag-handle" @mousedown="onDragStart($event)">
+      <div class="wg-dr__drag-handle" ref="wgDrDragHandle" @mousedown="onDragStart($event)">
         <i class="fa fa-bars"></i>
       </div>
-      <div class="wg-dr__content">
+      <div class="wg-dr__content" ref="wgDrContent">
         <slot />
       </div>
-      <div class="wg-dr__resize-handle" @mousedown="onResizeStart($event)">
+      <div class="wg-dr__resize-handle" ref="wgDrResizeHandle" @mousedown="onResizeStart($event)">
         <i class="fa fa-ellipsis-h"></i>
       </div>
   </div>
@@ -51,6 +51,12 @@ export default {
     }
   },
   methods: {
+    getMinHeight: function () {
+      let minHeight = this.$refs.wgDrContent.children[0].clientHeight
+      minHeight += this.$refs.wgDrDragHandle.clientHeight
+      minHeight += this.$refs.wgDrResizeHandle.clientHeight
+      return minHeight
+    },
     setCoords: function (coords) {
       this.pos.x = coords.x || this.pos.x
       this.pos.y = coords.y || this.pos.y
@@ -70,6 +76,11 @@ export default {
       if ((this.pos.y + this.size.h) > window.innerHeight) {
         this.pos.y = window.innerHeight - this.size.h
       }
+    },
+    normalizeSizes: function () {
+      setTimeout(() => {
+        this.size.h = this.getMinHeight()
+      }, 100);
     },
     onDragStart: function (dragStart) {   
       this.$emit('dragStart')   
@@ -93,10 +104,16 @@ export default {
     onResizeStart: function (resizeStart) {
       this.$emit('resizeStart')   
       this.isResizing = true
-      let lastHeight = this.size.h
+      let firstHeight = this.size.h
       document.onmousemove = (resizing) => {
+        let minHeight = this.getMinHeight()
+        let newHeight = firstHeight + (resizing.pageY - resizeStart.pageY);
+        if (newHeight > minHeight) {
+          this.normalizeSizes()
+          return
+        }
         this.$emit('resizing')   
-        this.size.h = lastHeight + (resizing.pageY - resizeStart.pageY)        
+        this.size.h = newHeight
       }
       document.onmouseup = () => {
         this.$emit('resizeStop')   
@@ -147,6 +164,7 @@ export default {
     background-color: $wg-color-sys-k;
   }
   &__content {
+    overflow: auto;
     height: calc(100% - 82px);
   }
 }

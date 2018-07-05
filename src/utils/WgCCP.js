@@ -1,5 +1,4 @@
 const TinyColor = require('tinycolor2')
-const ObjToHash = require('object-hash');
 
 export const camelCaseToDash = (str) =>  {
   return str

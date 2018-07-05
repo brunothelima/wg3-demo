@@ -1,6 +1,6 @@
 <template>
   <div class="wg-theme-editor-tutorial">
-    <swiper :options="options">
+    <swiper ref="swiper" :options="options">
       <swiper-slide v-for="(card, index) in cards" :key="index" class="tutorial">
         <div class="tutorial__head">{{card.head}}</div>
         <div class="tutorial__illustration">
@@ -14,22 +14,24 @@
           </div>
         </div>
       </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
+    <div class="bottom">
+      <button class="bottom__prev">
+        <i class="fa fa-arrow-left"></i>
+      </button>
+      <div class="bottom__pagination"></div>
+      <button class="bottom__next">
+        <i class="fa fa-arrow-right"></i>
+      </button>
+    </div> 
   </div>  
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.css'
+import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 const cards = [
-  {
-    head: 'Getting started with Widgrid',
-    img: require('@/assets/img/wg-theme-editor/tutorial-intro.png'),
-    title: 'Hi, Johnny Doe!',
-    subtitle: 'Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more.'
-  },
   {
     head: 'Meeting fonts',
     img: require('@/assets/img/wg-theme-editor/tutorial-fonts.png'),
@@ -71,23 +73,27 @@ export default {
     return {
       cards: cards,
       options: {
-        threshold: 30,
+        threshold: 24,
+        navigation: {
+          prevEl: '.bottom__prev',
+          nextEl: '.bottom__next',
+        },
         pagination: {
-          el: '.swiper-pagination',
-          dynamicBullets: true
+          clickable: true,
+          el: '.bottom__pagination',
         }
       }
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 $component: '.wg-theme-editor-tutorial';
 #{$component} {
+  $intro-head-height: 72px;
+  $intro-illustration-height: 255px; 
   .tutorial {
-    height: 100%;
-    $intro-head-height: 72px;
     &__head {
       display: flex;
       align-items: center;
@@ -97,7 +103,6 @@ $component: '.wg-theme-editor-tutorial';
       font-size: var(--wg-font-size-l);
       font-weight: $wg-font-weight-light;
     }
-    $intro-illustration-height: 255px; 
     &__illustration {
       display: flex;
       justify-content: center;
@@ -105,7 +110,6 @@ $component: '.wg-theme-editor-tutorial';
       position: relative;
       margin-bottom: var(--wg-gutter-xl);
       height: $intro-illustration-height;
-      background-image: linear-gradient(-135deg, #0CEF8C 0%, #33B6B2 100%);
       &:after {
         position: absolute;
         display: block;
@@ -117,8 +121,9 @@ $component: '.wg-theme-editor-tutorial';
         display: block;
         margin: 0;
         max-width: 100%;
-        transform: scale(0.9);
-        transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+        transform: scale(0.8);
+        opacity: 0;
+        transition: all var(--wg-transition-duration)  var(--wg-transition-timing-function);
       }
     }
     &__info {
@@ -139,13 +144,67 @@ $component: '.wg-theme-editor-tutorial';
     &.swiper-slide-active {
       .tutorial__illustration img {
         transform: scale(1);
+        opacity: 1;
       }
     }
   }
-  .swiper-container {
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+    z-index: 0;
+    left: 0;
+    right: 0;
+    top: $intro-head-height;
+    height: $intro-illustration-height;
+    background-image: linear-gradient(-135deg, #33B6B2 0%, #0CEF8C 100%);
+  }
+  /deep/ .swiper-container, 
+  /deep/ .swiper-wrapper {
+    height: 100%;
     position: static;
-    .swiper-pagination {
-      bottom: var(--wg-gutter-xl);
+  }
+  .bottom {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    bottom: var(--wg-gutter-l);
+    width: 100%;
+    &__prev,
+    &__next {
+      margin: 0 var(--wg-gutter-l);
+      border: none;
+      background-color: transparent;
+      outline: none;
+      cursor: pointer;
+      i {
+        color: $wg-color-sys-g;
+        font-size: var(--wg-font-size-l);
+        transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+      }
+      &:hover i {
+        opacity: 1;
+        color: var(--wg-color-secondary);
+      }
+      &.swiper-button-disabled i {
+        opacity: 0.2;
+        color: $wg-color-sys-g;
+      }
+    }
+    &__pagination {
+      display: inline-flex;
+      align-items: center;
+      /deep/ .swiper-pagination-bullet {
+        background-color: $wg-color-sys-a;
+        margin: 0 var(--wg-gutter);
+        transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+        outline: none;
+        &.swiper-pagination-bullet-active {
+          background-color: var(--wg-color-secondary);
+          transform: scale(1.5);
+        }
+      }
     }
   }
 }

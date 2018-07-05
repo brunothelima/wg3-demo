@@ -54,7 +54,6 @@ export default {
 
 <style lang="scss" scoped>
 .preview {
-  height: 100%;
   $brakepoints-nav-height: 50px;
   &__brakepoints {
     display: flex;

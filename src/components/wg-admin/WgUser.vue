@@ -2,20 +2,15 @@
   <section class="user">
     <wg-container> 
       <div class="intro" v-if="WgUserDataLoaded">
-        <div class="user__avatar">
-          <i class="fa fa-user"></i>
+        <div class="intro__icons">
+          <img src="@/assets/img/wg-theme-editor/fonts-icon.svg" alt="Fonts">
+          <img src="@/assets/img/wg-theme-editor/colors-icon.svg" alt="Colors">
+          <img src="@/assets/img/wg-theme-editor/layout-icon.svg" alt="Layout">
+          <img src="@/assets/img/wg-theme-editor/animation-icon.svg" alt="Animation">
         </div>
-        <p>
-          Welcome {{profile.name}}!<br>
-          <br>Everything is ready
-          <br>for your test drive on
-          <br>Widgrid 3 Beta
-        </p>
-        <p>
-          Buckle up<br>
-          and enjoy<br>
-          :)
-        </p>
+        <wg-heading level="h3">Hello, {{WgUserData.name}}</wg-heading>
+        <p>You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps. </p>
+        <wg-heading level="h6">Excited to get started?</wg-heading>
         <wg-btn tag="router-link" to="/admin/theme">Start Demo</wg-btn>
       </div>
       <div v-else>
@@ -60,18 +55,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user {
-  padding-top: var(--wg-gutter-xxl);
+.intro {
+  padding-top: 10vh;
   text-align: center;
-  &__avatar {
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    background-color: $wg-color-sys-h;
-    border-radius: var(--wg-border-radius-full);
-    line-height: 80px;
-    font-size: 40px;
-    color: $wg-color-sys-e;
+  &__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--wg-gutter-xxl);
+    img {
+      display: block;
+      height: 40px;
+      margin: 0 var(--wg-gutter-xl);
+      filter: grayscale(100%);
+    }
+    @keyframes icon-animation {
+      from {
+        filter: grayscale(0);
+      }
+      to {
+        filter: grayscale(100%);
+      }
+    }
   }
 }
 </style>
