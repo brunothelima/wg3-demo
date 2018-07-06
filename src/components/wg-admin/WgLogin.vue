@@ -137,5 +137,8 @@ export default {
       }
     }
   }
+  /deep/ .wg-form__footer .wg-btn {
+    min-width: 120px;
+  }
 }
 </style>

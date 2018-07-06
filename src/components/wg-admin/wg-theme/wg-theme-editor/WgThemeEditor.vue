@@ -6,7 +6,7 @@
       :resize="panelVisible != 'tutorial'">
         <div class="panel__content">
           <component :is="`wg-theme-editor-${panelVisible}`"
-            @formTabChange="resizePanel"
+            @formTabChange="shrinkPanel"
             @tutorialConfirm="initEditor"/>
           <div class="panel__actions" v-if="panelVisible != 'tutorial'">
             <wg-btn v-if="panelVisible === 'form'"
@@ -60,12 +60,12 @@ export default {
     },
   },
   methods: {
-    resizePanel: function () {
-      this.$refs.panel.normalizeSizes()
+    shrinkPanel: function () {
+      this.$refs.panel.shrink()
     },
     showPanel: function (panel) {
       this.panelVisible = panel
-      this.resizePanel()
+      this.shrinkPanel()
     },
     initEditor: function () {
       this.showPanel('form')

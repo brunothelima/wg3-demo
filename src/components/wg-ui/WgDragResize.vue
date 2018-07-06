@@ -65,11 +65,16 @@ export default {
     }
   },
   methods: {
-    getMinHeight: function () {  
+    minHeight: function () {  
       let minHeight = this.$refs.wgDrContent.children[0].clientHeight
       minHeight += this.$refs.wgDrDragHandle.clientHeight
       minHeight += this.$refs.wgDrResizeHandle.clientHeight
       return minHeight
+    },
+    shrink: function () {
+      setTimeout(() => {
+        this.size.h = this.minHeight()
+      }, 200);
     },
     setCoords: function (coords) {
       this.pos.x = coords.x || this.pos.x
@@ -77,7 +82,7 @@ export default {
       this.size.w = coords.w || this.size.w
       this.size.h = coords.h || this.size.h
     },
-    normalizeCoords: function () {
+    checkBoundaries: function () {
       if (this.pos.x < 0) {
         this.pos.x = 0
       }
@@ -90,11 +95,6 @@ export default {
       if ((this.pos.y + this.size.h) > window.innerHeight) {
         this.pos.y = window.innerHeight - this.size.h
       }
-    },
-    normalizeSizes: function () {
-      setTimeout(() => {
-        this.size.h = this.getMinHeight()
-      }, 200);
     },
     onDragStart: function (dragStart) {   
       this.$emit('dragStart')   
@@ -112,7 +112,7 @@ export default {
         this.$emit('dragStop')   
         this.isMoving = false
         document.onmousemove = null
-        this.normalizeCoords()
+        this.checkBoundaries()
       }
     },
     onResizeStart: function (resizeStart) {
@@ -120,10 +120,10 @@ export default {
       this.isResizing = true
       let firstHeight = this.size.h
       document.onmousemove = (resizing) => {
-        let minHeight = this.getMinHeight()
+        let minHeight = this.minHeight()
         let newHeight = firstHeight + (resizing.pageY - resizeStart.pageY);
-        if (newHeight > minHeight) {
-          this.normalizeSizes()
+        if (newHeight >= minHeight) {
+          this.shrink()
           return
         }
         this.$emit('resizing')   
@@ -144,7 +144,7 @@ export default {
   overflow: hidden;
   position: fixed;
   &--active {
-    transition: none;
+    transition: none !important;
   }
   &__drag-handle {
     height: 50px;
@@ -173,7 +173,7 @@ export default {
   }
   &__resize-handle {
     width: 100%;
-    cursor: ns-resize;
+    cursor: n-resize;
     background-color: $wg-color-sys-k;
   }
   &__content {
