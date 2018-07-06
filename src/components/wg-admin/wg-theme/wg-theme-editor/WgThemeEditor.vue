@@ -1,28 +1,31 @@
 <template>
-  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': ['tutorial', 'none'].indexOf(currentComponent) < 0}">
-    <wg-drag-resize v-bind="panel" ref="panel" class="panel">
-      <div class="panel__content">
-        <wg-theme-editor-tutorial v-if="currentComponent === 'tutorial'" @confirm="initEditor"/>
-        <wg-theme-editor-form v-if="currentComponent === 'form'" @tabChange="$refs.panel.normalizeSizes()" />
-        <wg-theme-editor-preview v-if="currentComponent === 'preview'" />
-        <div class="panel__actions" v-if="['tutorial', 'none'].indexOf(currentComponent) < 0">
-          <wg-btn v-if="currentComponent === 'form'"
-            class="panel__preview" 
-            model="outline"
-            @click="changeComponent('preview')">
-              Preview
-          </wg-btn>
-          <wg-btn v-if="currentComponent === 'preview'"
-            class="panel__editor" 
-            model="outline"
-            @click="changeComponent('form')">
-              Editor
-          </wg-btn>
-          <wg-btn class="panel__publish">
-            Publish
-          </wg-btn>
+  <div class="wg-theme-editor" :class="{'wg-theme-editor--active': panelVisible != 'tutorial'}">
+    <wg-drag-resize ref="panel" class="panel" 
+      v-bind="{ w: 495, h: 588, x: panelCenterX, y: panelCenterY }" 
+      :drag="panelVisible != 'tutorial'"
+      :resize="panelVisible != 'tutorial'">
+        <div class="panel__content">
+          <component :is="`wg-theme-editor-${panelVisible}`"
+            @formTabChange="resizePanel"
+            @tutorialConfirm="initEditor"/>
+          <div class="panel__actions" v-if="panelVisible != 'tutorial'">
+            <wg-btn v-if="panelVisible === 'form'"
+              class="panel__preview" 
+              model="outline"
+              @click="showPanel('preview')">
+                Preview
+            </wg-btn>
+            <wg-btn v-if="panelVisible === 'preview'"
+              class="panel__editor" 
+              model="outline"
+              @click="showPanel('form')">
+                Editor
+            </wg-btn>
+            <wg-btn class="panel__publish">
+              Publish
+            </wg-btn>
+          </div>
         </div>
-      </div>
     </wg-drag-resize>
   </div>
 </template>
@@ -43,43 +46,31 @@ export default {
     'wg-theme-editor-preview': WgThemeEditorPreview,
     'wg-btn': WgBtn,
   },
-  props: {
-    tutorial: {
-      type: Boolean,
-      default: true
-    },
-  }, 
   data () {
     return {
-      currentComponent: (this.tutorial) ? 'tutorial' : 'form',
-      panel: {
-        w: 495, 
-        h: 588,
-        x: (window.innerWidth - 495) / 2,
-        y: (window.innerHeight - 588) / 2,
-      },
+      panelVisible: 'tutorial'
     }
+  },
+  computed: {
+    panelCenterX: function () {
+      return (window.innerWidth - 495) / 2
+    },
+    panelCenterY: function () {
+      return (window.innerHeight - 588) / 2
+    },
   },
   methods: {
-    changeComponent: function (tab) {
-      this.currentComponent = tab
+    resizePanel: function () {
       this.$refs.panel.normalizeSizes()
     },
-    initEditor: function () {
-      setTimeout(() => {
-        this.changeComponent('form')
-        this.$refs.panel.setCoords({
-          x: 32, 
-          y: 88, 
-          w: 282
-        });
-      }, 200);
+    showPanel: function (panel) {
+      this.panelVisible = panel
+      this.resizePanel()
     },
-  },
-  mounted: function () {
-    if (!this.tutorial) {
-      this.initEditor()
-    }
+    initEditor: function () {
+      this.showPanel('form')
+      this.$refs.panel.setCoords({ x: 32, y: 88, w: 282 });
+    },
   },
 }
 </script>
@@ -94,7 +85,6 @@ $component: '.wg-theme-editor';
   top: 0;
   &:before {
     position: absolute;
-    z-index: 1;
     content: '';
     height: 100vh;
     width: 100vw;
@@ -105,25 +95,6 @@ $component: '.wg-theme-editor';
     &:before {
       visibility: hidden;
       opacity: 0;
-    }
-    .panel {
-      animation: none;
-      opacity: 0.6;
-      &:hover {
-        opacity: 1;
-      }
-      &__actions {
-        opacity: 1;
-      }
-      /deep/ .wg-dr__drag-handle,
-      /deep/ .wg-dr__resize-handle {
-        display: flex;
-      }
-    }
-  }
-  &:not(#{$component}--active) {
-    /deep/ .wg-dr__content {
-      height: 100%;
     }
   }
 } 
@@ -144,19 +115,10 @@ $component: '.wg-theme-editor';
     justify-content: center;
     padding: var(--wg-gutter-xl) var(--wg-gutter) 0;
     border-top: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-i;
-    opacity: 0;
     > * {
       margin: 0 var(--wg-gutter);
       height: $wg-input-height;
     }
-  }
-  &.wg-dr--active {
-    transition: none;
-    opacity: 1;
-  }
-  /deep/ .wg-dr__drag-handle,
-  /deep/ .wg-dr__resize-handle {
-    display: none;
   }
   @keyframes panel-animation {
     from {

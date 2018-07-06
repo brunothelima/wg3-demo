@@ -1,24 +1,15 @@
 <template>
-  <div class="wg-theme-editor-form tabs">
-    <nav class="tabs__nav">
-      <a v-for="(tab, index) in tabs" :key="index" 
-        :class="['tab', {'tab--active': currentTab === tab.id}]" 
-        @click="changeTab(tab.id)">
-          <span class="tab__icon"><img :src="tab.icon" :alt="tab.title" /></span>
-          <span class="tab__title">{{tab.title}}</span>
+  <div class="wg-theme-editor-form forms">
+    <nav class="forms__nav">
+      <a v-for="(form, index) in forms" :key="index" 
+        :class="['form', {'form--active': formVisible === form.id}]" 
+        @click="showForm(form.id)">
+          <span class="form__icon"><img :src="form.icon" :alt="form.title" /></span>
+          <span class="form__title">{{form.title}}</span>
       </a>
     </nav>
-    <div class="tabs__blocks">
-      <wg-theme-editor-form-fonts v-if="currentTab === 'fonts'"
-        v-bind="WgThemeCurrentTheme"
-        @change="onFormChange($event)"/>
-      <wg-theme-editor-form-colors v-if="currentTab === 'colors'"
-        v-bind="WgThemeCurrentTheme"
-        @change="onFormChange($event)"/>
-      <wg-theme-editor-form-layout v-if="currentTab === 'layout'"
-        v-bind="WgThemeCurrentTheme"
-        @change="onFormChange($event)"/>
-      <wg-theme-editor-form-animation v-if="currentTab === 'animation'"
+    <div class="forms__components">
+      <component :is="`wg-theme-editor-form-${formVisible}`" 
         v-bind="WgThemeCurrentTheme"
         @change="onFormChange($event)"/>
     </div>
@@ -35,7 +26,7 @@ import WgThemeEditorFormLayout from './WgThemeEditorFormLayout'
 import WgThemeEditorFormAnimation from './WgThemeEditorFormAnimation'
 import WgBtn from '@/components/wg-ui/WgBtn'
 
-const tabs = [
+const forms = [
   { id: 'fonts', title: 'Fonts', icon: require('@/assets/img/wg-theme-editor/fonts-icon.svg') },
   { id: 'colors', title: 'Colors', icon: require('@/assets/img/wg-theme-editor/colors-icon.svg') },
   { id: 'layout', title: 'Layout', icon: require('@/assets/img/wg-theme-editor/layout-icon.svg') },
@@ -53,17 +44,17 @@ export default {
   },
   data () {
     return {
-      tabs: tabs,
-      currentTab: 'fonts',
+      forms: forms,
+      formVisible: 'fonts',
     }
   },
   computed: {
     ...mapGetters(['WgThemeCurrentTheme']),
   },
   methods: {
-    changeTab: function (tab) {
-      this.currentTab = tab
-      this.$emit('tabChange', this.currentTab)
+    showForm: function (form) {
+      this.formVisible = form
+      this.$emit('formTabChange', this.formVisible)
     },
     onFormChange: function (field) {
       this.$store.commit(WG_THEME_SET_PROPS, { [field.name]: field.value })
@@ -73,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs {
+.forms {
   $tabs-nav-height: 50px;
   &__nav {
     display: flex;
@@ -82,7 +73,7 @@ export default {
     height: $tabs-nav-height;
     text-align: center;
   }
-  &__blocks {
+  &__components {
     position: relative;
     height: calc(100% - #{$tabs-nav-height});
     /deep/ .wg-form {
@@ -93,35 +84,35 @@ export default {
       background-color: $wg-color-sys-k;
     }
   }
-}
-.tab {
-  flex: 1;
-  overflow: hidden;
-  height: 100%;
-  cursor: pointer;
-  filter: grayscale(100%);
-  opacity: 0.6;
-  transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
-  &:hover, 
-  &--active {
-    filter: grayscale(0);
-    opacity: 1;
-  }
-  img {
-    display: block;
-    margin: auto;
-  }
-  &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--wg-gutter);
-    width: 24px;
-    height: 24px;
-  }
-  &__title {
-    font-size: var(--wg-font-size-xs);
-    font-weight: $wg-font-weight-bold;
+  .form {
+    flex: 1;
+    overflow: hidden;
+    height: 100%;
+    cursor: pointer;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    &:hover, 
+    &--active {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    img {
+      display: block;
+      margin: auto;
+    }
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--wg-gutter);
+      width: 24px;
+      height: 24px;
+    }
+    &__title {
+      font-size: var(--wg-font-size-xs);
+      font-weight: $wg-font-weight-bold;
+    }
   }
 }
 </style>

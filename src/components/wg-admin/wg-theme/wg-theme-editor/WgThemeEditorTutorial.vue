@@ -10,19 +10,18 @@
           <div class="center">
             <wg-heading level="h3">{{card.title}}</wg-heading>
             <p>{{card.subtitle}}</p>
-            <wg-btn v-if="(index + 1) === cards.length" @click="$emit('confirm')">Ok, thanks</wg-btn>
+            <wg-btn v-if="(index + 1) === cards.length" 
+              @click="$emit('tutorialConfirm')">
+                Ok, thanks
+            </wg-btn>
           </div>
         </div>
       </swiper-slide>
     </swiper>
     <div class="bottom">
-      <button class="bottom__prev">
-        <i class="fa fa-arrow-left"></i>
-      </button>
+      <button class="bottom__prev"><i class="fa fa-arrow-left"></i></button>
       <div class="bottom__pagination"></div>
-      <button class="bottom__next">
-        <i class="fa fa-arrow-right"></i>
-      </button>
+      <button class="bottom__next"><i class="fa fa-arrow-right"></i></button>
     </div> 
   </div>  
 </template>

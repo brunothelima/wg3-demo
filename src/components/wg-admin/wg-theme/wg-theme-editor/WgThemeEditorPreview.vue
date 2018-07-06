@@ -2,8 +2,8 @@
   <div class="wg-theme-editor-preview preview">
     <div class="preview__brakepoints">
       <a v-for="(brakepoint, index) in brakepoints" :key="index" 
-        :class="['brakepoint', {'brakepoint--active': currentBrakepoint === brakepoint.id}]" 
-        @click="changeBrakepoint(brakepoint.id)">
+        :class="['brakepoint', {'brakepoint--active': brakepointVisible === brakepoint.id}]" 
+        @click="showBrakepoint(brakepoint.id)">
           <span class="brakepoint__icon"><img :src="brakepoint.icon" :alt="brakepoint.title" /></span>
           <span class="brakepoint__title">{{brakepoint.title}}</span>
       </a>
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-  import { 
+import { 
   WG_THEME_SET_BRAKEPOINT_PREVIEW,
 } from '@/store/actions/WgTheme'
 
 import WgInputBtnGroup from '@/components/wg-ui/wg-form/wg-input/WgInputBtnGroup';
 
 const brakepoints = [
-  { id: 'none', title: 'Desktop', icon: require('@/assets/img/wg-theme-editor/desktop-icon.svg') },
+  { id: 'large', title: 'Desktop', icon: require('@/assets/img/wg-theme-editor/desktop-icon.svg') },
   { id: 'medium', title: 'Laptop', icon: require('@/assets/img/wg-theme-editor/laptop-icon.svg') },
   { id: 'small', title: 'Tablet', icon: require('@/assets/img/wg-theme-editor/tablet-icon.svg') },
   { id: 'minimal', title: 'Mobile', icon: require('@/assets/img/wg-theme-editor/mobile-icon.svg') },
@@ -37,16 +37,15 @@ export default {
   },
   data () {
     return {
-      currentBrakepoint: 'none',
-      currentPreview: 'post',
+      brakepointVisible: 'large',
       brakepoints: brakepoints,
       templates: templates
     }
   },
   methods: {
-    changeBrakepoint: function (brakepoint) {
-      this.currentBrakepoint = brakepoint
-      this.$store.commit(WG_THEME_SET_BRAKEPOINT_PREVIEW, this.currentBrakepoint)
+    showBrakepoint: function (brakepoint) {
+      this.brakepointVisible = brakepoint
+      this.$store.commit(WG_THEME_SET_BRAKEPOINT_PREVIEW, this.brakepointVisible)
     }
   }
 }

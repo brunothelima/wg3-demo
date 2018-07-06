@@ -3,14 +3,20 @@
     :class="['wg-dr', {'wg-dr--active': isMoving || isResizing }]"
     :style="{'left': `${pos.x}px`, 'top': `${pos.y}px`,
       'width': `${size.w}px`, 'height': `${size.h}px`,}"> 
-      <div class="wg-dr__drag-handle" ref="wgDrDragHandle" @mousedown="onDragStart($event)">
-        <i class="fa fa-bars"></i>
+      <div v-if="drag" 
+        class="wg-dr__drag-handle" 
+        ref="wgDrDragHandle" 
+        @mousedown="onDragStart($event)" >
+          <i class="fa fa-bars"></i>
       </div>
       <div class="wg-dr__content" ref="wgDrContent">
         <slot />
       </div>
-      <div class="wg-dr__resize-handle" ref="wgDrResizeHandle" @mousedown="onResizeStart($event)">
-        <i class="fa fa-ellipsis-h"></i>
+      <div v-if="resize" 
+        class="wg-dr__resize-handle" 
+        ref="wgDrResizeHandle" 
+        @mousedown="onResizeStart($event)" >
+          <i class="fa fa-ellipsis-h"></i>
       </div>
   </div>
 </template>
@@ -35,6 +41,14 @@ export default {
       type: Number,
       default: 0
     },
+    drag: {
+      type: Boolean,
+      default: true
+    },
+    resize: {
+      type: Boolean,
+      default: true
+    },
   },
   data () {
     return {
@@ -51,7 +65,7 @@ export default {
     }
   },
   methods: {
-    getMinHeight: function () {
+    getMinHeight: function () {  
       let minHeight = this.$refs.wgDrContent.children[0].clientHeight
       minHeight += this.$refs.wgDrDragHandle.clientHeight
       minHeight += this.$refs.wgDrResizeHandle.clientHeight
@@ -80,7 +94,7 @@ export default {
     normalizeSizes: function () {
       setTimeout(() => {
         this.size.h = this.getMinHeight()
-      }, 100);
+      }, 200);
     },
     onDragStart: function (dragStart) {   
       this.$emit('dragStart')   
@@ -132,7 +146,6 @@ export default {
   &--active {
     transition: none;
   }
-
   &__drag-handle {
     height: 50px;
   }
@@ -166,6 +179,9 @@ export default {
   &__content {
     overflow: auto;
     height: calc(100% - 82px);
+    &:first-child:last-child {
+      height: 100%;
+    }
   }
 }
 </style>
