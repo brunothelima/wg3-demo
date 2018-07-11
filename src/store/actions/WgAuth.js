@@ -1,4 +1,0 @@
-export const WG_AUTH_REQUEST = 'WG_AUTH_REQUEST'
-export const WG_AUTH_SUCCESS = 'WG_AUTH_SUCCESS'
-export const WG_AUTH_ERROR = 'WG_AUTH_ERROR'
-export const WG_AUTH_LOGOUT = 'WG_AUTH_LOGOUT'

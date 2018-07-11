@@ -1,14 +1,14 @@
 <template>
   <section class="user">
     <wg-container> 
-      <div class="intro" v-if="WgUserDataLoaded">
+      <div class="intro" v-if="isProfileLoaded">
         <div class="intro__icons">
           <img src="@/assets/img/wg-theme-editor/fonts-icon.svg" alt="Fonts">
           <img src="@/assets/img/wg-theme-editor/colors-icon.svg" alt="Colors">
           <img src="@/assets/img/wg-theme-editor/layout-icon.svg" alt="Layout">
           <img src="@/assets/img/wg-theme-editor/animation-icon.svg" alt="Animation">
         </div>
-        <wg-heading level="h3">Hello, {{WgUserData.name}}</wg-heading>
+        <wg-heading level="h3">Hello, {{profile.name}}</wg-heading>
         <p>You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps.  </p>
         <wg-heading level="h6">Excited to get started?</wg-heading>
         <wg-btn tag="router-link" to="/admin/theme">Start Demo</wg-btn>
@@ -21,9 +21,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
-import { WG_USER_REQUEST } from '@/store/actions/WgUser'
 
 import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
@@ -38,17 +37,17 @@ export default {
     'wg-btn': WgBtn,
   },
   computed: {
-    profile: function () {
-      return this.$store.getters.WgUserData
-    },
-    ...mapGetters([
-      'WgUserData', 
-      'WgUserDataLoaded'
-    ]),
+    ...mapGetters({
+      isProfileLoaded: 'admin/user/isProfileLoaded',
+      isAuthenticated: 'admin/auth/isAuthenticated'
+    }),
+    ...mapState({
+      profile: state => state.admin.user.profile,
+    })
   },
   created: function() {
-    if (this.$store.getters.WgAuthAuthenticated) {
-      this.$store.dispatch(WG_USER_REQUEST)
+    if (this.isAuthenticated) {
+      this.$store.dispatch('admin/user/fetchProfile')
     }
   },
 }

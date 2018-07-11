@@ -2,7 +2,7 @@
   <div class="wg-theme-editor-preview preview">
     <div class="preview__brakepoints">
       <a v-for="(brakepoint, index) in brakepoints" :key="index" 
-        :class="['brakepoint', {'brakepoint--active': brakepointVisible === brakepoint.id}]" 
+        :class="['brakepoint', {'brakepoint--active': brakepointActive === brakepoint.id}]" 
         @click="showBrakepoint(brakepoint.id)">
           <span class="brakepoint__icon"><img :src="brakepoint.icon" :alt="brakepoint.title" /></span>
           <span class="brakepoint__title">{{brakepoint.title}}</span>
@@ -13,10 +13,6 @@
 </template>
 
 <script>
-import { 
-  WG_THEME_SET_BRAKEPOINT_PREVIEW,
-} from '@/store/actions/WgTheme'
-
 import WgInputBtnGroup from '@/components/wg-ui/wg-form/wg-input/WgInputBtnGroup';
 
 const brakepoints = [
@@ -37,15 +33,15 @@ export default {
   },
   data () {
     return {
-      brakepointVisible: 'large',
+      brakepointActive: 'large',
       brakepoints: brakepoints,
       templates: templates
     }
   },
   methods: {
     showBrakepoint: function (brakepoint) {
-      this.brakepointVisible = brakepoint
-      this.$store.commit(WG_THEME_SET_BRAKEPOINT_PREVIEW, this.brakepointVisible)
+      this.brakepointActive = brakepoint
+      this.$store.commit('theme/editor/setPreview', brakepoint)
     }
   }
 }

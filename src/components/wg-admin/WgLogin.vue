@@ -6,7 +6,7 @@
         <div class="panel__box">
           <div class="panel__head">Login to continue</div>
           <div class="panel__form">
-            <wg-form :schema="schema" :status="WgAuthStatus" @success="login($event)">
+            <wg-form :schema="schema" :status="authState" @success="login($event)">
               <template slot="submit">Login</template>
             </wg-form>
             <div class="panel__footer">
@@ -20,7 +20,7 @@
 </template>
 
 <script>  
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 
 import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
@@ -68,13 +68,15 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['WgAuthStatus']),
+    ...mapState({
+      authState: state => state.admin.auth.status
+    }),
   },
   mounted: function () {
-    this.$emit('toggleShapeVisibility', true)
+    this.$store.commit('admin/shape/toggle', true)
   },
   destroyed: function () {
-    this.$emit('toggleShapeVisibility', false)
+    this.$store.commit('admin/shape/toggle', false)
   }
 }
 </script>

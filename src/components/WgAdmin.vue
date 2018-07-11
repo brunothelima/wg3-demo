@@ -5,23 +5,25 @@
       <div class="wg-shape" v-if="shapeVisibility"></div>
     </transition>
     <transition name="wg-router" mode="out-in">
-      <router-view @toggleShapeVisibility="shapeVisibility = $event" />
+      <router-view/>
     </transition>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import WgHeader from '@/components/wg-ui/wg-layout/WgHeader'
 export default {
   name: 'WgContainer',
   components: {
     'wg-header': WgHeader
-  },
-  data () {
-    return {
-      shapeVisibility: false
-    }
-  },
+  }, 
+  computed: {
+    ...mapState({
+      shapeVisibility: state => state.admin.shape.visible,
+    })
+  }
 }
 </script>
 <style lang="scss" scoped>

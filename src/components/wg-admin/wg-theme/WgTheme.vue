@@ -1,12 +1,12 @@
 <template>
   <section class="wg-theme">
-    <div class="wg-theme__loading" v-if="WgThemeRequestStatus === 'loading'"></div>
+    <div class="wg-theme__loading" v-if="themeStatus != 'success'"></div>
     <div class="wg-theme__preview" v-else>
       <div v-wg-id
         ref="editArea" 
         :class="[
           'wg-theme__edit-area', 
-          `wg-preview--${WgThemeCurrentBrakepointPreview}`
+          `wg-preview--${themePreview}`
         ]">
           <wg-post/>
       </div>
@@ -16,12 +16,8 @@
 </template>
 
 <script>  
-import { 
-  WG_THEME_REQUEST, 
-  WG_THEME_SET_TARGET,
-  WG_THEME_SET_PROPS
-} from '@/store/actions/WgTheme'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
+
 import { WgId } from '@/directives/WgId'
 
 import WgThemeEditor from './wg-theme-editor/WgThemeEditor'
@@ -37,21 +33,17 @@ export default {
     'wg-post': WgPost,
   },
   computed: {
-    ...mapGetters([
-      'WgThemeRequestStatus',
-      'WgThemeCurrentBrakepointPreview'
-    ]),
+    ...mapState({
+      themeStatus: state => state.theme.status,
+      themePreview: state => state.theme.editor.preview
+    }),
   },
-  data () {
-    return {
-      themeEditorTarget: null
-    }
-  },
-  async created () {
-    await this.$store.dispatch(WG_THEME_REQUEST, {id: 1})
+  async mounted () {
+    let id = 1
+    await this.$store.dispatch('theme/fetchById', id)
       .then(themeProps => {
-        this.$store.commit(WG_THEME_SET_TARGET, this.$refs.editArea)
-        this.$store.commit(WG_THEME_SET_PROPS, themeProps)
+        this.$store.commit('theme/editor/setTarget', this.$refs.editArea)
+        this.$store.commit('theme/editor/setTheme', themeProps)
       })
   },
 }

@@ -1,17 +1,29 @@
-const WgApiCall = ({url, method, ...data}) => new Promise((resolve, reject) => {
+export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => {
   fetch(`http://localhost/wg3-api/${url}`, {
-    method: method,
-    body: data
+    method: 'GET',
+    body: filters
   })
-  .then(res => res.json())
-  .then(data => {
+  .then(resp => resp.json())
+  .then(resp => {
     try {
-      resolve(data)
+      resolve(resp)
     } catch (err) {
       reject(new Error(err))
     }
   })
-  // .catch(error => console.error(error))
 }) 
 
-export default WgApiCall
+export const WgApiPost = ({url, ...data}) => new Promise((resolve, reject) => {
+  fetch(`http://localhost/wg3-api/${url}`, {
+    method: 'POST',
+    body: data
+  })
+  .then(resp => resp.json())
+  .then(resp => {
+    try {
+      resolve(resp)
+    } catch (err) {
+      reject(new Error(err))
+    }
+  })
+}) 

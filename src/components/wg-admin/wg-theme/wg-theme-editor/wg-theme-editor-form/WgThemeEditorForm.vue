@@ -10,15 +10,14 @@
     </nav>
     <div class="forms__components">
       <component :is="`wg-theme-editor-form-${formVisible}`" 
-        v-bind="WgThemeCurrentTheme"
+        v-bind="currentTheme"
         @change="onFormChange($event)"/>
     </div>
   </div> 
 </template>
 
 <script>
-import { WG_THEME_SET_PROPS } from '@/store/actions/WgTheme'
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 import WgThemeEditorFormFonts from './WgThemeEditorFormFonts'
 import WgThemeEditorFormColors from './WgThemeEditorFormColors'
@@ -49,7 +48,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['WgThemeCurrentTheme']),
+    ...mapState({
+      currentTheme: state => state.theme.editor.theme
+    }),
   },
   methods: {
     showForm: function (form) {
@@ -57,7 +58,9 @@ export default {
       this.$emit('formTabChange', this.formVisible)
     },
     onFormChange: function (field) {
-      this.$store.commit(WG_THEME_SET_PROPS, { [field.name]: field.value })
+      this.$store.commit('theme/editor/setTheme', { 
+        [field.name]: field.value 
+      })
     },
   }, 
 }

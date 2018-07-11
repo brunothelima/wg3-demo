@@ -2,7 +2,7 @@
   <div class="wg-post">
     <wg-container class="wg-post__grid">
       <main class="wg-post__content">
-        <div class="wg-post__loading placeholder" v-if="WgPostStatus === 'loading'">
+        <div class="wg-post__loading placeholder" v-if="!post">
             <img src="@/assets/img/wg-post-mockup.svg">
         </div>
         <article v-else>
@@ -34,12 +34,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
-import { WG_POST_REQUEST } from '@/store/actions/wg-post/WgPost'
-import { WG_POST_RELATED_REQUEST } from '@/store/actions/wg-post/WgPostRelated'
-import { WG_READ_MORE_REQUEST } from '@/store/actions/wg-post/WgReadMore'
-
 import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
 import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
 import WgText from '@/components/wg-ui/wg-text/WgText'
@@ -61,22 +55,20 @@ export default {
   },
   data () {
     return {
-      post: {},
+      post: null,
       relatedPosts: [],
       readMorePosts: []
     }
   },
-  computed: {
-     ...mapGetters([
-      'WgPostStatus', 
-      'WgPostRelatedStatus',
-      'WgReadMoreStatus',
-    ]),
-  },
   async created () {
-    this.post = await this.$store.dispatch(WG_POST_REQUEST, {id: 1})
-    this.relatedPosts = await this.$store.dispatch(WG_POST_RELATED_REQUEST, {id: 1})
-    this.readMorePosts = await this.$store.dispatch(WG_READ_MORE_REQUEST, {id: 1})
+    let id = 1
+    this.post = await this.$store.dispatch('content/fetchById', id)
+    await this.$store.dispatch('content/related/fetchByContentId', id)
+      .then(items => {
+        console.log(items)
+        this.relatedPosts = items
+        this.readMorePosts = items
+      })
   },
 }
 </script>

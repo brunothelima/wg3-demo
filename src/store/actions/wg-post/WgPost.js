@@ -1,3 +1,0 @@
-export const WG_POST_REQUEST = 'WG_POST_REQUEST'
-export const WG_POST_SUCCESS = 'WG_POST_SUCCESS'
-export const WG_POST_ERROR = 'WG_POST_ERROR'
