@@ -23,7 +23,7 @@ import WgThemeEditorFormFonts from './WgThemeEditorFormFonts'
 import WgThemeEditorFormColors from './WgThemeEditorFormColors'
 import WgThemeEditorFormLayout from './WgThemeEditorFormLayout'
 import WgThemeEditorFormAnimation from './WgThemeEditorFormAnimation'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 
 const forms = [
   { id: 'fonts', title: 'Fonts', icon: require('@/assets/img/wg-theme-editor/fonts-icon.svg') },

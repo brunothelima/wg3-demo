@@ -18,7 +18,7 @@
 
 <script>  
 import { WgInputMixin } from '@/mixins/WgInputMixin'
-import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
+import WgFormField from '@/components/wg-uikit/wg-form/WgFormField'
 
 export default {
   name: 'WgInputBtnGroup',
@@ -28,7 +28,7 @@ export default {
   },
   props: {
     value: {
-      type: Number,
+      type: [String, Number],
       default: 14
     },
     options: {

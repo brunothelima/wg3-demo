@@ -3,37 +3,55 @@
     :success="success"
     :error="error"
     :cols="cols">
-      <input :class="`wg-input-${type}`"
-        :autocomplete="true"
-        :type="type"
+      <input class="wg-input-color" 
+        type="text"
         :id="id"
         :name="name"
-        :placeholder="placeholder" 
         :disabled="disabled"
-        v-model="model"
-        @input="onChange($event.target.value)">
+        v-model="model">
+      <wg-color-slide 
+        class="wg-color-slide"
+        v-model="colors"
+        @input="onChange(colors)" />
   </wg-form-field>
 </template>
 
 <script>  
 import { WgInputMixin } from '@/mixins/WgInputMixin'
-import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
+import { Slider } from 'vue-color'
+import WgFormField from '@/components/wg-uikit/wg-form/WgFormField'
 
 export default {
-  name: 'WgInputText',
+  name: 'WgInputColor',
   mixins: [WgInputMixin],
   components: {
-    'wg-form-field': WgFormField
+    'wg-form-field': WgFormField,
+    'wg-color-slide': Slider
   },
+  data () {
+    return {
+      colors : this.value
+    }
+  },
+  methods: {
+    onChange: function (colors) {
+      this.model = colors.hex
+      this.$emit('change', this.model)
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-[class*="wg-input"] {
+.wg-color-slide {
+  width: 100%;
+}
+.wg-input-color {
   box-sizing: border-box;
   height: $wg-input-height;
   width: 100%;
   padding: 0 var(--wg-gutter-l);
+  margin-bottom: var(--wg-gutter-l);
   background-color: $wg-color-sys-k;
   border: var(--wg-border-width) var(--wg-border-style) $wg-color-sys-h;
   border-radius: var(--wg-border-radius);
@@ -42,7 +60,7 @@ export default {
   outline: none;
   transition-duration: var(--wg-transition-duration-faster);
   transition-timing-function: var(--wg-transition-timing-function);
-  transition-property: border-color, box-shadow, color, transform;
+  transition-property: border-color, box-shadow, color, transform; 
   &::placeholder {
     color: inherit;
   }

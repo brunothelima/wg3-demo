@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import WgDragResize from '@/components/wg-ui/WgDragResize'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgDragResize from '@/components/wg-uikit/WgDragResize'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 import WgThemeEditorTutorial from './WgThemeEditorTutorial'
 import WgThemeEditorPreview from './WgThemeEditorPreview'
 import WgThemeEditorForm from './wg-theme-editor-form/WgThemeEditorForm'

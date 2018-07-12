@@ -26,8 +26,8 @@
 
 <script>  
 import { WgFormMixin } from '@/mixins/WgFormMixin'    
-import WgInputText from '@/components/wg-ui/wg-form/wg-input/WgInputText'     
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgInputText from '@/components/wg-uikit/wg-form/wg-input/WgInputText'     
+import WgBtn from '@/components/wg-uikit/WgBtn'
 
 export default {
   name: 'WgForm',

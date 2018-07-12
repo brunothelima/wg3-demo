@@ -4,7 +4,8 @@ import { setCCPs } from '@/utils/WgCCP'
 const state = { 
   theme: {},
   target: {},
-  preview: 'large'
+  preview: 'large',
+  view: 'post'
 }
 
 const getters = {}
@@ -21,6 +22,9 @@ const mutations = {
   },
   setPreview (state, preview) {
     state.preview = preview
+  },
+  setView (state, view) {
+    state.view = view
   },
 }
 

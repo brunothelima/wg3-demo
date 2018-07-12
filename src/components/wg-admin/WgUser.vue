@@ -11,7 +11,7 @@
         <wg-heading level="h3">Hello, {{profile.name}}</wg-heading>
         <p>You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps.  </p>
         <wg-heading level="h6">Excited to get started?</wg-heading>
-        <wg-btn tag="router-link" to="/admin/theme">Start Demo</wg-btn>
+        <wg-btn tag="router-link" to="/admin/theme/post">Start Demo</wg-btn>
       </div>
       <div v-else>
         Loadding...
@@ -24,9 +24,9 @@
 import { mapState, mapGetters } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 
-import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
-import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 
 export default {
   name: 'WgUser',
@@ -45,10 +45,14 @@ export default {
       profile: state => state.admin.user.profile,
     })
   },
-  created: function() {
-    if (this.isAuthenticated) {
-      this.$store.dispatch('admin/user/fetchProfile')
-    }
+  async created () {
+    await this.$store.dispatch('admin/user/fetchProfile')
+    this.$store.commit('admin/shape/setPosition', 'top')
+    this.$store.commit('admin/shape/setType', 'grayscale')
+    this.$store.commit('admin/shape/toggle', true)
+  },
+  destroyed: function () {
+    this.$store.commit('admin/shape/toggle', false)
   },
 }
 </script>
@@ -59,7 +63,6 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: $wg-color-sys-k;
   .wg-container {
     max-width: 642px;
   }

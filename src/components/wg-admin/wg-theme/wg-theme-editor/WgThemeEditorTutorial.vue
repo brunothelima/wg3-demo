@@ -57,8 +57,8 @@ const cards = [
   },
 ]
 
-import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 
 export default {
   name: 'WgThemeEditorTutorial',

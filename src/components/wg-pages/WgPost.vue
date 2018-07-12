@@ -20,7 +20,7 @@
         </article>
       </main>
       <aside class="wg-post__sidebar">
-        <wg-post-related :posts="relatedPosts" />
+        <wg-content-related :items="relatedContent" />
         <div class="wg-banner">
           <img src="@/assets/img/wg-ad-example.png">
         </div>
@@ -28,17 +28,17 @@
       </aside>
     </wg-container>
     <wg-container>
-      <wg-read-more :posts="readMorePosts" />
+      <wg-read-more :items="readMore" />
     </wg-container>
   </div>
 </template>
 
 <script>
-import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
-import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
-import WgText from '@/components/wg-ui/wg-text/WgText'
-import WgSocialShare from '@/components/wg-ui/wg-social/WgSocialShare'
-import WgPostRelated from '@/components/wg-widgets/WgPostRelated'
+import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
+import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgText from '@/components/wg-uikit/wg-text/WgText'
+import WgSocialShare from '@/components/wg-uikit/wg-social/WgSocialShare'
+import WgContentRelated from '@/components/wg-widgets/wg-content/WgContentRelated'
 import WgReadMore from '@/components/wg-widgets/WgReadMore'
 import WgNewsletter from '@/components/wg-widgets/WgNewsletter'
 
@@ -49,15 +49,15 @@ export default {
     'wg-heading': WgHeading,
     'wg-text': WgText,
     'wg-social-share': WgSocialShare,
-    'wg-post-related': WgPostRelated,
+    'wg-content-related': WgContentRelated,
     'wg-read-more': WgReadMore,
     'wg-newsletter': WgNewsletter,
   },
   data () {
     return {
       post: null,
-      relatedPosts: [],
-      readMorePosts: []
+      relatedContent: [],
+      readMore: []
     }
   },
   async created () {
@@ -65,9 +65,8 @@ export default {
     this.post = await this.$store.dispatch('content/fetchById', id)
     await this.$store.dispatch('content/related/fetchByContentId', id)
       .then(items => {
-        console.log(items)
-        this.relatedPosts = items
-        this.readMorePosts = items
+        this.relatedContent = items
+        this.readMore = items
       })
   },
 }

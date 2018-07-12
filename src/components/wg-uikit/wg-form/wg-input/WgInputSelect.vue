@@ -3,67 +3,58 @@
     :success="success"
     :error="error"
     :cols="cols">
-			<div class="wg-input-number">
-				{{model + unit || placeholder}}
-        <div class="wg-input-number__controlls">
-          <button @click.prevent="plus()"><i class="fa fa-caret-up"></i></button>
-          <button @click.prevent="minus()"><i class="fa fa-caret-down"></i></button>
-        </div>
+			<div class="wg-input-select">
+        <select :id="id"
+          :name="name"
+          :disabled="disabled"
+          v-model="model"
+          @input="onChange($event.target.value)">
+            <option v-for="(option, index) in options" :key="index"
+              :selected="model === option.value"
+              :value="option.value">
+                {{option.title}}
+            </option>
+				</select>
+				{{text || placeholder}}
+        <i class="fa fa-caret-down"></i>
 			</div>
   </wg-form-field>
 </template>
 
 <script>  
 import { WgInputMixin } from '@/mixins/WgInputMixin'
-import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
+import WgFormField from '@/components/wg-uikit/wg-form/WgFormField'
 
 export default {
-  name: 'WgInputNumber',
+  name: 'WgInputSelect',
   mixins: [WgInputMixin],
   components: {
     'wg-form-field': WgFormField
   },
   props: {
-    value: {
-      type: Number,
-      default: 0,
-    },
-    unit: {
-      type: String,
-      default: ''
-    },
-    min: {
-      type: Number,
-      default: 0 
-    },
-    max: {
-      type: Number,
-      default: 1000 
-    },
+    options: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data () {
+    return {
+      text: this.options.find(opt => opt.value === this.value).title || ''
+    }
   },
   methods: {
-    plus: function () {
-      let newVal = this.model + 1
-      if (newVal > this.max) {
-        return
-      }
-      this.model = newVal
+    onChange: function (value) {      
+      let selected = this.options.find(opt => opt.value === value)
+      this.model = selected.value
+      this.text = selected.title
       this.$emit('change', this.model)
-    },
-    minus: function () {
-      let newVal = this.model - 1
-      if (newVal < this.min) {
-        return
-      }
-      this.model = newVal
-      this.$emit('change', this.model)
-    },
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.wg-input-number {
+.wg-input-select {
 	position: relative;
   display: flex;
   align-items: center;
@@ -76,37 +67,19 @@ export default {
   border-radius: var(--wg-border-radius);
   font: #{$wg-font-weight-regular} var(--wg-font-size) var(--wg-font-family);
   color: $wg-color-sys-f;
+  cursor: pointer;
   outline: none;
   transition-duration: var(--wg-transition-duration-faster);
   transition-timing-function: var(--wg-transition-timing-function);
   transition-property: border-color, box-shadow, color, transform;
-  &__controlls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    position: absolute;
-    right: var(--wg-gutter);
-    top: 0;
-    bottom: 0;
-    width: var(--wg-gutter-l);
-    height: var(--wg-gutter-xxl);
-    margin: auto;
-    button {
-      width: 100%;
-      height: var(--wg-gutter-l);
-      padding: 0;
-      background-color: transparent;
-      border: none;
-      text-align: center;
-      color: $wg-color-sys-f;
-      font-size: var(--wg-font-size);
-      line-height: var(--wg-gutter-l);
-      cursor: pointer;
-      outline: none;
-      &:active {
-        opacity: 0.6;
-      }
-    }
+  select {
+		position: absolute;
+		z-index: 2;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
   }
   &:not([disabled]) {
     &:hover,
@@ -121,6 +94,18 @@ export default {
   &[disabled] {
     opacity: 0.6;
     background-color: $wg-color-sys-j;
+  }
+  .fa-caret-down {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: var(--wg-gutter-xxl);
+    height: var(--wg-font-size);
+    line-height: var(--wg-font-size);
+    text-align: center;
   }
 }
 .wg-form-field {

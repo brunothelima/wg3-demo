@@ -2,18 +2,20 @@
   <div class="wg-theme-editor-preview preview">
     <div class="preview__brakepoints">
       <a v-for="(brakepoint, index) in brakepoints" :key="index" 
-        :class="['brakepoint', {'brakepoint--active': brakepointActive === brakepoint.id}]" 
-        @click="showBrakepoint(brakepoint.id)">
+        :class="['brakepoint', {'brakepoint--active': themePreview === brakepoint.id}]" 
+        @click="changeBrakepoint(brakepoint.id)">
           <span class="brakepoint__icon"><img :src="brakepoint.icon" :alt="brakepoint.title" /></span>
           <span class="brakepoint__title">{{brakepoint.title}}</span>
       </a>
     </div>
-    <wg-input-btn-group :options="templates" />
+    <wg-input-btn-group :options="views" :value="themeView" @change="changeView($event)" />
   </div>
 </template>
 
 <script>
-import WgInputBtnGroup from '@/components/wg-ui/wg-form/wg-input/WgInputBtnGroup';
+import { mapState } from 'vuex'
+
+import WgInputBtnGroup from '@/components/wg-uikit/wg-form/wg-input/WgInputBtnGroup';
 
 const brakepoints = [
   { id: 'large', title: 'Desktop', icon: require('@/assets/img/wg-theme-editor/desktop-icon.svg') },
@@ -21,7 +23,7 @@ const brakepoints = [
   { id: 'small', title: 'Tablet', icon: require('@/assets/img/wg-theme-editor/tablet-icon.svg') },
   { id: 'minimal', title: 'Mobile', icon: require('@/assets/img/wg-theme-editor/mobile-icon.svg') },
 ]
-const templates = [
+const views = [
   { value: 'post', title: 'Post' },
   { value: 'widgets', title: 'Widgets' },
   { value: 'list', title: 'List' },
@@ -33,15 +35,22 @@ export default {
   },
   data () {
     return {
-      brakepointActive: 'large',
       brakepoints: brakepoints,
-      templates: templates
+      views: views
     }
   },
+  computed: {
+    ...mapState({
+      themePreview: state => state.theme.editor.preview,
+      themeView: state => state.theme.editor.view
+    }),
+  },
   methods: {
-    showBrakepoint: function (brakepoint) {
-      this.brakepointActive = brakepoint
+    changeBrakepoint: function (brakepoint) {
       this.$store.commit('theme/editor/setPreview', brakepoint)
+    },
+    changeView: function (view) {
+      this.$store.commit('theme/editor/setView', view)
     }
   }
 }

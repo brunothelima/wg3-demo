@@ -1,9 +1,7 @@
 <template>
   <div class="wg-admin">
     <wg-header />
-    <transition name="wg-shape">
-      <div class="wg-shape" v-if="shapeVisibility"></div>
-    </transition>
+    <wg-shape />
     <transition name="wg-router" mode="out-in">
       <router-view/>
     </transition>
@@ -11,19 +9,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
-import WgHeader from '@/components/wg-ui/wg-layout/WgHeader'
+import WgHeader from '@/components/wg-uikit/wg-layout/WgHeader'
+import WgShape from '@/components/wg-uikit/wg-layout/WgShape'
 export default {
   name: 'WgContainer',
   components: {
-    'wg-header': WgHeader
+    'wg-header': WgHeader,
+    'wg-shape': WgShape,
   }, 
-  computed: {
-    ...mapState({
-      shapeVisibility: state => state.admin.shape.visible,
-    })
-  }
 }
 </script>
 <style lang="scss" scoped>
@@ -33,33 +26,13 @@ $component: '.wg-admin';
   box-sizing: border-box;
   height: 100vh;
   padding-top: calc(var(--wg-gutter-xl) + 32px);
-  background-color: $wg-color-sys-h;
+  // background-color: $wg-color-sys-h;
   .wg-header {
     z-index: 10;
   }
-  .wg-shape {
-    position: fixed;
-    z-index: 0;
-    top: var(--wg-gutter-xl);
-    right: 0;
-    width: 60vw;
-    height: calc(100vh - var(--wg-gutter-xl));
-    background: url('../assets/img/wg-login-shape.svg') no-repeat;
-    background-position: right top; 
-    background-size: auto 100%;
-    &-enter-active {  
-      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
-    }
-    &-leave-active {
-      animation: wg-shape-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards reverse;
-    }
-  }
-}
-@keyframes wg-shape-animation {
-  from {
-    transform: translate(100%, -25%) rotate(35deg);
-  } to {
-    transform: translate(0, 0) rotate(0);
+  section {
+    position: relative;
+    z-index: 1;
   }
 }
 .wg-router {

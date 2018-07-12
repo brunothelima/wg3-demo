@@ -23,10 +23,10 @@
 import { mapState } from 'vuex'
 import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 
-import WgHeading from '@/components/wg-ui/wg-text/WgHeading'
-import WgContainer from '@/components/wg-ui/wg-layout/WgContainer'
-import WgForm from '@/components/wg-ui/wg-form/WgForm'
-import WgBtn from '@/components/wg-ui/WgBtn'
+import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
+import WgForm from '@/components/wg-uikit/wg-form/WgForm'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 
 const schema = [
   {
@@ -72,12 +72,16 @@ export default {
       authState: state => state.admin.auth.status
     }),
   },
+  created: function () {
+    this.$store.commit('admin/shape/setPosition', 'right')
+    this.$store.commit('admin/shape/setType', 'gradient')
+  },
   mounted: function () {
     this.$store.commit('admin/shape/toggle', true)
   },
   destroyed: function () {
     this.$store.commit('admin/shape/toggle', false)
-  }
+  },
 }
 </script>
 

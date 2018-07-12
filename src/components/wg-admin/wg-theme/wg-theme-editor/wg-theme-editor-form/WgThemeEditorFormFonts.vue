@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import WgForm from '@/components/wg-ui/wg-form/WgForm'
+import WgForm from '@/components/wg-uikit/wg-form/WgForm'
 
 export default {
   name: 'WgThemeEditorFonts',

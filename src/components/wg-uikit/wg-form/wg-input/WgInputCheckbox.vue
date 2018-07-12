@@ -19,7 +19,7 @@
 
 <script>  
 import { WgInputMixin } from '@/mixins/WgInputMixin'
-import WgFormField from '@/components/wg-ui/wg-form/WgFormField'
+import WgFormField from '@/components/wg-uikit/wg-form/WgFormField'
 
 export default {
   name: 'WgInputCheckbox',

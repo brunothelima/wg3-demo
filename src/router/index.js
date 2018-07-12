@@ -27,8 +27,8 @@ export default new Router({
       beforeEnter: ifNotAuthenticated,
       children: [
         { path: '', component: WgUser,},
-        { path: '/admin/theme', component: WgTheme },
         { path: '/admin/login', component: WgLogin },
+        { path: '/admin/theme', component: WgTheme },
       ]
     },
   ],
