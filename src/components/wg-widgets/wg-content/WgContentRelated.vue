@@ -1,9 +1,8 @@
 <template>
   <div class="wg-content-related">
     <wg-heading level="h4">Stories you may like</wg-heading>
-    <div class="wg-post-related__loading placeholder" v-if="!items.length">
-      <img src="@/assets/img/wg-post-related-mockup.svg" />
-    </div>
+    <wg-mockup v-if="!items.length"
+      widget="post-related" />
     <ul v-else>
       <wg-content-mini tag="li" v-for="(item, index) in items" :key="index" 
         v-bind="item" />
@@ -12,12 +11,14 @@
 </template>
 
 <script>
+import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 import WgContentMini from './WgContentMini'
 export default {
   name: 'WgContentRelated',
   components: {
     'wg-heading': WgHeading,
+    'wg-mockup': WgMockup,
     'wg-content-mini': WgContentMini
   },
   props: {
@@ -37,17 +38,8 @@ $component: '.wg-content-related';
     margin-bottom: var(--wg-gutter-xl);
   }
   ul {
-    @media screen and (max-width: #{$wg-brakepoint-medium}) and (min-width: #{$wg-brakepoint-minimal}) {
-      display: flex;
-      flex-wrap: wrap;
-    }
     .wg-content-mini {
       margin-bottom: var(--wg-gutter-xl);
-    }
-  }
-  .placeholder {
-    svg, img {
-      width: 100%;
     }
   }
 }
@@ -55,11 +47,17 @@ $component: '.wg-content-related';
   ul {
     display: flex;
     flex-wrap: wrap;
+    .wg-content-mini {
+      width: 50%;
+    }
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-minimal) {
   ul {
     display: block;
+    .wg-content-mini {
+      width: 100%;
+    }
   }
 }
 </style>

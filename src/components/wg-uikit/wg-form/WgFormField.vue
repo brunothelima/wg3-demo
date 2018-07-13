@@ -2,7 +2,7 @@
   <div class="wg-form-field" :class="[{
       'wg-form-field--error':  error,
       'wg-form-field--success': success,
-    },`wg-form-field--cols-${cols}`]">
+    },`cols-${cols}`]">
       <label class="wg-form-field__label" v-if="label">{{label}}</label>
       <slot />
   </div>
@@ -37,11 +37,6 @@ export default {
   box-sizing: border-box;
   padding: 0 var(--wg-gutter-l);
   margin-bottom: var(--wg-gutter-xl);
-  @for $i from 12 through 1 {
-    &--cols-#{$i} {
-     width: percentage((1 / 12) * $i);
-    }
-  }
   &__label {
     display: block;
     margin-bottom: var(--wg-gutter);

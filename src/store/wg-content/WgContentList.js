@@ -14,7 +14,8 @@ const actions = {
     return new Promise((resolve, reject) => { 
       commit('paginate')
       WgApiGet({ url: 'wg_content_list_paginate.php' }, {
-        page: state.page
+        page: state.page,
+        ...filters
       }).then(resp => {
           commit('success', resp.items)
           resolve(resp.items)

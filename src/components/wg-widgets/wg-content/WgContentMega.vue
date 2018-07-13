@@ -63,6 +63,8 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-content-mega';
 #{$component} {
+  box-sizing: border-box;
+  padding: var(--wg-gutter);
   a {
     display: flex;
     align-items: flex-start;

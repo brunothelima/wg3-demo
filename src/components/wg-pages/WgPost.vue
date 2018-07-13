@@ -2,9 +2,7 @@
   <div class="wg-post">
     <wg-container class="wg-post__grid">
       <main class="wg-post__content">
-        <div class="wg-post__loading placeholder" v-if="!post">
-            <img src="@/assets/img/wg-post-mockup.svg">
-        </div>
+        <wg-mockup v-if="!post" widget="post"/>        
         <article v-else>
           <div class="wg-post__title">
             <wg-heading level="h1">{{post.title}}</wg-heading>            
@@ -36,6 +34,7 @@
 <script>
 import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
 import WgText from '@/components/wg-uikit/wg-text/WgText'
 import WgSocialShare from '@/components/wg-uikit/wg-social/WgSocialShare'
 import WgContentRelated from '@/components/wg-widgets/wg-content/WgContentRelated'
@@ -47,6 +46,7 @@ export default {
   components: {
     'wg-container': WgContainer,
     'wg-heading': WgHeading,
+    'wg-mockup': WgMockup,
     'wg-text': WgText,
     'wg-social-share': WgSocialShare,
     'wg-content-related': WgContentRelated,
@@ -83,13 +83,6 @@ $component: '.wg-post';
     box-sizing: border-box;
     grid-template-areas:
       "content sidebar";
-  }
-  &__loading {
-    img, svg {
-      display: block;
-      width: 100%;
-      color: $wg-color-sys-e;
-    }
   }
   &__title {
     h1 {

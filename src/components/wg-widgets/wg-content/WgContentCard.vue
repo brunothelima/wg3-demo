@@ -61,7 +61,7 @@ export default {
 $component: '.wg-content-card';
 #{$component} {
   box-sizing: border-box;
-  padding: var(--wg-gutter-l);
+  padding: var(--wg-gutter);
   a {
     display: block;
     overflow: hidden;

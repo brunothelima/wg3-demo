@@ -31,14 +31,12 @@ ul, ol {
   font-size: var(--wg-font-size);
   font-family: var(--wg-font-family-primary);
 }
-.placeholder {
-  animation: placeholder-animation 600ms infinite alternate;
-}
-@keyframes placeholder-animation {
-  from {
-    opacity: 0.5;
-  } to {
-    opacity: 1;      
+@for $i from 12 through 1 {
+  .cols-#{$i} {
+   width: percentage((1 / 12) * $i);
   }
+}
+@include wg-brakepoint ('[class*="cols-"]', $wg-brakepoint-minimal) {
+  width: 100%;
 }
 </style>

@@ -44,6 +44,7 @@ export default {
 $component: '.wg-content-mini';
 #{$component} {
   box-sizing: border-box;
+  padding: var(--wg-gutter);
   &__img {
     height: 80px;
     width: 80px;
