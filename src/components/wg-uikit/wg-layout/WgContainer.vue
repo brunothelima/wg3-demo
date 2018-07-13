@@ -31,6 +31,6 @@ $component: '.wg-container';
   width: $wg-brakepoint-small;
 }
 @include wg-brakepoint ($component, $wg-brakepoint-minimal) {
-  width: $wg-brakepoint-minimal;
+  width: auto;
 }
 </style>

@@ -24,9 +24,9 @@ const brakepoints = [
   { id: 'minimal', title: 'Mobile', icon: require('@/assets/img/wg-theme-editor/mobile-icon.svg') },
 ]
 const views = [
-  { value: 'post', title: 'Post' },
-  { value: 'widgets', title: 'Widgets' },
+  { value: 'home', title: 'Home' },
   { value: 'list', title: 'List' },
+  { value: 'post', title: 'Post' },
 ]
 export default {
   name: 'WgThemeEditorPreview',

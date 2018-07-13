@@ -47,12 +47,12 @@ const getBoxShadowCCP = (name, value) => {
 }
 const getColorsCCP = (name, value) => {
   let CCP = `${name}: ${value};`
-  CCP += `${name}-dark: ${TinyColor(value).darken(5).toString()};`
-  CCP += `${name}-darken: ${TinyColor(value).darken(10).toString()};`
-  CCP += `${name}-darkest: ${TinyColor(value).darken(15).toString()};`
-  CCP += `${name}-light: ${TinyColor(value).lighten(5).toString()};`
-  CCP += `${name}-lighter: ${TinyColor(value).lighten(10).toString()};`
-  CCP += `${name}-lightest: ${TinyColor(value).lighten(15).toString()};`
+  CCP += `${name}-dark: ${TinyColor(value).darken(10).toString()};`
+  CCP += `${name}-darken: ${TinyColor(value).darken(20).toString()};`
+  CCP += `${name}-darkest: ${TinyColor(value).darken(30).toString()};`
+  CCP += `${name}-light: ${TinyColor(value).lighten(10).toString()};`
+  CCP += `${name}-lighter: ${TinyColor(value).lighten(20).toString()};`
+  CCP += `${name}-lightest: ${TinyColor(value).lighten(30).toString()};`
   return CCP
 }
 export const getCCP = (CCPKey, CCPValue) => { 

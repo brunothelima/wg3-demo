@@ -25,6 +25,7 @@ import { WgId } from '@/directives/WgId'
 import WgThemeEditor from './wg-theme-editor/WgThemeEditor'
 import WgPost from '@/components/wg-pages/WgPost'
 import WgList from '@/components/wg-pages/WgList'
+import WgHome from '@/components/wg-pages/WgHome'
 
 export default {
   name: 'WgTheme',
@@ -35,6 +36,7 @@ export default {
     'wg-theme-editor': WgThemeEditor,
     'wg-post': WgPost,
     'wg-list': WgList,
+    'wg-home': WgHome,
   },
   computed: {
     ...mapState({
@@ -59,13 +61,15 @@ $component: '.wg-theme';
 #{$component} {
   padding: var(--wg-gutter-xxl) 0;
   &__edit-area {
-    overflow: auto;
     display: block;
+    position: relative;
+    box-sizing: border-box;
+    overflow: auto;
     margin: auto;
     width: $wg-brakepoint-large;
-    padding: var(--wg-gutter-xxl) 0 0;
     border-radius: var(--wg-border-radius-xxl);
     box-shadow: 0 0 80px rgba(0,0,0, 0.08);
+    background-color: $wg-color-sys-j;
     &.wg-preview--medium {
       width: $wg-brakepoint-medium;
     }

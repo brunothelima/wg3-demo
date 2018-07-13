@@ -5,7 +5,7 @@ const state = {
   theme: {},
   target: {},
   preview: 'large',
-  view: 'post'
+  view: 'home'
 }
 
 const getters = {}

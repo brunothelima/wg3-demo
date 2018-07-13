@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 $component: '.wg-read-more';
-.wg-read-more {
+#{$component} {
   margin-bottom: var(--wg-gutter-xl);
   &:last-child {
     margin-bottom: 0;

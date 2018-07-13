@@ -87,6 +87,7 @@ $component: '.wg-content-mega';
     }
   }
   &__info {
+    display: block;
     box-sizing: border-box;
     width: 100%;
     padding: var(--wg-gutter-l);
@@ -134,7 +135,6 @@ $component: '.wg-content-mega';
       }   
     }
   } 
-
   &__img, 
   picture {
     display: block;
@@ -147,6 +147,11 @@ $component: '.wg-content-mega';
   }
   picture {
     background-color: var(--wg-color-primary); 
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-minimal) {
+  a {
+    display: block;
   }
 }
 </style>

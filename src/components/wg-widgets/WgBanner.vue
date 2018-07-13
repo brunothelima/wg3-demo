@@ -1,0 +1,26 @@
+<template>
+  <div class="wg-banner">
+    <img src="@/assets/img/wg-ad-example.png">
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'WgBanner',
+}
+</script>
+
+<style lang="scss" scoped>
+$component: '.wg-banner';
+#{$component} {
+  box-sizing: border-box;
+  padding: var(--wg-gutter-xl) 0;
+  background-color: $wg-color-sys-h;
+  border-radius: var(--wg-border-radius);
+  img {
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--wg-border-radius);
+  }
+}
+</style>

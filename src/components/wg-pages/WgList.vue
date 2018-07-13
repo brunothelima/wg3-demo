@@ -3,52 +3,43 @@
     <wg-container>
       <div class="wg-list__headlines headlines">
         <wg-heading level="h2">Headlines</wg-heading>
-        <div class="headlines__content">
+        <div class="headlines__grid">
           <div class="headlines__featured">
-            <wg-mockup v-if="!headlines.featured.length" 
-              widget="content-mega"
-              :counter="3"/>
+            <wg-mockup widget="content-mega" :counter="3" v-if="!headlines.featured.length"/>
             <ul v-else>
               <wg-content-mega tag="li" v-for="(item, index) in headlines.featured" :key="index" v-bind="item" />
             </ul>
           </div>
           <div class="headlines__aside">
-            <wg-mockup v-if="!headlines.aside.length"
-              widget="content-mini"
-              :counter="5"/>
-            <ul v-else>
-              <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />
-            </ul>
+            <wg-mockup widget="content-mini" :counter="5" v-if="!headlines.aside.length"/>
+            <div v-else>
+              <ul>
+                <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />
+              </ul>
+              <wg-newsletter />
+            </div>
           </div>
         </div>
       </div>
       <div class="wg-list__spotlight spotlight">
         <wg-heading level="h2">Spotlight</wg-heading>
-        <div class="spotlight__content">
-          <div class="spotlight__featured">
-            <wg-mockup v-if="!spotlight.featured.length"  
-              widget="content-card" 
-              :cols="4"
-              :counter="3" />              
-            <ul v-else>
-              <wg-content-card v-for="(item, index) in spotlight.featured" :key="index" 
-                class="cols-4"
-                tag="li" 
-                v-bind="item" />
-            </ul>
-          </div>
-          <div class="spotlight__list">
-            <wg-mockup v-if="!spotlight.list.length"
-              widget="content-mini"
-              :cols="6"
-              :counter="10"/>
-            <ul v-else>
+        <div class="spotlight__featured">
+          <wg-mockup widget="content-card" :cols="4" :counter="3" v-if="!spotlight.featured.length" />              
+          <ul v-else>
+            <wg-content-card class="cols-4" tag="li" v-for="(item, index) in spotlight.featured" :key="index" v-bind="item" />
+          </ul>
+        </div>
+        <div class="spotlight__grid">
+          <wg-mockup widget="content-mini" :cols="6" :counter="10" v-if="!spotlight.list.length"/>
+          <div v-else>
+            <ul>
               <wg-content-mini tag="li" class="cols-6" v-for="(item, index) in spotlight.list" :key="index" v-bind="item" />
             </ul>
-            <div class="wg-banner">
-              <img src="@/assets/img/wg-ad-example.png">
+            <div class="spotlight__load">                
+              <wg-btn model="outline">Load more</wg-btn>
             </div>
           </div>
+          <!-- <wg-banner /> -->
         </div>
       </div>
     </wg-container>
@@ -58,10 +49,13 @@
 <script>
 import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgBtn from '@/components/wg-uikit/WgBtn'
 import WgContentMini from '@/components/wg-widgets/wg-content/WgContentMini'
 import WgContentMega from '@/components/wg-widgets/wg-content/WgContentMega'
 import WgContentCard from '@/components/wg-widgets/wg-content/WgContentCard'
-import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgNewsletter from '@/components/wg-widgets/WgNewsletter'
+import WgBanner from '@/components/wg-widgets/WgBanner'
 
 export default {
   name: 'WgList',
@@ -69,9 +63,12 @@ export default {
     'wg-container': WgContainer,
     'wg-heading': WgHeading,
     'wg-mockup': WgMockup,
+    'wg-btn': WgBtn,
     'wg-content-mini': WgContentMini,
     'wg-content-mega': WgContentMega,
     'wg-content-card': WgContentCard,
+    'wg-newsletter': WgNewsletter,
+    'wg-banner': WgBanner,
   },
   data () {
     return {
@@ -85,7 +82,7 @@ export default {
       },
     }
   },
-async created () {
+  async created () {
     let id = 1
     this.headlines.featured = await this.$store.dispatch('content/related/fetchByContentId', id)
     this.headlines.aside = await this.$store.dispatch('content/related/fetchByContentId', id)
@@ -98,10 +95,11 @@ async created () {
 <style lang="scss" scoped>
 $component: '.wg-list';
 #{$component} {
+  padding: var(--wg-gutter-xxl) 0 0;
   .headlines,
   .spotlight {
-    .headlines__content,
-    .spotlight__list {
+    .headlines__grid,
+    .spotlight__grid {
       display: grid;
       grid-template-columns: auto 320px;
       grid-template-rows: auto;
@@ -119,6 +117,9 @@ $component: '.wg-list';
   .headlines {
     &__featured {
       grid-area: content;
+      .wg-content-mega {
+        width: 100%;
+      }
     }
     &__aside {
       grid-area: sidebar;
@@ -131,21 +132,19 @@ $component: '.wg-list';
       }
       .wg-banner {
         grid-area: sidebar;
-        padding: var(--wg-gutter-xl) 0;
-        background-color: $wg-color-sys-h;
-        border-radius: var(--wg-border-radius);
-        img {
-          display: block;
-          margin: 0 auto;
-          border-radius: var(--wg-border-radius);
-        }
+        margin-bottom: var(--wg-gutter-xl);
       }
+    }
+    &__load {
+      padding-top: var(--wg-gutter-l);
+      margin-bottom: var(--wg-gutter-xl);
+      text-align: center;
     }
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-small) {
-  .headlines .headlines__content,
-  .spotlight .spotlight__list {
+  .headlines .headlines__grid,
+  .spotlight .spotlight__grid {
     display: block;
   }
 }

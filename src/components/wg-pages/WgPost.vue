@@ -19,9 +19,7 @@
       </main>
       <aside class="wg-post__sidebar">
         <wg-content-related :items="relatedContent" />
-        <div class="wg-banner">
-          <img src="@/assets/img/wg-ad-example.png">
-        </div>
+        <wg-banner />
         <wg-newsletter />
       </aside>
     </wg-container>
@@ -40,6 +38,7 @@ import WgSocialShare from '@/components/wg-uikit/wg-social/WgSocialShare'
 import WgContentRelated from '@/components/wg-widgets/wg-content/WgContentRelated'
 import WgReadMore from '@/components/wg-widgets/WgReadMore'
 import WgNewsletter from '@/components/wg-widgets/WgNewsletter'
+import WgBanner from '@/components/wg-widgets/WgBanner'
 
 export default {
   name: 'WgPost',
@@ -52,6 +51,7 @@ export default {
     'wg-content-related': WgContentRelated,
     'wg-read-more': WgReadMore,
     'wg-newsletter': WgNewsletter,
+    'wg-banner': WgBanner,
   },
   data () {
     return {
@@ -75,6 +75,7 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-post';
 #{$component} {
+  padding: var(--wg-gutter-xxl) 0 0;
   &__grid {
     display: grid;
     grid-template-columns: auto 320px;
