@@ -2,7 +2,7 @@
   <div class="wg-form-field" :class="[{
       'wg-form-field--error':  error,
       'wg-form-field--success': success,
-    },`cols-${cols}`]">
+    },`wg-cols-${cols}`]">
       <label class="wg-form-field__label" v-if="label">{{label}}</label>
       <slot />
   </div>

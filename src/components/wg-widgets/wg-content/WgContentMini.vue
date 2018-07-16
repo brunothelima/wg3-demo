@@ -43,8 +43,7 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-content-mini';
 #{$component} {
-  box-sizing: border-box;
-  padding: var(--wg-gutter);
+  margin-bottom: var(--wg-gutter-xl);
   &__img {
     height: 80px;
     width: 80px;

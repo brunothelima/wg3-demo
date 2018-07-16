@@ -19,7 +19,7 @@
 <script>
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 export default {
-  name: 'WgReadMore',
+  name: 'WgContentCard',
   components: {
     'wg-heading': WgHeading
   },
@@ -60,8 +60,7 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-content-card';
 #{$component} {
-  box-sizing: border-box;
-  padding: var(--wg-gutter);
+  margin-bottom: var(--wg-gutter-xl);
   a {
     display: block;
     overflow: hidden;

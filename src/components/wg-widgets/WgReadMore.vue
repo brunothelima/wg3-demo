@@ -4,10 +4,10 @@
     <wg-mockup v-if="!items.length" 
       widget="content-card"
       :counter="3" />
-    <div class="wg-read-more__cards" v-else>
+    <div class="wg-read-more__cards wg-row" v-else>
       <wg-content-card  v-for="(item, index) in items" :key="index" 
         tag="div"
-        class="cols-4"
+        class="wg-cols-4"
         v-bind="item" /> 
     </div>
   </div>
@@ -48,8 +48,7 @@ $component: '.wg-read-more';
   &__cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 calc(var(--wg-gutter) * -1);
+    justify-content: center; 
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-small) {

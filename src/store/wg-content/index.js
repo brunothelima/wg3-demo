@@ -2,6 +2,7 @@ import { WgApiGet } from '@/utils/WgApi'
 
 import WgContentList from './WgContentList'
 import WgContentRelated from './WgContentRelated'
+import WgContentHome from './WgContentHome'
 
 const state = { 
   status: '', 
@@ -16,7 +17,7 @@ const actions = {
       WgApiGet({ url: 'wg_content_fetch_by_id.php' }, {
         id: id
       }).then(resp => {
-          commit('success', resp.content)
+          commit('success', resp)
           resolve(resp.content)
         })
         .catch(err => {
@@ -47,6 +48,7 @@ export default {
   mutations,
   modules: {
     list: WgContentList,
-    related: WgContentRelated
+    related: WgContentRelated,
+    home: WgContentHome,
   }
 }

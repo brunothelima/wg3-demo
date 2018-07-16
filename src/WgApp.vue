@@ -32,12 +32,30 @@ ul, ol {
   font-size: var(--wg-font-size);
   font-family: var(--wg-font-family-primary);
 }
+.wg-row {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-left: calc(var(--wg-gutter) * -1);
+  margin-right: calc(var(--wg-gutter) * -1);
+}
+[class*="wg-cols-"]{
+  box-sizing: border-box;
+  padding-left: var(--wg-gutter);
+  padding-right: var(--wg-gutter);
+}
 @for $i from 12 through 1 {
-  .cols-#{$i} {
-   width: percentage((1 / 12) * $i);
+  .wg-cols-#{$i} {
+    width: percentage((1 / 12) * $i);
   }
+}
+@include wg-brakepoint ('.wg-row', $wg-brakepoint-minimal) {
+  margin-left: 0;
+  margin-right: 0;
 }
 @include wg-brakepoint ('[class*="cols-"]', $wg-brakepoint-minimal) {
   width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>

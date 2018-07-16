@@ -74,12 +74,12 @@ export default {
       options: {
         threshold: 24,
         navigation: {
-          prevEl: '.bottom__prev',
-          nextEl: '.bottom__next',
+          prevEl: '.wg-theme-editor-tutorial .bottom__prev',
+          nextEl: '.wg-theme-editor-tutorial .bottom__next',
         },
         pagination: {
           clickable: true,
-          el: '.bottom__pagination',
+          el: '.wg-theme-editor-tutorial .bottom__pagination',
         }
       }
     }
@@ -163,48 +163,6 @@ $component: '.wg-theme-editor-tutorial';
     height: 100%;
     position: static;
   }
-  .bottom {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    bottom: var(--wg-gutter-l);
-    width: 100%;
-    &__prev,
-    &__next {
-      margin: 0 var(--wg-gutter-l);
-      border: none;
-      background-color: transparent;
-      outline: none;
-      cursor: pointer;
-      i {
-        color: $wg-color-sys-g;
-        font-size: var(--wg-font-size-l);
-        transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
-      }
-      &:hover i {
-        opacity: 1;
-        color: var(--wg-color-secondary);
-      }
-      &.swiper-button-disabled i {
-        opacity: 0.2;
-        color: $wg-color-sys-g;
-      }
-    }
-    &__pagination {
-      display: inline-flex;
-      align-items: center;
-      /deep/ .swiper-pagination-bullet {
-        background-color: $wg-color-sys-a;
-        margin: 0 var(--wg-gutter);
-        transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
-        outline: none;
-        &.swiper-pagination-bullet-active {
-          background-color: var(--wg-color-secondary);
-          transform: scale(1.5);
-        }
-      }
-    }
-  }
+  @include swiper-pagination('.bottom');
 }
 </style>

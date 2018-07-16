@@ -1,7 +1,7 @@
 <template>
   <component :is="level"  :class="[
-    {'heading--underline': underline},
-    `heading heading--${weight}`]">
+    {'wg-heading--underline': underline},
+    `wg-heading wg-heading--${weight}`]">
       <slot/>
   </component>
 </template>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.heading {
+.wg-heading {
   padding: 0;
   margin: 0;
   margin-bottom: var(--wg-gutter); 

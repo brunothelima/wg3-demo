@@ -5,13 +5,13 @@
         <wg-heading level="h2">Headlines</wg-heading>
         <div class="headlines__grid">
           <div class="headlines__featured">
-            <wg-mockup widget="content-mega" :counter="3" v-if="!headlines.featured.length"/>
+            <wg-mockup widget="content-mega" :counter="3" v-if="!headlines.featured"/>
             <ul v-else>
               <wg-content-mega tag="li" v-for="(item, index) in headlines.featured" :key="index" v-bind="item" />
             </ul>
           </div>
           <div class="headlines__aside">
-            <wg-mockup widget="content-mini" :counter="5" v-if="!headlines.aside.length"/>
+            <wg-mockup widget="content-mini" :counter="5" v-if="!headlines.aside"/>
             <div v-else>
               <ul>
                 <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />
@@ -24,22 +24,22 @@
       <div class="wg-list__spotlight spotlight">
         <wg-heading level="h2">Spotlight</wg-heading>
         <div class="spotlight__featured">
-          <wg-mockup widget="content-card" :cols="4" :counter="3" v-if="!spotlight.featured.length" />              
-          <ul v-else>
-            <wg-content-card class="cols-4" tag="li" v-for="(item, index) in spotlight.featured" :key="index" v-bind="item" />
+          <wg-mockup widget="content-card" :cols="4" :counter="3" v-if="!spotlight.featured" />              
+          <ul class="wg-row" v-else>
+            <wg-content-card class="wg-cols-4" tag="li" v-for="(item, index) in spotlight.featured" :key="index" v-bind="item" />
           </ul>
         </div>
         <div class="spotlight__grid">
-          <wg-mockup widget="content-mini" :cols="6" :counter="10" v-if="!spotlight.list.length"/>
+          <wg-mockup widget="content-mini" :cols="6" :counter="10" v-if="!spotlight.list"/>
           <div v-else>
-            <ul>
-              <wg-content-mini tag="li" class="cols-6" v-for="(item, index) in spotlight.list" :key="index" v-bind="item" />
+            <ul class="wg-row">
+              <wg-content-mini tag="li" class="wg-cols-6" v-for="(item, index) in spotlight.list" :key="index" v-bind="item" />
             </ul>
             <div class="spotlight__load">                
               <wg-btn model="outline">Load more</wg-btn>
             </div>
           </div>
-          <!-- <wg-banner /> -->
+          <wg-banner />
         </div>
       </div>
     </wg-container>
@@ -73,12 +73,12 @@ export default {
   data () {
     return {
       headlines: {
-        featured: [],
-        aside: []
+        featured: null,
+        aside: null
       },
       spotlight: {
-        featured: [],
-        list: []
+        featured: null,
+        list: null
       },
     }
   },
@@ -96,43 +96,40 @@ export default {
 $component: '.wg-list';
 #{$component} {
   padding: var(--wg-gutter-xxl) 0 0;
+  h2 {
+    margin-bottom: var(--wg-gutter-xxl);
+  }
   .headlines,
   .spotlight {
     .headlines__grid,
     .spotlight__grid {
       display: grid;
-      grid-template-columns: auto 320px;
+      grid-template-columns: auto minmax(320px, 30%);
       grid-template-rows: auto;
       grid-gap: var(--wg-gutter-xl);
       box-sizing: border-box;
       grid-template-areas:
       "content sidebar";
     }
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0 calc(var(--wg-gutter) * -1) var(--wg-gutter-xl);
-    }
   }
   .headlines {
     &__featured {
       grid-area: content;
-      .wg-content-mega {
-        width: 100%;
-      }
     }
     &__aside {
       grid-area: sidebar;
     }
   }
   .spotlight {
-    &__list {
+    &__featured {
+      margin-bottom: calc(var(--wg-gutter-xxl) * 2);
+    }
+    &__grid {
       ul {
         grid-area: content;
       }
       .wg-banner {
         grid-area: sidebar;
-        margin-bottom: var(--wg-gutter-xl);
       }
     }
     &__load {

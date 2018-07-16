@@ -15,6 +15,7 @@ $component: '.wg-banner';
 #{$component} {
   box-sizing: border-box;
   padding: var(--wg-gutter-xl) 0;
+  margin-bottom: var(--wg-gutter-xl);
   background-color: $wg-color-sys-h;
   border-radius: var(--wg-border-radius);
   img {

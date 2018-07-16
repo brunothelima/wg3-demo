@@ -1,6 +1,6 @@
 <template>
   <component :is="tag" class="wg-mockup">
-    <span :class="`cols-${cols}`" v-for="index in counter" :key="index">
+    <span :class="`wg-cols-${cols}`" v-for="index in counter" :key="index">
       <img :src="mockup" />
     </span>
   </component>

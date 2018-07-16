@@ -78,7 +78,7 @@ $component: '.wg-post';
   padding: var(--wg-gutter-xxl) 0 0;
   &__grid {
     display: grid;
-    grid-template-columns: auto 320px;
+    grid-template-columns: auto minmax(320px, 30%);
     grid-template-rows: auto;
     grid-gap: var(--wg-gutter-xl);
     box-sizing: border-box;
@@ -110,17 +110,14 @@ $component: '.wg-post';
     }
   }
   &__content {
-    margin-bottom: var(--wg-gutter-xxl);
     grid-area: content;
   }
   &__sidebar {
-    margin-bottom: var(--wg-gutter-xxl);
     grid-area: sidebar;
   }
 }
 .wg-banner {
   padding: var(--wg-gutter-xl) 0;
-  margin-bottom: var(--wg-gutter-xxl);
   background-color: $wg-color-sys-h;
   border-radius: var(--wg-border-radius);
   img {
