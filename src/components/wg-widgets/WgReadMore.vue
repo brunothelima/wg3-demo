@@ -1,9 +1,7 @@
 <template>
   <div class="wg-read-more">
     <wg-heading level="h4">More stories you may like</wg-heading>
-    <wg-mockup v-if="!items.length" 
-      widget="content-card"
-      :counter="3" />
+    <wg-mockup v-if="!items.length" :cols="4" widget="content-card" :counter="3" />
     <div class="wg-read-more__cards wg-row" v-else>
       <wg-content-card  v-for="(item, index) in items" :key="index" 
         tag="div"

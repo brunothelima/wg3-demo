@@ -1,8 +1,7 @@
 <template>
   <div class="wg-content-related">
     <wg-heading level="h4">Stories you may like</wg-heading>
-    <wg-mockup v-if="!items.length"
-      widget="post-related" />
+    <wg-mockup widget="content-mini" :counter="4" v-if="!items.length"/>
     <ul v-else>
       <wg-content-mini tag="li" v-for="(item, index) in items" :key="index" 
         v-bind="item" />
@@ -14,6 +13,7 @@
 import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 import WgContentMini from './WgContentMini'
+
 export default {
   name: 'WgContentRelated',
   components: {

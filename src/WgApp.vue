@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'WgApp',
+  name: 'WgApp',  
 }
 </script>
 
@@ -36,6 +36,7 @@ ul, ol {
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
+  width: 100%;
   margin-left: calc(var(--wg-gutter) * -1);
   margin-right: calc(var(--wg-gutter) * -1);
 }

@@ -2,7 +2,7 @@
   <div class="wg-post">
     <wg-container class="wg-post__grid">
       <main class="wg-post__content">
-        <wg-mockup v-if="!post" widget="post"/>        
+        <wg-mockup v-if="!post"  widget="post"/>        
         <article v-else>
           <div class="wg-post__title">
             <wg-heading level="h1">{{post.title}}</wg-heading>            

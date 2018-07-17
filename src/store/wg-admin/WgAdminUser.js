@@ -14,10 +14,16 @@ const actions = {
   fetchProfile ({commit, rootState}) {
     return new Promise((resolve, reject) => {
       commit('fetchProfile')
+      if (localStorage.getItem('wg-content-data')) {
+        commit('success')
+        resolve(JSON.parse(localStorage.getItem('wg-user-data')))
+        return   
+      }
       WgApiGet({ url: 'wg_user_fetch_by_id.php' }, { 
         token: rootState.admin.auth.token 
       }).then(resp => {
           commit('success', resp)
+          localStorage.setItem('wg-user-data', JSON.stringify(resp))
           resolve(resp)
         })
         .catch(err => {

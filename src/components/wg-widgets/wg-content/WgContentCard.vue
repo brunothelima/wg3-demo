@@ -82,17 +82,15 @@ $component: '.wg-content-card';
     }
   }
   picture {
+    display: block;
     background-color: var(--wg-color-primary); 
   }
-  &__img, 
-  picture {
+  &__img {
     display: block;
     max-width: 100%;
     width: 100%;
     border-top-left-radius: var(--wg-border-radius);
     border-top-right-radius: var(--wg-border-radius);
-  }
-  &__img {
     transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   }
   &__info {

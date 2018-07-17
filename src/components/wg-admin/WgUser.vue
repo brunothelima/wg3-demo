@@ -46,9 +46,11 @@ export default {
     })
   },
   async created () {
-    await this.$store.dispatch('admin/user/fetchProfile')
     this.$store.commit('admin/shape/setPosition', 'top')
     this.$store.commit('admin/shape/setType', 'grayscale')
+    await this.$store.dispatch('admin/user/fetchProfile')
+  },
+  mounted: function () {
     this.$store.commit('admin/shape/toggle', true)
   },
   destroyed: function () {

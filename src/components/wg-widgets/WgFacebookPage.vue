@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
-
 export default {
   name: 'WgFacebookPage',
 }

@@ -14,10 +14,16 @@ const actions = {
   fetchById ({commit}, id) {
     return new Promise((resolve, reject) => { 
       commit('fetchById')
+      if (localStorage.getItem('wg-content-post')) {
+        commit('success')
+        resolve(JSON.parse(localStorage.getItem('wg-content-post')))
+        return   
+      }
       WgApiGet({ url: 'wg_content_fetch_by_id.php' }, {
         id: id
       }).then(resp => {
           commit('success', resp)
+          localStorage.setItem('wg-content-post', JSON.stringify(resp.content))
           resolve(resp.content)
         })
         .catch(err => {

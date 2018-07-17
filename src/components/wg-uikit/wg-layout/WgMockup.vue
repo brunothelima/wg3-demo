@@ -1,14 +1,27 @@
 <template>
   <component :is="tag" class="wg-mockup">
-    <span :class="`wg-cols-${cols}`" v-for="index in counter" :key="index">
-      <img :src="mockup" />
-    </span>
+    <div class="wg-row">
+      <component v-for="index in counter" :key="index"
+        :is="`wg-mockup-${widget}`" 
+        :class="`wg-cols-${cols}`" />
+    </div>
   </component>
 </template>
 
 <script>
+import WgMockupContentMini from './wg-mockup/WgMockupContentMini'
+import WgMockupContentCard from './wg-mockup/WgMockupContentCard'
+import WgMockupContentMega from './wg-mockup/WgMockupContentMega'
+import WgMockupPost from './wg-mockup/WgMockupPost'
+
 export default {
   name: 'WgMockup',
+  components: {
+    'wg-mockup-content-mini': WgMockupContentMini,
+    'wg-mockup-content-card': WgMockupContentCard,
+    'wg-mockup-content-mega': WgMockupContentMega,
+    'wg-mockup-post': WgMockupPost,
+  },
   props: {
     tag: {
       type: String,
@@ -40,14 +53,21 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin: 0 calc(var(--wg-gutter-l) * -1);
+  padding: var(--wg-gutter-l);
   animation: wg-mockup-animation 600ms infinite alternate;
-  span {
-    box-sizing: border-box;
-    padding: var(--wg-gutter-l);
+  /deep/ .lines {
+    li {
+      display: block;
+      height: var(--wg-gutter-l);
+      margin-bottom: var(--wg-gutter-l);
+      background-color: $wg-color-sys-h;
+      &:last-child {
+        width: 50%;
+      }
+    }
   }
-  svg, img {
-    display: block;
-    width: 100%;
+  > * {
+    margin-bottom: var(--wg-gutter-l);
   }
 }
 @keyframes wg-mockup-animation {

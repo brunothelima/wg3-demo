@@ -17,7 +17,6 @@ const actions = {
         .then(resp => {
           localStorage.setItem('wg-admin-auth-token', resp.token)
           commit('success', resp)
-          // dispatch(WG_USER_REQUEST)
           resolve(resp)
         })
         .catch(err => {

@@ -11,7 +11,7 @@
             </ul>
           </div>
           <div class="headlines__aside">
-            <wg-mockup widget="content-mini" :counter="5" v-if="!headlines.aside"/>
+            <wg-mockup widget="content-mini" :counter="4" v-if="!headlines.aside"/>
             <div v-else>
               <ul>
                 <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />

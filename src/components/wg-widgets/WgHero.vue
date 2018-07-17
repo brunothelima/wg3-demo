@@ -1,5 +1,5 @@
 <template>
-  <div class="wg-hero">
+  <div class="wg-hero" ref="elem">
     <picture>
       <source :srcset="`http://picsum.photos/1980/400?image=4`" media="(min-width: 1200px)">
       <source :srcset="`http://picsum.photos/1200/400?image=16`" media="(min-width: 972px)">
@@ -10,7 +10,7 @@
       <wg-heading level="h2">{{title}}</wg-heading>
       <p class="wg-hero__subtitle">{{subtitle}}</p>
     </div>
-    <div class="wg-hero__help">
+    <div class="wg-hero__help" @click="scrollDown">
       <span>Scroll down</span><br>
       <i class="fa fa-arrow-down"></i>
     </div>
@@ -39,6 +39,14 @@ export default {
       default: null
     },
   },
+  methods: {
+    scrollDown: function () {
+      window.scrollTo({
+        top: this.$refs.elem.offsetTop + this.$refs.elem.clientHeight ,
+        behavior: 'smooth'
+      });
+    }
+  }
 }
 </script>
 
