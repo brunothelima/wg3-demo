@@ -1,8 +1,6 @@
 <template>
   <component :is="tag" 
     :disabled="disabled"
-    :hover="hover"
-    :active="active"
     :status="status"
     :to="to"
     :class="[
@@ -44,14 +42,6 @@ export default {
       default: false
     },
     disabled: {
-      type: Boolean,
-      default: false
-    },
-    hover: {
-      type: Boolean,
-      default: false
-    },
-    active: {
       type: Boolean,
       default: false
     },

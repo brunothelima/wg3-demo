@@ -52,7 +52,7 @@ $component: '.wg-content-mini';
     img {
       display: block;
       border-radius: inherit;
-      transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+      transition: opacity var(--wg-transition-duration) var(--wg-transition-timing-function);
     }
     ~ #{$component}__info {
       box-sizing: border-box;
@@ -65,7 +65,7 @@ $component: '.wg-content-mini';
     color: $wg-color-sys-b;
     font-weight: $wg-font-weight-bold;
     line-height: $wg-line-height-xl;
-    transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    transition: color var(--wg-transition-duration) var(--wg-transition-timing-function);
     ~ #{$component}__subtitle {
       padding-top: var(--wg-gutter);
     }
@@ -75,16 +75,11 @@ $component: '.wg-content-mini';
     line-height: $wg-line-height-xl;
     color: $wg-color-sys-e;
     font-weight: $wg-font-weight-light;
-    transition: color var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    transition: color var(--wg-transition-duration) var(--wg-transition-timing-function);
   }
   a {
     display: flex;
     text-decoration: none;
-    &:visited {
-      #{$component}__title {
-        color: $wg-color-sys-d;
-      }
-    } 
     &:hover {
       #{$component}__img img {
         opacity: 0.8;

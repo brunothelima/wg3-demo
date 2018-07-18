@@ -64,7 +64,7 @@ $component: '.wg-content-cover';
   width: 100%;
   padding-bottom: 66%;
   margin-bottom: var(--wg-gutter-xl);
-  border-radius: var(--wg-border-radius-xl);
+  border-radius: var(--wg-border-radius);
   a {
     display: block;
     &:hover {

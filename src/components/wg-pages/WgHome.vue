@@ -23,7 +23,7 @@
     <wg-container>
       <div class="wg-home__secondary secondary grid">
         <div class="secondary__main">
-          <wg-content-title v-bind="cards[2]" />
+          <wg-slider-title v-if="cards" :items="cards" />
           <ul class="wg-row wg-home__complementary">
             <wg-content-mini class="wg-cols-6" v-bind="cards[1]" />
             <wg-content-mini class="wg-cols-6" v-bind="cards[0]" />
@@ -48,7 +48,7 @@ import WgHero from '@/components/wg-widgets/WgHero'
 import WgContentCover from '@/components/wg-widgets/wg-content/WgContentCover'
 import WgContentCard from '@/components/wg-widgets/wg-content/WgContentCard'
 import WgContentMini from '@/components/wg-widgets/wg-content/WgContentMini'
-import WgContentTitle from '@/components/wg-widgets/wg-content/WgContentTitle'
+import WgSliderTitle from '@/components/wg-widgets/wg-slider/WgSliderTitle'
 import WgFacebookPage from '@/components/wg-widgets/WgFacebookPage'
 import WgBanner from '@/components/wg-widgets/WgBanner'
 
@@ -61,7 +61,7 @@ export default {
     'wg-content-cover': WgContentCover,
     'wg-content-card': WgContentCard,
     'wg-content-mini': WgContentMini,
-    'wg-content-title': WgContentTitle,
+    'wg-slider-title': WgSliderTitle,
     'wg-facebook-page': WgFacebookPage,
     'wg-banner': WgBanner,
   },

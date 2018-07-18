@@ -73,7 +73,7 @@ $component: '.wg-content-mega';
     box-shadow: var(--wg-box-shadow-l);
     background-color: $wg-color-sys-k;
     text-decoration: none;
-    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);
     &:hover {
       transform: translateY(calc(var(--wg-gutter) * -1));
       box-shadow: var(--wg-box-shadow-xxl);
@@ -140,8 +140,8 @@ $component: '.wg-content-mega';
     position: relative;
     max-width: 100%;
     width: 100%;
-    border-top-left-radius: var(--wg-border-radius-xl);
-    border-bottom-left-radius: var(--wg-border-radius-xl);
+    border-top-left-radius: var(--wg-border-radius);
+    border-bottom-left-radius: var(--wg-border-radius);
     transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
   }
   picture {

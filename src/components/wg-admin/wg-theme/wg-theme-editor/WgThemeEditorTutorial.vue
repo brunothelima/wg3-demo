@@ -18,10 +18,10 @@
         </div>
       </swiper-slide>
     </swiper>
-    <div class="bottom">
-      <button class="bottom__prev"><i class="fa fa-arrow-left"></i></button>
-      <div class="bottom__pagination"></div>
-      <button class="bottom__next"><i class="fa fa-arrow-right"></i></button>
+    <div class="wg-theme-editor-tutorial__bottom">
+      <button class="prev"><i class="fa fa-arrow-left"></i></button>
+      <div class="pagination"></div>
+      <button class="next"><i class="fa fa-arrow-right"></i></button>
     </div> 
   </div>  
 </template>
@@ -74,12 +74,12 @@ export default {
       options: {
         threshold: 24,
         navigation: {
-          prevEl: '.wg-theme-editor-tutorial .bottom__prev',
-          nextEl: '.wg-theme-editor-tutorial .bottom__next',
+          prevEl: '.wg-theme-editor-tutorial__prev .prev',
+          nextEl: '.wg-theme-editor-tutorial__bottom .next',
         },
         pagination: {
           clickable: true,
-          el: '.wg-theme-editor-tutorial .bottom__pagination',
+          el: '.wg-theme-editor-tutorial__bottom .pagination',
         }
       }
     }
@@ -163,6 +163,6 @@ $component: '.wg-theme-editor-tutorial';
     height: 100%;
     position: static;
   }
-  @include swiper-pagination('.bottom');
+  @include swiper-pagination(#{$component + '__bottom'});
 }
 </style>

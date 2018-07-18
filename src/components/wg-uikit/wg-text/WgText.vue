@@ -55,7 +55,7 @@ $component: '.wg-text';
     img {
       display: block;
       width: 100%;
-      border-radius: var(--wg-border-radius-l);
+      border-radius: var(--wg-border-radius);
     }
     p {
       display: inline-block;

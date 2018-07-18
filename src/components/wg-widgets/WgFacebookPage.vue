@@ -18,7 +18,6 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-facebook-page';
 #{$component} {
-  border-radius: var(--wg-border-radius-xl);
   margin-bottom: var(--wg-gutter-xl);
   height: 248px;
   &__head,
@@ -35,8 +34,8 @@ $component: '.wg-facebook-page';
     width: 100%;
     height: $wg-input-height;
     background-color: var(--wg-color-primary);
-    border-top-left-radius: var(--wg-border-radius-xl);
-    border-top-right-radius: var(--wg-border-radius-xl);
+    border-top-left-radius: var(--wg-border-radius);
+    border-top-right-radius: var(--wg-border-radius);
     text-align: center;
     font-weight: $wg-font-weight-bold;
     color: white;
@@ -47,8 +46,8 @@ $component: '.wg-facebook-page';
     height: calc(100% - #{$wg-input-height});
     padding: var(--wg-gutter);
     background-color: $wg-color-sys-h;
-    border-bottom-left-radius: var(--wg-border-radius-xl);
-    border-bottom-right-radius: var(--wg-border-radius-xl);
+    border-bottom-left-radius: var(--wg-border-radius);
+    border-bottom-right-radius: var(--wg-border-radius);
     iframe {
       width: 100%;
       max-width: 342px;
