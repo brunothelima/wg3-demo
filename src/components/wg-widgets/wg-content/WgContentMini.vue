@@ -2,7 +2,7 @@
   <component :is="tag" class="wg-content-mini">
     <a :href="href">
       <span v-if="img" class="wg-content-mini__img">
-        <img :src="img">
+        <wg-img :src="img" />
       </span>
       <span class="wg-content-mini__info">
         <span class="wg-content-mini__title">{{title}}</span>
@@ -13,8 +13,13 @@
 </template>
 
 <script>
+import WgImg from '@/components/wg-uikit/WgImg'
+
 export default {
   name: 'WgContentMini',
+  components: {
+    'wg-img': WgImg,
+  },
   props: {
     tag: {
       type: String,
@@ -45,14 +50,15 @@ $component: '.wg-content-mini';
 #{$component} {
   margin-bottom: var(--wg-gutter-xl);
   &__img {
-    height: 80px;
-    width: 80px;
     border-radius: var(--wg-border-radius);
     background-color: var(--wg-color-primary);
-    img {
-      display: block;
+    .wg-img {
       border-radius: inherit;
       transition: opacity var(--wg-transition-duration) var(--wg-transition-timing-function);
+      /deep/ img { 
+        width: 80px;
+        max-width: unset;
+      }
     }
     ~ #{$component}__info {
       box-sizing: border-box;
@@ -81,7 +87,7 @@ $component: '.wg-content-mini';
     display: flex;
     text-decoration: none;
     &:hover {
-      #{$component}__img img {
+      #{$component}__img .wg-img {
         opacity: 0.8;
       }
       #{$component}__title {

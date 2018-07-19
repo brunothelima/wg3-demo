@@ -74,6 +74,7 @@ export default {
     shrink: function () {
       setTimeout(() => {
         this.size.h = this.minHeight()
+        this.checkBoundaries()
       }, 250);
     },
     setCoords: function (coords) {

@@ -16,7 +16,7 @@
         )"/>
       <slot />
       <div class="wg-form__footer">
-        <wg-btn v-if="button && !$slots.footer" :status="status">
+        <wg-btn model="primary" v-if="button && !$slots.footer" :status="status">
           <slot name="submit">Submit</slot>
         </wg-btn>
         <slot name="footer" />

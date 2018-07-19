@@ -1,12 +1,15 @@
 <template>
   <component :is="tag" :class="['wg-content-cover', `wg-content-cover--${model}`]">
     <a :href="href">
-      <picture>
-        <source :srcset="`http://picsum.photos/972/640?image=${img}`" media="(min-width: 1200px)">
-        <source :srcset="`http://picsum.photos/704/472?image=${img}`" media="(min-width: 972px)">
-        <source :srcset="`http://picsum.photos/520/343?image=${img}`" media="(min-width: 480px)">
-        <img :src="`http://picsum.photos/480/321?image=${img}`" class="wg-content-cover__img">
-      </picture>
+      <span class="wg-content-cover__img">
+        <wg-img
+          :srcset="`http://picsum.photos/972/640?image=${img} 1200w,
+          http://picsum.photos/704/472?image=${img} 972w,
+          http://picsum.photos/520/343?image=${img} 480w`"
+          :src="`http://picsum.photos/480/321?image=${img}`"
+          :placeholder="`http://picsum.photos/60/40?image=${img}`"
+        />
+      </span>
       <span class="wg-content-cover__info">
         <p v-if="hat" class="wg-content-cover__hat">{{hat}}</p>
         <wg-heading v-if="title" class="wg-content-cover__title" level="h1">{{title}}</wg-heading>
@@ -17,10 +20,13 @@
 
 <script>
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgImg from '@/components/wg-uikit/WgImg'
+
 export default {
   name: 'WgContentCover',
   components: {
-    'wg-heading': WgHeading
+    'wg-heading': WgHeading,
+    'wg-img': WgImg,
   },
   props: {
     tag: {
@@ -50,7 +56,7 @@ export default {
   },
   data () {
     return {
-      img: Math.floor(Math.random() * Math.floor(16))
+      img: Math.floor(Math.random() * Math.floor(30))
     }
   }
 }
@@ -68,7 +74,7 @@ $component: '.wg-content-cover';
   a {
     display: block;
     &:hover {
-      picture img {
+      #{$component}__img .wg-img {
         transform: scale(1.2);
         opacity: 0.5;
       }
@@ -77,16 +83,15 @@ $component: '.wg-content-cover';
       }
     }
   }
-  picture {
+  &__img {
     position: absolute;
     z-index: 1;
+    width: 100%;
+    height: 100%;
     background-color: var(--wg-color-secondary);
     @include overlay();
-    img {
-      display: block; 
-      width: 100%;
-      max-width: 100%;
-      transition: transform var(--wg-transition-duration-slower) var(--wg-transition-timing-function),
+    .wg-img {
+       transition: transform var(--wg-transition-duration-slower) var(--wg-transition-timing-function),
         opacity var(--wg-transition-duration-slower) var(--wg-transition-timing-function);
     }
   }  

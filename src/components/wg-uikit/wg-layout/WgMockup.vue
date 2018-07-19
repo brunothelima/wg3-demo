@@ -1,10 +1,8 @@
 <template>
-  <component :is="tag" class="wg-mockup">
-    <div class="wg-row">
-      <component v-for="index in counter" :key="index"
-        :is="`wg-mockup-${widget}`" 
-        :class="`wg-cols-${cols}`" />
-    </div>
+  <component :is="tag" class="wg-mockup wg-row">
+    <component v-for="index in counter" :key="index"
+      :is="`wg-mockup-${widget}`" 
+      :class="`wg-cols-${cols}`" />
   </component>
 </template>
 

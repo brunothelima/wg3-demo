@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'WgApp',  
 }
@@ -33,10 +32,10 @@ ul, ol {
   font-family: var(--wg-font-family-primary);
 }
 .wg-row {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  box-sizing: border-box;
-  width: 100%;
+  width: auto;
   margin-left: calc(var(--wg-gutter) * -1);
   margin-right: calc(var(--wg-gutter) * -1);
 }

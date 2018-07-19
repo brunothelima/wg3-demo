@@ -1,10 +1,8 @@
-import Vue from 'vue'
 import { WgApiGet } from '@/utils/WgApi'
 
 const state = { 
   status: '',
   page: 0,
-  list: []
 }
 
 const getters = {}
@@ -13,11 +11,17 @@ const actions = {
   paginate ({commit, state}, filters) {
     return new Promise((resolve, reject) => { 
       commit('paginate')
+      if (localStorage.getItem('wg-content-list')) {
+        commit('success')
+        resolve(JSON.parse(localStorage.getItem('wg-content-list')))
+        return   
+      }
       WgApiGet({ url: 'wg_content_list_paginate.php' }, {
         page: state.page,
         ...filters
       }).then(resp => {
-          commit('success', resp.items)
+          commit('success')
+          localStorage.setItem('wg-content-list', JSON.stringify(resp.items))
           resolve(resp.items)
         })
         .catch(err => {
@@ -33,9 +37,8 @@ const mutations = {
     state.status = 'loading'
     state.page = page || state.page + 1
   },
-  success (state, items) {
+  success (state) {
     state.status = 'success'
-    Vue.set(state, 'list', state.list.concat(items))
   },
   error (state) {
     state.status = 'error'

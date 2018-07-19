@@ -36,7 +36,7 @@
               <wg-content-mini tag="li" class="wg-cols-6" v-for="(item, index) in spotlight.list" :key="index" v-bind="item" />
             </ul>
             <div class="spotlight__load">                
-              <wg-btn model="outline">Load more</wg-btn>
+              <wg-btn :outline="true" model="primary">Load more</wg-btn>
             </div>
           </div>
           <wg-banner />

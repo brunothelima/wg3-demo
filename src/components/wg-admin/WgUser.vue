@@ -11,7 +11,7 @@
         <wg-heading level="h3">Hello, {{profile.name}}</wg-heading>
         <p>You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps.  </p>
         <wg-heading level="h6">Excited to get started?</wg-heading>
-        <wg-btn tag="router-link" to="/admin/theme">Start Demo</wg-btn>
+        <wg-btn model="primary" tag="router-link" to="/admin/theme">Start Demo</wg-btn>
       </div>
       <div v-else>
         Loadding...

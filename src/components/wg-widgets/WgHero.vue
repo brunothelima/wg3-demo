@@ -1,11 +1,13 @@
 <template>
   <div class="wg-hero" ref="elem">
-    <picture>
-      <source :srcset="`http://picsum.photos/1980/400?image=4`" media="(min-width: 1200px)">
-      <source :srcset="`http://picsum.photos/1200/400?image=16`" media="(min-width: 972px)">
-      <source :srcset="`http://picsum.photos/940/400?image=17`" media="(min-width: 480px)">
-      <img :src="`http://picsum.photos/480/400?image=18`" class="wg-hero__background">
-    </picture>
+    <div class="wg-hero__img">
+      <wg-img
+        :srcset="`http://picsum.photos/1200/400?image=${img} 1200w,
+        http://picsum.photos/940/400?image=${img} 972w,
+        http://picsum.photos/768/400?image=${img} 480w`"
+        :src="`http://picsum.photos/480/400?image=${img}`"
+      />
+    </div>
     <div class="wg-hero__info">
       <wg-heading level="h2">{{title}}</wg-heading>
       <p class="wg-hero__subtitle">{{subtitle}}</p>
@@ -19,11 +21,13 @@
 
 <script>
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgImg from '@/components/wg-uikit/WgImg'
 
 export default {
   name: 'WgHero',
   components: {
     'wg-heading': WgHeading,
+    'wg-img': WgImg,
   },
   props: {
     // background: {
@@ -46,6 +50,11 @@ export default {
         behavior: 'smooth'
       });
     }
+  },
+  data () {
+    return {
+      img: Math.floor(Math.random() * Math.floor(30))
+    }
   }
 }
 </script>
@@ -58,20 +67,16 @@ $component: '.wg-hero';
   align-items: center;
   justify-content: center;
   height: 400px;
-  picture {
+  &__img {
     overflow: hidden;
     position: absolute;
     z-index: 1;
+    top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     background-color: var(--wg-color-secondary-darkest);
-    img {
-      display: block;
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+    .wg-img {
       opacity: 0.4;
     }
   } 

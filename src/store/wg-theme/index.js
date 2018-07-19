@@ -12,10 +12,16 @@ const actions = {
   fetchById ({commit}, id) {
     return new Promise((resolve, reject) => { 
       commit('fetchById')
+      if (localStorage.getItem('wg-theme')) {
+        commit('success')
+        resolve(JSON.parse(localStorage.getItem('wg-theme')))
+        return   
+      }
       WgApiGet({ url: 'wg_theme_fetch_by_id.php' }, {
         id: id
       }).then(resp => {
           commit('success')
+           localStorage.setItem('wg-theme', JSON.stringify(resp))
           resolve(resp)
         })
         .catch(err => {

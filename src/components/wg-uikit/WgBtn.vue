@@ -1,11 +1,14 @@
 <template>
   <component :is="tag" 
+    :to="to"
     :disabled="disabled"
     :status="status"
-    :to="to"
     :class="[
       `wg-btn--${model}`,
-      {'wg-btn--small': small}
+      { 
+        'wg-btn--small': small,
+        'wg-btn--outline': outline,
+      }
     ]" 
     @click="$emit('click')"
     class="wg-btn">
@@ -22,6 +25,10 @@ export default {
       type: String,
       default: 'button',
     },
+    to: {
+      type: String,
+      default: null,
+    },
     status: {
       type: String,
       default: null,
@@ -30,14 +37,14 @@ export default {
       type: String,
       default: 'default',
        validator: value => {
-        return value.match(/(default|outline)/)
+        return value.match(/(default|primary|secondary)/)
       },
     },
-    to: {
-      type: String,
-      default: ''
-    },
     small: {
+      type: Boolean,
+      default: false
+    },
+    outline: {
       type: Boolean,
       default: false
     },
@@ -50,49 +57,99 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-btn {
+$component: '.wg-btn';
+#{$component} {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 56px;
   padding: 0 var(--wg-gutter-xl);
   border-radius: var(--wg-border-radius);
-  border: none;
-  background-color: var(--wg-color-primary);
+  border-width: var(--wg-border-width);
+  border-style: var(--wg-border-style);
+  border-color: transparent;
   font-size: var(--wg-font-size-s);
   font-weight: $wg-font-weight-bold;
   text-transform: uppercase;
-  color: $wg-color-sys-k;
   outline: none;
   cursor: pointer;
-  transition-duration: var(--wg-transition-duration-faster);
-  transition-timing-function: var(--wg-transition-timing-function);
-  transition-property: background-color, color; 
   text-decoration: none;
+  transition: background-color var(--wg-transition-duration) var(--wg-transition-timing-function),
+    color var(--wg-transition-duration) var(--wg-transition-timing-function),
+    border-color var(--wg-transition-duration) var(--wg-transition-timing-function);
+    margin: 5px;
   &--default {
+    background-color: $wg-color-sys-k;
+    color: $wg-color-sys-g;
+    &:hover, 
+    &[hover] {
+      background-color: $wg-color-sys-i;
+    }
+    &:active,  
+    &[active] {
+      background-color: $wg-color-sys-h;
+    }
+    &#{$component}--outline {
+      border-color: $wg-color-sys-g;
+    }
+  }
+  &--primary {
+    background-color: var(--wg-color-primary);
+    color: $wg-color-sys-k;
     &:hover, 
     &[hover] {
       background-color: var(--wg-color-primary-light);
     }
     &:active,  
     &[active] {
-      background-color: var(--wg-color-primary-lightest);
+      background-color: var(--wg-color-primary-lighter);
+    }
+     &#{$component}--outline {
+      border-color: var(--wg-color-primary);
+      color: var(--wg-color-primary);
+      &:hover, 
+      &[hover],
+      &:active,  
+      &[active] {
+        color: $wg-color-sys-k;
+      }
+    }
+  }
+  &--secondary {
+    background-color: var(--wg-color-secondary);
+    color: $wg-color-sys-k;
+    &:hover, 
+    &[hover] {
+      background-color: var(--wg-color-secondary-light);
+    }
+    &:active,  
+    &[active] {
+      background-color: var(--wg-color-secondary-lighter);
+    }
+     &#{$component}--outline {
+      border-color: var(--wg-color-secondary);
+      color: var(--wg-color-secondary);
+      &:hover, 
+      &[hover],
+      &:active,  
+      &[active] {
+        color: $wg-color-sys-k;
+      }
     }
   }
   &--outline {
     background-color: transparent;
-    border: var(--wg-border-width) var(--wg-border-style) var(--wg-color-primary);
-    color: var(--wg-color-primary);
     &:hover, 
-    &[hover] {
-      border-color: var(--wg-color-primary-light);
-      color: var(--wg-color-primary-light);
-    }
+    &[hover],
     &:active,  
     &[active] {
-      border-color: var(--wg-color-primary-lightest);
-      color: var(--wg-color-primary-lightest);
+      border-color: transparent;
     }
+  }
+  &--small {
+    height: 40px;
+    padding: 0 var(--wg-gutter-l);
+    font-size: var(--wg-font-size-xs);
   }
   &[class*="wg-btn--"][disabled],
   &[class*="wg-btn--"][status="loading"] {

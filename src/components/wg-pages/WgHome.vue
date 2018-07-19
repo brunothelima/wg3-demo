@@ -14,7 +14,7 @@
         </ul>
       </div>
       <div class="wg-home__cards" v-if="cards">
-        <ul class="wg-row">
+        <ul class="wg-row" cols="3">
           <wg-content-card class="wg-cols-4" tag="li" v-for="(item, index) in cards" :key="index" v-bind="item" />
         </ul>
       </div>
@@ -120,7 +120,7 @@ $component: '.wg-home';
   .img-tile {
     margin-bottom: calc(var(--wg-gutter-xl) * 2);
     padding-bottom: 40%;
-    background-image: url('http://picsum.photos/1200/480?image=26');
+    background-image: url('http://picsum.photos/1200/480?image=29');
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;

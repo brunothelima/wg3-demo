@@ -11,6 +11,7 @@
             <wg-heading level="h3">{{card.title}}</wg-heading>
             <p>{{card.subtitle}}</p>
             <wg-btn v-if="(index + 1) === cards.length" 
+              model="primary"
               @click="$emit('tutorialConfirm')">
                 Ok, thanks
             </wg-btn>

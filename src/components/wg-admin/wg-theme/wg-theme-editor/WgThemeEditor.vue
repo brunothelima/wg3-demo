@@ -11,17 +11,16 @@
           <div class="panel__actions" v-if="panelVisible != 'tutorial'">
             <wg-btn v-if="panelVisible === 'form'"
               class="panel__preview" 
-              model="outline"
+              :outline="true"
               @click="showPanel('preview')">
                 Preview
             </wg-btn>
-            <wg-btn v-if="panelVisible === 'preview'"
+            <wg-btn :outline="true" v-if="panelVisible === 'preview'"
               class="panel__editor" 
-              model="outline"
               @click="showPanel('form')">
                 Editor
             </wg-btn>
-            <wg-btn class="panel__publish">
+            <wg-btn model="primary" class="panel__publish">
               Publish
             </wg-btn>
           </div>

@@ -1,12 +1,13 @@
 <template>
   <component :is="tag" class="wg-content-card">
     <a :href="href">
-      <picture>
-        <source :srcset="`http://picsum.photos/372/235?image=${img}`" media="(min-width: 1200px)">
-        <source :srcset="`http://picsum.photos/297/188?image=${img}`" media="(min-width: 972px)">
-        <source :srcset="`http://picsum.photos/352/221?image=${img}`" media="(min-width: 480px)">
-        <img :src="`http://picsum.photos/480/303?image=${img}`" class="wg-content-card__img">
-      </picture>
+      <wg-img
+        :srcset="`http://picsum.photos/372/235?image=${img} 1200w,
+        http://picsum.photos/297/188?image=${img} 972w,
+        http://picsum.photos/352/221?image=${img} 480w`"
+        :src="`http://picsum.photos/480/303?image=${img}`"
+        :placeholder="`http://picsum.photos/60/38?image=${img}`"
+      />
       <span class="wg-content-card__info">
         <p v-if="title" class="wg-content-card__title">{{title}}</p>
         <p v-if="!img" class="wg-content-card__subtitle">{{subtitle}}</p>
@@ -18,10 +19,12 @@
 
 <script>
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
+import WgImg from '@/components/wg-uikit/WgImg'
 export default {
   name: 'WgContentCard',
   components: {
-    'wg-heading': WgHeading
+    'wg-heading': WgHeading,
+    'wg-img': WgImg,
   },
   props: {
     tag: {
@@ -51,7 +54,7 @@ export default {
   },
   data () {
     return {
-      img: Math.floor(Math.random() * Math.floor(16))
+      img: Math.floor(Math.random() * Math.floor(30))
     }
   }
 }
@@ -64,7 +67,6 @@ $component: '.wg-content-card';
   a {
     display: block;
     overflow: hidden;
-    height: 100%;
     border-radius: var(--wg-border-radius);
     box-shadow: var(--wg-box-shadow-l);
     background-color: $wg-color-sys-k;
@@ -73,7 +75,7 @@ $component: '.wg-content-card';
     &:hover {
       transform: translateY(calc(var(--wg-gutter) * -1));
       box-shadow: var(--wg-box-shadow-xxl);
-      picture img {
+      .wg-img {
         opacity: 0.6;
       }
       #{$component}__title {
@@ -81,14 +83,8 @@ $component: '.wg-content-card';
       }
     }
   }
-  picture {
-    display: block;
+  .wg-img {
     background-color: var(--wg-color-primary); 
-  }
-  &__img {
-    display: block;
-    max-width: 100%;
-    width: 100%;
     border-top-left-radius: var(--wg-border-radius);
     border-top-right-radius: var(--wg-border-radius);
     transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);

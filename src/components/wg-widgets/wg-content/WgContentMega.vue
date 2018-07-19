@@ -8,20 +8,24 @@
       </span>
       <span v-if="img" class="wg-content-mega__img">
         <i v-if="icon" :class="`wg-content-mega__icon fa fa-${icon}`"></i>
-        <picture>
-          <source :srcset="`http://picsum.photos/384/216?image=${img}`" media="(min-width: 1200px)">
-          <source :srcset="`http://picsum.photos/297/188?image=${img}`" media="(min-width: 972px)">
-          <source :srcset="`http://picsum.photos/352/221?image=${img}`" media="(min-width: 480px)">
-          <img :src="`http://picsum.photos/480/303?image=${img}`" class="wg-content-card__img">
-        </picture>
+        <wg-img :srcset="`http://picsum.photos/384/216?image=${img} 1200w,
+          http://picsum.photos/297/188?image=${img} 972w,
+          http://picsum.photos/352/221?image=${img} 480w`"
+          :src="`http://picsum.photos/480/303?image=${img}`"
+          :placeholder="`http://picsum.photos/60/38?image=${img}`"
+        />
       </span>
     </a>
   </component>
 </template>
 
 <script>
+import WgImg from '@/components/wg-uikit/WgImg'
 export default {
   name: 'WgContentMega',
+  components: {
+    'wg-img': WgImg,
+  },
   props: {
     tag: {
       type: String,
@@ -54,7 +58,7 @@ export default {
   },
   data () {
     return {
-      img: Math.floor(Math.random() * Math.floor(16))
+      img: Math.floor(Math.random() * Math.floor(30))
     }
   }
 }
@@ -68,7 +72,6 @@ $component: '.wg-content-mega';
     display: flex;
     align-items: flex-start;
     overflow: hidden;
-    height: 100%;
     border-radius: var(--wg-border-radius);
     box-shadow: var(--wg-box-shadow-l);
     background-color: $wg-color-sys-k;
@@ -77,7 +80,7 @@ $component: '.wg-content-mega';
     &:hover {
       transform: translateY(calc(var(--wg-gutter) * -1));
       box-shadow: var(--wg-box-shadow-xxl);
-      picture img {
+      .wg-img {
         opacity: 0.6;
       }
       #{$component}__title {
@@ -112,10 +115,8 @@ $component: '.wg-content-mega';
     }
   }
   &__img {
-    flex: 1;
-    img {
-      display: block;
-    }
+    position: relative;
+    width: 100%;
     #{$component}__icon {
       display: flex;
       z-index: 1;
@@ -132,21 +133,14 @@ $component: '.wg-content-mega';
       &.fa-play:before {
         margin-right: -3px;
       }   
+      .wg-img {
+        display: block;
+        border-top-left-radius: var(--wg-border-radius);
+        border-bottom-left-radius: var(--wg-border-radius);
+        transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+      }
     }
   } 
-  &__img, 
-  picture {
-    display: block;
-    position: relative;
-    max-width: 100%;
-    width: 100%;
-    border-top-left-radius: var(--wg-border-radius);
-    border-bottom-left-radius: var(--wg-border-radius);
-    transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
-  }
-  picture {
-    background-color: var(--wg-color-primary); 
-  }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-minimal) {
   a {
