@@ -1,12 +1,26 @@
 <template>
   <header class="wg-header">
     <img src="@/assets/img/wg-logo.png" alt="Logo">
+    <select class="wg-header__language" v-model="locale">
+      <option value="pt" selected>PT</option>
+      <option value="en">EN</option>
+    </select>
   </header>
 </template>
 
 <script>
 export default {
   name: 'WgHeader',
+  data () {
+    return {
+      locale: 'pt'
+    }
+  },
+  watch: {
+    locale (val) {
+      this.$i18n.locale = val
+    }
+  }
 }
 </script>
 
@@ -25,6 +39,14 @@ export default {
   box-shadow: var(--wg-box-shadow);
   img {
     display: block;
+  }
+  select {
+    position: absolute;
+    right: var(--wg-gutter-l);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: $wg-input-height / 2;
   }
 }
 </style>

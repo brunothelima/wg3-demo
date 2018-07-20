@@ -12,8 +12,8 @@
           http://picsum.photos/297/188?image=${img} 972w,
           http://picsum.photos/352/221?image=${img} 480w`"
           :src="`http://picsum.photos/480/303?image=${img}`"
-          :placeholder="`http://picsum.photos/60/38?image=${img}`"
-        />
+          :placeholder="`http://picsum.photos/60/35?image=${img}`">
+        </wg-img>
       </span>
     </a>
   </component>
@@ -70,18 +70,22 @@ $component: '.wg-content-mega';
   margin-bottom: var(--wg-gutter-xl);
   a {
     display: flex;
-    align-items: flex-start;
     overflow: hidden;
     border-radius: var(--wg-border-radius);
     box-shadow: var(--wg-box-shadow-l);
-    background-color: $wg-color-sys-k;
     text-decoration: none;
-    transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);
     &:hover {
-      transform: translateY(calc(var(--wg-gutter) * -1));
-      box-shadow: var(--wg-box-shadow-xxl);
-      .wg-img {
-        opacity: 0.6;
+      #{$component}__img {
+        .wg-img /deep/ img {
+          opacity: 0.6;
+        }
+        #{$component}__icon {
+          transform: scale(1.1); 
+          box-shadow: var(--wg-box-shadow-l);
+          &:hover {
+            background-color: var(--wg-color-primary-light); 
+          }
+        }
       }
       #{$component}__title {
         color: var(--wg-color-secondary);
@@ -93,6 +97,7 @@ $component: '.wg-content-mega';
     box-sizing: border-box;
     width: 100%;
     padding: var(--wg-gutter-l);
+    background-color: $wg-color-sys-k;
     > * {
       display: block;
     }
@@ -106,6 +111,7 @@ $component: '.wg-content-mega';
       font-size: var(--wg-font-size-xl);
       color: $wg-color-sys-b;
       font-weight: $wg-font-weight-bold;
+       transition: color var(--wg-transition-duration) var(--wg-transition-timing-function);
     }
     #{$component}__subtitle {
       font-size: var(--wg-font-size);
@@ -116,7 +122,10 @@ $component: '.wg-content-mega';
   }
   &__img {
     position: relative;
+    overflow: hidden;
     width: 100%;
+    border-top-left-radius: var(--wg-border-radius);
+    border-bottom-left-radius: var(--wg-border-radius);
     #{$component}__icon {
       display: flex;
       z-index: 1;
@@ -130,14 +139,18 @@ $component: '.wg-content-mega';
       border-radius: var(--wg-border-radius-full);
       background-color: var(--wg-color-primary);
       color: $wg-color-sys-k; 
+      cursor: pointer;
+      transition: transform var(--wg-transition-duration) var(--wg-transition-timing-function),
+        box-shadow var(--wg-transition-duration) var(--wg-transition-timing-function),
+        background-color var(--wg-transition-duration) var(--wg-transition-timing-function);
       &.fa-play:before {
         margin-right: -3px;
       }   
-      .wg-img {
-        display: block;
-        border-top-left-radius: var(--wg-border-radius);
-        border-bottom-left-radius: var(--wg-border-radius);
-        transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    }
+    .wg-img {    
+      background-color: var(--wg-color-secondary);
+      /deep/ img {
+        transition: opacity var(--wg-transition-duration) var(--wg-transition-timing-function);
       }
     }
   } 

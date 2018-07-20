@@ -91,7 +91,8 @@ $component: '.wg-content-cover';
     background-color: var(--wg-color-secondary);
     @include overlay();
     .wg-img {
-       transition: transform var(--wg-transition-duration-slower) var(--wg-transition-timing-function),
+      z-index: 0;
+      transition: transform var(--wg-transition-duration-slower) var(--wg-transition-timing-function),
         opacity var(--wg-transition-duration-slower) var(--wg-transition-timing-function);
     }
   }  
@@ -122,7 +123,17 @@ $component: '.wg-content-cover';
       width: 100%;
     }
     #{$component}__title {
-      font-size: var(--wg-font-size);
+      font-size: var(--wg-font-size-l);
+    }
+  }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-small) {
+  &__info {
+    width: 100%;
+  }
+  &--small {
+    #{$component}__title {
+      font-size: var(--wg-font-size-s);
     }
   }
 }

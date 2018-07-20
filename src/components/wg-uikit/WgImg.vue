@@ -5,6 +5,7 @@
 			:srcset="srcset"
 			:src-placeholder="placeholder"
 		></v-lazy-image>
+		<slot />
 	</picture>
 </template>
 <script>
@@ -33,22 +34,24 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.filter {
+  display: none;
+}
 .wg-img {
-	overflow: hidden;
+	position: relative;
 	display: block;
 	background-color: var(--wg-primary-color);
 	/deep/ img {
 		display: block;
 		overflow: hidden;
 		width: 100%;
-		filter: blur(5px);
-		transform: scale(1.05);
-		transition: filter 2s var(--wg-transition-timing-function),
-		transform 0 2s var(--wg-transition-timing-function);
+		// &.v-lazy-image {
+		//   opacity: 0;
+		//   transition: opacity 2s;
+		// }
 		&.v-lazy-image-loaded {
 			max-width: 100%;
-			filter: blur(0);
-			transform: scale(1);
+			// opacity: 1;
 		}
 	}
 }

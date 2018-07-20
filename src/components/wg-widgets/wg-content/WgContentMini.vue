@@ -2,7 +2,9 @@
   <component :is="tag" class="wg-content-mini">
     <a :href="href">
       <span v-if="img" class="wg-content-mini__img">
-        <wg-img :src="img" />
+        <wg-img :src="`http://picsum.photos/80/80?image=${img}`"
+          :placeholder="`http://picsum.photos/10/10?image=${img}`"
+        />
       </span>
       <span class="wg-content-mini__info">
         <span class="wg-content-mini__title">{{title}}</span>
@@ -29,10 +31,10 @@ export default {
       type: String,
       default: null
     },
-    img: {
-      type: String,
-      default: null
-    },
+    // img: {
+    //   type: String,
+    //   default: null
+    // },
     title: {
       type: String,
       default: null
@@ -41,6 +43,11 @@ export default {
       type: String,
       default: null
     },
+  },
+  data () {
+    return {
+      img: Math.floor(Math.random() * Math.floor(30))
+    }
   }
 }
 </script>

@@ -6,6 +6,7 @@
         http://picsum.photos/940/400?image=${img} 972w,
         http://picsum.photos/768/400?image=${img} 480w`"
         :src="`http://picsum.photos/480/400?image=${img}`"
+        :placeholder="`http://picsum.photos/60/20?image=${img}`"
       />
     </div>
     <div class="wg-hero__info">
@@ -68,16 +69,22 @@ $component: '.wg-hero';
   justify-content: center;
   height: 400px;
   &__img {
-    overflow: hidden;
     position: absolute;
     z-index: 1;
-    top: 0;
-    left: 0;
     height: 100%;
     width: 100%;
     background-color: var(--wg-color-secondary-darkest);
     .wg-img {
+      height: 100%;
       opacity: 0.4;
+      /deep/ img {
+        position: absolute;
+        left: 50%;
+        width: auto;
+        max-width: unset;
+        height: 100%;
+        transform: translateX(-50%);
+      }
     }
   } 
   &__info {

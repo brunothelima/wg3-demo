@@ -1,13 +1,15 @@
 <template>
   <component :is="tag" class="wg-content-card">
     <a :href="href">
-      <wg-img
-        :srcset="`http://picsum.photos/372/235?image=${img} 1200w,
-        http://picsum.photos/297/188?image=${img} 972w,
-        http://picsum.photos/352/221?image=${img} 480w`"
-        :src="`http://picsum.photos/480/303?image=${img}`"
-        :placeholder="`http://picsum.photos/60/38?image=${img}`"
-      />
+      <span class="wg-content-card__img">
+        <wg-img
+          :srcset="`http://picsum.photos/372/235?image=${img} 1200w,
+          http://picsum.photos/297/188?image=${img} 972w,
+          http://picsum.photos/352/221?image=${img} 480w`"
+          :src="`http://picsum.photos/480/303?image=${img}`"
+          :placeholder="`http://picsum.photos/60/38?image=${img}`"
+        />
+      </span>
       <span class="wg-content-card__info">
         <p v-if="title" class="wg-content-card__title">{{title}}</p>
         <p v-if="!img" class="wg-content-card__subtitle">{{subtitle}}</p>
@@ -67,11 +69,12 @@ $component: '.wg-content-card';
   a {
     display: block;
     overflow: hidden;
+    height: 100%;
     border-radius: var(--wg-border-radius);
     box-shadow: var(--wg-box-shadow-l);
     background-color: $wg-color-sys-k;
     text-decoration: none;
-    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);
     &:hover {
       transform: translateY(calc(var(--wg-gutter) * -1));
       box-shadow: var(--wg-box-shadow-xxl);
@@ -83,11 +86,15 @@ $component: '.wg-content-card';
       }
     }
   }
-  .wg-img {
+  &__img {
+    display: block;
+    overflow: hidden;
     background-color: var(--wg-color-primary); 
-    border-top-left-radius: var(--wg-border-radius);
-    border-top-right-radius: var(--wg-border-radius);
-    transition: opacity var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    .wg-img {
+      border-top-left-radius: var(--wg-border-radius);
+      border-top-right-radius: var(--wg-border-radius);
+      transition: opacity var(--wg-transition-duration) var(--wg-transition-timing-function);
+    }
   }
   &__info {
     display: block;

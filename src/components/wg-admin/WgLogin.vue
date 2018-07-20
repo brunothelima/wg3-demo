@@ -1,16 +1,53 @@
+<i18n>
+{
+  "en": {
+    "welcome": "Welcome to Widgrid",
+    "continue": "Login to continue",
+    "submit": "Login",
+    "retrivePassword": "Forgot your password?",
+    "inputs": {
+      "username": {
+        "label": "Username",
+        "placeholder": "Type your username"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Type your password"
+      }
+    }
+  },
+  "pt": {
+    "welcome": "Bem vindo ao Widgrid",
+    "continue": "Digite seus dados",
+    "submit": "Login",
+    "retrivePassword": "Esqueceu sua senha?",
+    "inputs": {
+      "username": {
+        "label": "Usuário",
+        "placeholder": "Nome de usuário"
+      },
+      "password": {
+        "label": "Senha",
+        "placeholder": "Digite sua senha"
+      }
+    }
+  }
+}
+</i18n>
+
 <template>
   <section class="wg-login">
     <wg-container>
       <div class="panel">
-        <wg-heading level="h2" weight="regular">Welcome to Widgrid</wg-heading>
+        <wg-heading level="h2" weight="regular">{{ $t('welcome') }}</wg-heading>
         <div class="panel__box">
-          <div class="panel__head">Login to continue</div>
+          <div class="panel__head">{{ $t('continue') }}</div>
           <div class="panel__form">
             <wg-form :schema="schema" :status="authState" @success="login($event)">
-              <template slot="submit">Login</template>
+              <template slot="submit">{{ $t('submit') }}</template>
             </wg-form>
             <div class="panel__footer">
-              <a href="">Forgot your password?</a>
+              <a href="">{{ $t('retrivePassword') }}</a>
             </div>
           </div>
         </div>
@@ -28,31 +65,6 @@ import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
 import WgForm from '@/components/wg-uikit/wg-form/WgForm'
 import WgBtn from '@/components/wg-uikit/WgBtn'
 
-const schema = [
-  {
-    label: 'Username',
-    type: 'text', 
-    id: 'username',
-    name: 'username', 
-    placeholder: 'Type your username',
-    // value: '', 
-    validations: { 
-      required: true, 
-    }
-  },
-  {
-    label: 'Password',
-    type: 'password', 
-    id: 'password',
-    name: 'passowrd', 
-    placeholder: 'Type your password',
-    // value: '', 
-    validations: { 
-      required: true, 
-    }
-  },
-];
-
 export default {
   name: 'WgLogin',
   mixins: [WgAuthMixin],
@@ -62,15 +74,36 @@ export default {
     'wg-form': WgForm,
     'wg-btn': WgBtn,
   },
-  data () {
-    return {
-      schema: schema,
-    }
-  },
   computed: {
     ...mapState({
       authState: state => state.admin.auth.status
     }),
+    schema () { 
+      return [
+        {
+          label: this.$t('inputs.username.label'),
+          type: 'text', 
+          id: 'username',
+          name: 'username', 
+          placeholder: this.$t('inputs.username.placeholder'),
+          // value: '', 
+          validations: { 
+            required: true, 
+          }
+        },
+        {
+          label: this.$t('inputs.password.label'),
+          type: 'password', 
+          id: 'password',
+          name: 'passowrd', 
+          placeholder: this.$t('inputs.password.placeholder'),
+          // value: '', 
+          validations: { 
+            required: true, 
+          }
+        },
+      ]
+    },
   },
   created: function () {
     this.$store.commit('admin/shape/setPosition', 'right')
