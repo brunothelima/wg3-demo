@@ -1,3 +1,45 @@
+<i18n>
+{
+  "en": {
+    "gutter": {
+      "label": "Gutter size"
+    },
+    "border": {
+      "width": {
+        "label": "Border width"
+      },
+      "radius": {
+        "label": "Border radius"
+      }
+    },
+    "shadow": {
+      "label": "Box shadow"
+    }
+  },
+  "pt": {
+    "gutter": {
+      "label": "Espaçamentos"
+    },
+    "border": {
+      "width": {
+        "label": "Espessura da borda"
+      },
+      "radius": {
+        "label": "Arredondamento"
+      }
+    },
+    "shadow": {
+      "label": "Sombreamento",
+      "options": {
+        "small": "Pequeno",
+        "medium": "Médio",
+        "large": "Grande"
+      }
+    }
+  }
+}
+</i18n>
+
 <template>
   <div class="wg-theme-editor-layout layout">
     <wg-form :schema="schema"
@@ -38,12 +80,12 @@ export default {
       default: 0
     },
   },
-  data () {
-    return {
-      schema: [
+  computed: {
+    schema () {
+      return  [
         {
           cols: 7,
-          label: 'Gutter size',
+          label: this.$t('gutter.label'),
           type: 'range', 
           name: 'gutter', 
           id: 'gutterSizeRange',
@@ -63,7 +105,7 @@ export default {
         },
         {
           cols: 7,
-          label: 'Border width',
+          label: this.$t('border.width.label'),
           type: 'range', 
           name: 'borderWidth', 
           id: 'borderWidthRange',
@@ -74,7 +116,7 @@ export default {
         {
           cols: 5,
           type: 'number', 
-					name: 'borderWidth', 
+          name: 'borderWidth', 
           id: 'borderWidthNumber',
           value: this.borderWidth,
           min: 0,
@@ -83,7 +125,7 @@ export default {
         },
         {
           cols: 7,
-          label: 'Border radius',
+          label: this.$t('border.radius.label'),
           type: 'range', 
           name: 'borderRadius', 
           id: 'borderRadiusRange',
@@ -102,20 +144,20 @@ export default {
           unit: 'px'
         },
         {
-          label: 'Box shadow',
+          label: this.$t('shadow.label'),
           type: 'btn-group', 
           name: 'boxShadow', 
           id: 'boxShadow',
           value: this.boxShadow,
           options: [
-            { title: 'Small', value: 8 },
-            { title: 'Medium', value: 16 },
-            { title: 'Large', value: 24 },
+            { title: this.$t('shadow.options.small'), value: 8 },
+            { title: this.$t('shadow.options.medium'), value: 16 },
+            { title: this.$t('shadow.options.large'), value: 24 },
           ]
         },
       ]
-    }
-  },
+    } 
+  }
 }
 </script>
 

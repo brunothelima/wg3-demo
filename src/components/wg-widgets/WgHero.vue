@@ -64,6 +64,7 @@ export default {
 $component: '.wg-hero';
 #{$component} {
   position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;

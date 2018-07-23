@@ -8,11 +8,11 @@ import store from '@/store'
 
 Vue.use(Router)
 
-const ifNotAuthenticated = (to, from, next) => {  
-  let authFallBackUrl = '/admin/login'
+const isUnauthorized = (to, from, next) => {  
+  let fallback = '/admin/login'
   if (!store.getters['admin/auth/isAuthenticated'] 
-    && to.path != authFallBackUrl) {
-      next(authFallBackUrl)
+    && to.path != fallback) {
+      next(fallback)
       return
   }
   next()
@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/admin',
       component: WgAdmin,
-      beforeEnter: ifNotAuthenticated,
+      beforeEnter: isUnauthorized,
       children: [
         { path: '', component: WgUser,},
         { path: '/admin/login', component: WgLogin },

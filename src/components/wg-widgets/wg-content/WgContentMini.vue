@@ -57,6 +57,7 @@ $component: '.wg-content-mini';
 #{$component} {
   margin-bottom: var(--wg-gutter-xl);
   &__img {
+    height: 80px;
     border-radius: var(--wg-border-radius);
     background-color: var(--wg-color-primary);
     .wg-img {

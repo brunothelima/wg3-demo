@@ -1,3 +1,50 @@
+<i18n>
+{
+  "en": {
+    "primary": {
+      "label": "Primary font family",
+      "placeholder": "Select a font"
+    },
+    "secondary": {
+      "label": "Secondary font family",
+      "placeholder": "Select a font"
+    },
+    "fontSize": {
+      "label": "Base font size"
+    },
+    "headings": {
+      "label": "Headings size",
+      "options": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    }
+  },
+  "pt": {
+    "primary": {
+      "label": "Fonte primária",
+      "placeholder": "Selecione"
+    },
+    "secondary": {
+      "label": "Fonte secundária",
+      "placeholder": "Selecione"
+    },
+    "fontSize": {
+      "label": "Tamanho base"
+    },
+    "headings": {
+      "label": "Tamanho de títulos",
+      "options": {
+        "small": "Pequeno",
+        "medium": "Médio",
+        "large": "Grande"
+      }
+    }
+  }
+}
+</i18n>
+
 <template>
   <div class="wg-theme-editor-fonts fonts">
     <wg-form :schema="schema"
@@ -34,15 +81,15 @@ export default {
       default: 14
     },
   },
-  data () {
-    return {
-      schema: [
+  computed: {
+    schema () {
+      return [
         {
-          label: 'Primary font family',
+          label: this.$t('primary.label'),
           type: 'select', 
           id: 'fontFamilyPrimary',
           name: 'fontFamilyPrimary', 
-          placeholder: 'Select a font',
+          placeholder: this.$t('primary.placeholder'),
           value: this.fontFamilyPrimary,
           options: [
             { title: 'Arial', value: 'Arial' },
@@ -55,11 +102,11 @@ export default {
           ],
         },
         {
-          label: 'Secondary font family',
+          label: this.$t('secondary.label'),
           type: 'select', 
           id: 'fontFamilySecondary',
           name: 'fontFamilySecondary', 
-          placeholder: 'Select a font',    
+          placeholder: this.$t('secondary.placeholder'),    
           value: this.fontFamilySecondary,
           options: [
             { title: 'Arial', value: 'Arial' },
@@ -73,7 +120,7 @@ export default {
         },
         {
           cols: 7,
-          label: 'Base font size',
+          label: this.$t('fontSize.label'),
           type: 'range', 
           name: 'fontSize', 
           id: 'fontSizeRange',
@@ -92,20 +139,20 @@ export default {
           unit: 'px'
         },
         {
-          label: 'Headings size',
+          label: this.$t('headings.label'),
           type: 'btn-group', 
           id: 'headingSize',
           name: 'headingSize', 
           value: this.headingSize,
           options: [
-            { title: 'Small', value: 14 },
-            { title: 'Medium', value: 16 },
-            { title: 'Large', value: 18 },
+            { title: this.$t('headings.options.small'), value: 14 },
+            { title: this.$t('headings.options.medium'), value: 16 },
+            { title: this.$t('headings.options.large'), value: 18 },
           ]
         },
       ]
-    }
-  },
+    } 
+  }
 }
 </script>
 

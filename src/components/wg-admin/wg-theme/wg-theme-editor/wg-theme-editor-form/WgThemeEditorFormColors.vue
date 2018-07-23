@@ -1,3 +1,24 @@
+<i18n>
+{
+  "en": {
+    "primary": {
+      "label": "Primary color"
+    },
+    "secondary": {
+      "label": "Secondary color"
+    }
+  },
+  "pt": {
+   "primary": {
+      "label": "Cor primária"
+    },
+    "secondary": {
+      "label": "Cor secondária"
+    }
+  }
+}
+</i18n>
+
 <template>
   <div class="wg-theme-editor-colors colors">
     <wg-form :schema="schema"
@@ -26,26 +47,26 @@ export default {
       default: '#222222'
     },
   },
-  data () {
-    return {
-      schema: [
+  computed: {
+    schema () {
+      return [
         {
-          label: 'Primary color',
+          label: this.$t('primary.label'),
           type: 'color', 
           name: 'colorPrimary', 
           id: 'colorPrimary',
           value: this.colorPrimary,
         },
         {
-          label: 'Secondary color',
+          label: this.$t('secondary.label'),
           type: 'color', 
           name: 'colorSecondary', 
           id: 'colorSecondary',
           value: this.colorSecondary,
         },
       ]
-    }
-  },
+    } 
+  }
 }
 </script>
 

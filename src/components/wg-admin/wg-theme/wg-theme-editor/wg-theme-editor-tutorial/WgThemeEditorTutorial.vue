@@ -2,20 +2,13 @@
   <div class="wg-theme-editor-tutorial">
     <swiper ref="swiper" :options="options">
       <swiper-slide v-for="(card, index) in cards" :key="index" class="tutorial">
-        <div class="tutorial__head">{{card.head}}</div>
-        <div class="tutorial__illustration">
-          <img :src="card.img" alt="Wg Themefier intro illustration">
-        </div>      
-        <div class="tutorial__info">
-          <div class="center">
-            <wg-heading level="h3">{{card.title}}</wg-heading>
-            <p>{{card.subtitle}}</p>
-            <wg-btn v-if="(index + 1) === cards.length" 
-              model="primary"
-              @click="$emit('tutorialConfirm')">
-                Ok, thanks
-            </wg-btn>
-          </div>
+        <component :is="`wg-theme-editor-tutorial-${cards[index]}`" />
+        <div class="wg-theme-editor-tutorial__confirm">          
+          <wg-btn v-if="(index + 1) === cards.length" 
+            model="primary"
+            @click="confirm()">
+              Ok, thanks
+          </wg-btn>
         </div>
       </swiper-slide>
     </swiper>
@@ -31,51 +24,35 @@
 import 'swiper/dist/css/swiper.min.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-const cards = [
-  {
-    head: 'Meeting fonts',
-    img: require('@/assets/img/wg-theme-editor/tutorial-fonts.png'),
-    title: 'Choose your typo!',
-    subtitle: 'Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more.'
-  },
-  {
-    head: 'Meeting colors',
-    img: require('@/assets/img/wg-theme-editor/tutorial-colors.png'),
-    title: 'Choose your colors',
-    subtitle: 'Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more.'
-  },
-  {
-    head: 'Meeting layout',
-    img: require('@/assets/img/wg-theme-editor/tutorial-layout.png'),
-    title: 'Choose your settings',
-    subtitle: 'Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more.'
-  },
-  {
-    head: 'Meeting animations',
-    img: require('@/assets/img/wg-theme-editor/tutorial-animation.png'),
-    title: 'Animations & Transitions',
-    subtitle: 'Here you will be able to set up the basics of your Widgrid website'
-  },
-]
-
-import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 import WgBtn from '@/components/wg-uikit/WgBtn'
+import WgThemeEditorTutorialFonts from './WgThemeEditorTutorialFonts'
+import WgThemeEditorTutorialColors from './WgThemeEditorTutorialColors'
+import WgThemeEditorTutorialLayout from './WgThemeEditorTutorialLayout'
+import WgThemeEditorTutorialAnimation from './WgThemeEditorTutorialAnimation'
 
 export default {
   name: 'WgThemeEditorTutorial',
   components: {
     swiper,
     swiperSlide,
-    'wg-heading': WgHeading,
     'wg-btn': WgBtn,
+    'wg-theme-editor-tutorial-fonts': WgThemeEditorTutorialFonts,
+    'wg-theme-editor-tutorial-colors': WgThemeEditorTutorialColors,
+    'wg-theme-editor-tutorial-layout': WgThemeEditorTutorialLayout,
+    'wg-theme-editor-tutorial-animation': WgThemeEditorTutorialAnimation,
   },
   data () {
     return {
-      cards: cards,
+      cards: [
+        'fonts',
+        'colors',
+        'layout',
+        'animation',
+      ],
       options: {
         threshold: 24,
         navigation: {
-          prevEl: '.wg-theme-editor-tutorial__prev .prev',
+          prevEl: '.wg-theme-editor-tutorial__bottom .prev',
           nextEl: '.wg-theme-editor-tutorial__bottom .next',
         },
         pagination: {
@@ -85,6 +62,12 @@ export default {
       }
     }
   },
+  methods: {
+    confirm: function () {
+      this.$emit('tutorialConfirm')
+      // localStorage.setItem('wg-theme-editor-tutorial-viewed', true)
+    }
+  }
 }
 </script>
 
@@ -93,7 +76,18 @@ $component: '.wg-theme-editor-tutorial';
 #{$component} {
   $intro-head-height: 72px;
   $intro-illustration-height: 255px; 
-  .tutorial {
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+    z-index: 0;
+    left: 0;
+    right: 0;
+    top: $intro-head-height;
+    height: $intro-illustration-height;
+    background-image: linear-gradient(-135deg, #33B6B2 0%, #0CEF8C 100%);
+  }
+  /deep/ .tutorial {
     &__head {
       display: flex;
       align-items: center;
@@ -127,8 +121,8 @@ $component: '.wg-theme-editor-tutorial';
       }
     }
     &__info {
-      height: calc(100% - #{$intro-head-height + $intro-illustration-height});
-      padding: 0 $intro-head-height;
+      height: calc(100% - #{$intro-head-height + $intro-illustration-height});;
+      padding: 0 var(--wg-gutter-xxl);
       text-align: center;
       h3 {
         color: $wg-color-sys-c;
@@ -148,21 +142,14 @@ $component: '.wg-theme-editor-tutorial';
       }
     }
   }
-  &:before {
-    position: absolute;
-    display: block;
-    content: '';
-    z-index: 0;
-    left: 0;
-    right: 0;
-    top: $intro-head-height;
-    height: $intro-illustration-height;
-    background-image: linear-gradient(-135deg, #33B6B2 0%, #0CEF8C 100%);
-  }
   /deep/ .swiper-container, 
   /deep/ .swiper-wrapper {
     height: 100%;
     position: static;
+  }
+  &__confirm {
+    display: flex;
+    justify-content: center;
   }
   @include swiper-pagination(#{$component + '__bottom'});
 }

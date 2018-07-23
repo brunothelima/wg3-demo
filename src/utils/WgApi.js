@@ -1,5 +1,5 @@
 export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => {
-  fetch(`http://localhost/wg3-api/${url}`, {
+  fetch(`http://10.153.200.178/wg3-api/${url}`, {
     method: 'GET',
     body: filters
   })

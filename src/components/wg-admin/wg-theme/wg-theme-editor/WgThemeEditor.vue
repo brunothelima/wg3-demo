@@ -1,3 +1,18 @@
+<i18n>
+{
+  "en": {
+    "publish": "Publish",
+    "preview": "Preview",
+    "editor": "Editor"
+  },
+  "pt": {
+    "publish": "Publicar",
+    "preview": "Preview",
+    "editor": "Editor"
+  }
+}
+</i18n>
+
 <template>
   <div class="wg-theme-editor" :class="{'wg-theme-editor--active': panelVisible != 'tutorial'}">
     <wg-drag-resize ref="panel" class="panel" 
@@ -13,15 +28,15 @@
               class="panel__preview" 
               :outline="true"
               @click="showPanel('preview')">
-                Preview
+                {{$t('preview')}}
             </wg-btn>
             <wg-btn :outline="true" v-if="panelVisible === 'preview'"
               class="panel__editor" 
               @click="showPanel('form')">
-                Editor
+                {{$t('editor')}}
             </wg-btn>
             <wg-btn model="primary" class="panel__publish">
-              Publish
+              {{$t('publish')}}
             </wg-btn>
           </div>
         </div>
@@ -32,7 +47,7 @@
 <script>
 import WgDragResize from '@/components/wg-uikit/WgDragResize'
 import WgBtn from '@/components/wg-uikit/WgBtn'
-import WgThemeEditorTutorial from './WgThemeEditorTutorial'
+import WgThemeEditorTutorial from './wg-theme-editor-tutorial/WgThemeEditorTutorial'
 import WgThemeEditorPreview from './WgThemeEditorPreview'
 import WgThemeEditorForm from './wg-theme-editor-form/WgThemeEditorForm'
 
@@ -71,6 +86,11 @@ export default {
       this.$refs.panel.setCoords({ x: 32, y: 88, w: 282 });
     },
   },
+  // mounted: function () {
+  //   if (localStorage.getItem('wg-theme-editor-tutorial-viewed')) {
+  //     this.initEditor()
+  //   }
+  // }
 }
 </script>
 

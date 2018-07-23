@@ -1,6 +1,24 @@
+<i18n>
+{
+  "en": {
+    "hello": "Hello",
+    "welcome": "You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps.",
+    "start": "Excited to get started?",
+    "button": "Start Demo"
+  },
+  "pt": {
+   "hello": "Olá",
+    "welcome": "Você esta prestes a conhecer nosso editor de temas. Aqui você customiza todas as configurações do site como fontes, cores, layout e animações",
+    "start": "Ansioso para começar?",
+    "button": "Ir para o editor"
+  }
+}
+</i18n>
+
 <template>
   <section class="user">
     <wg-container> 
+      <wg-loader :loading="!isProfileLoaded"/>
       <div class="intro" v-if="isProfileLoaded">
         <div class="intro__icons">
           <img src="@/assets/img/wg-theme-editor/fonts-icon.svg" alt="Fonts">
@@ -8,13 +26,10 @@
           <img src="@/assets/img/wg-theme-editor/layout-icon.svg" alt="Layout">
           <img src="@/assets/img/wg-theme-editor/animation-icon.svg" alt="Animation">
         </div>
-        <wg-heading level="h3">Hello, {{profile.name}}</wg-heading>
-        <p>You’re about to see our main editor. Where you will be able to set up all of your main configurations, such as fonts, colors, layout and animations. We will talk about the details in the next steps.  </p>
-        <wg-heading level="h6">Excited to get started?</wg-heading>
-        <wg-btn model="primary" tag="router-link" to="/admin/theme">Start Demo</wg-btn>
-      </div>
-      <div v-else>
-        Loadding...
+        <wg-heading level="h3">{{$t('hello')}}, {{profile.name}}</wg-heading>
+        <p>{{$t('welcome')}}</p>
+        <wg-heading level="h6">{{$t('start')}}</wg-heading>
+        <wg-btn model="primary" tag="router-link" to="/admin/theme">{{$t('button')}}</wg-btn>
       </div>
     </wg-container>
   </section>
@@ -26,6 +41,7 @@ import { WgAuthMixin } from '@/mixins/WgAuthMixin'
 
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
+import WgLoader from '@/components/wg-uikit/wg-layout/WgLoader'
 import WgBtn from '@/components/wg-uikit/WgBtn'
 
 export default {
@@ -34,28 +50,34 @@ export default {
   components: {
     'wg-heading': WgHeading,
     'wg-container': WgContainer,
+    'wg-loader': WgLoader,
     'wg-btn': WgBtn,
   },
   computed: {
     ...mapGetters({
       isProfileLoaded: 'admin/user/isProfileLoaded',
-      isAuthenticated: 'admin/auth/isAuthenticated'
     }),
     ...mapState({
       profile: state => state.admin.user.profile,
     })
   },
-  async created () {
+  created: function () {
     this.$store.commit('admin/shape/setPosition', 'top')
     this.$store.commit('admin/shape/setType', 'grayscale')
-    await this.$store.dispatch('admin/user/fetchProfile')
-  },
-  mounted: function () {
-    this.$store.commit('admin/shape/toggle', true)
   },
   destroyed: function () {
     this.$store.commit('admin/shape/toggle', false)
   },
+  watch: {
+    isProfileLoaded: {
+      immediate: true,
+      handler (newVal) {
+        if (newVal) {
+          this.$store.commit('admin/shape/toggle', true)
+        }
+      }
+    }
+  }
 }
 </script>
 

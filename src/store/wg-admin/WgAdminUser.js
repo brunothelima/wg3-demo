@@ -3,31 +3,29 @@ import { WgApiGet } from '@/utils/WgApi'
 
 const state = { 
   status: '', 
-  profile: {} 
+  profile: JSON.parse(localStorage.getItem('wg-admin-user-profile'))
 }
 
 const getters = {
-  isProfileLoaded: state => Object.keys(state.profile).length > 0,
+  isProfileLoaded: state => !!state.profile,
 }
 
 const actions = {
   fetchProfile ({commit, rootState}) {
+    commit('fetchProfile')
     return new Promise((resolve, reject) => {
-      commit('fetchProfile')
-      if (localStorage.getItem('wg-content-data')) {
-        commit('success')
-        resolve(JSON.parse(localStorage.getItem('wg-user-data')))
-        return   
-      }
       WgApiGet({ url: 'wg_user_fetch_by_id.php' }, { 
         token: rootState.admin.auth.token 
-      }).then(resp => {
-          commit('success', resp)
-          localStorage.setItem('wg-user-data', JSON.stringify(resp))
-          resolve(resp)
+      }).then(profile => {
+          commit('success')
+          commit('setProfile', profile)
+          localStorage.setItem('wg-admin-user-profile', JSON.stringify(profile))
+          resolve()
         })
         .catch(err => {
-          commit('error', err)
+          commit('error')
+          commit('setProfile', {})
+          localStorage.removeItem('wg-admin-user-profile')
           reject(err)
         })
     })
@@ -38,12 +36,13 @@ const mutations = {
   fetchProfile (state) {
     state.status = 'loading'
   },
-  success (state, user) {
-    Vue.set(state, 'profile', user)
+  setProfile (state, profile) {
+    Vue.set(state, 'profile', profile)
+  },
+  success (state) {
     state.status = 'success'
   },
   error (state) {
-    Vue.set(state, 'user', {})
     state.status = 'error'
   },
 }

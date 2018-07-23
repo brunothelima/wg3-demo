@@ -3,6 +3,7 @@ import { WgApiGet } from '@/utils/WgApi'
 const state = { 
   status: '',
   page: 0,
+  list: []
 }
 
 const getters = {}
@@ -11,11 +12,6 @@ const actions = {
   paginate ({commit, state}, filters) {
     return new Promise((resolve, reject) => { 
       commit('paginate')
-      if (localStorage.getItem('wg-content-list')) {
-        commit('success')
-        resolve(JSON.parse(localStorage.getItem('wg-content-list')))
-        return   
-      }
       WgApiGet({ url: 'wg_content_list_paginate.php' }, {
         page: state.page,
         ...filters

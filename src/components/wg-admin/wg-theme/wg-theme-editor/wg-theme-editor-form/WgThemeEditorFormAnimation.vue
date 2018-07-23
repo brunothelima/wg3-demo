@@ -1,3 +1,26 @@
+<i18n>
+{
+  "en": {
+    "speed": {
+      "label": "Animation speed"
+    },
+    "timing": {
+      "label": "Animation presets",
+      "placeholder": "Select a timing function"
+    }
+  },
+  "pt": {
+   "speed": {
+      "label": "Velocidade"
+    },
+    "timing": {
+      "label": "Tipo de animação",
+      "placeholder": "Selecione"
+    }
+  }
+}
+</i18n>
+
 <template>
   <div ref="animationElm" class="wg-theme-editor-animation animation">
     <wg-form :schema="schema"
@@ -37,10 +60,14 @@ export default {
     return {
       toggleAnimation: false,
       toggleInterval: null,
-      schema: [
-      {
+    }
+  },
+  computed: {
+    schema () {
+      return [
+        {
           cols: 6,
-          label: 'Animation speed',
+          label: this.$t('speed.label'),
           type: 'range', 
           name: 'transitionDuration', 
           id: 'transitionDurationRange',
@@ -59,11 +86,11 @@ export default {
           unit: 'ms'
         },
         {
-          label: 'Presets',
+          label: this.$t('timing.label'),
           type: 'select', 
           id: 'transitionTimingFunction',
           name: 'transitionTimingFunction', 
-          placeholder: 'Select a timing function',
+          placeholder: this.$t('timing.placeholder'),
           value: this.transitionTimingFunction,
           options: [
             { title: 'Linear', value: 'linear' },

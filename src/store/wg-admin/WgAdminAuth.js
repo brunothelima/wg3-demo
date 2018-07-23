@@ -10,40 +10,35 @@ const getters = {
 }
 
 const actions = {
-  login ({commit}, loginData) {
+  fetchToken ({commit}, loginData) {
+    commit('fetchToken')
     return new Promise((resolve, reject) => {
-      commit('login')
-      WgApiGet({ url: 'wg_auth_login.php'}, loginData)
-        .then(resp => {
-          localStorage.setItem('wg-admin-auth-token', resp.token)
-          commit('success', resp)
-          resolve(resp)
+      WgApiGet({ url: 'wg_login.php'}, loginData)
+        .then(response => {
+          commit('success')
+          commit('setToken', response.token)
+          localStorage.setItem('wg-admin-auth-token', response.token)
+          resolve()
         })
         .catch(err => {
-          commit('error', err)
+          commit('error')
+          commit('setToken', '')
+          localStorage.removeItem('wg-admin-auth-token')
           reject(err)
         })
     })
   },
-  logout ({commit}) {
-    return new Promise((resolve) => {
-      localStorage.removeItem('wg-admin-auth-token')
-      commit('logout')
-      resolve()
-    })
-  }
 }
 
 const mutations = {
-  login (state) {
+  fetchToken (state) {
     state.status = 'loading'
   },
-  logout (state) {
-    state.token = ''
+  setToken (state, token) {
+    state.token = token
   },
-  success (state, resp) {
+  success (state) {
     state.status = 'success'
-    state.token = resp.token
   },
   error (state) {
     state.status = 'error'
