@@ -40,6 +40,10 @@ export const WgInputMixin = {
       type: Boolean,
       default: false
     },
+    i18n: {
+      type: Object,
+      default: () => {}
+    }
   },
   data () {
     return {
@@ -47,9 +51,15 @@ export const WgInputMixin = {
     }
   },
   methods: {
+    t: function (str) {
+      if (this.i18n && this.i18n.te(str)) {
+        return this.i18n.t(str)
+      }
+      return str
+    },
     onChange: function () {
       this.$emit('change', this.model)
-    }
+    },
   },
   watch: {
     value: function (newVal) {

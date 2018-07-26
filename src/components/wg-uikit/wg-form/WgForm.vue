@@ -12,8 +12,8 @@
         v-bind="field"
         :is="getComponentByFieldType(field.type)"
         :error="$v.form[field.name].$error"
-        @change="onInputChange(field, $event
-        )"/>
+        :i18n="i18n || $i18n"
+        @change="onInputChange(field, $event)"/>
       <slot />
       <div class="wg-form__footer">
         <wg-btn model="primary" v-if="button && !$slots.footer" :status="status">
@@ -58,6 +58,10 @@ export default {
     schema: {
       type: Array,
       defautl: () => []
+    },
+    i18n: {
+      type: Object,
+      default: () => {}
     }
   },
   data () {

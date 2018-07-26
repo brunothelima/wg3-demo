@@ -1,16 +1,36 @@
+<i18n>
+{
+  "en": {
+    "fonts": "Fonts",
+    "colors": "Colors",
+    "layout": "Layout",
+    "animation": "Animation"
+  },
+  "pt": {
+   "fonts": "Fontes",
+    "colors": "Cores",
+    "layout": "Layout",
+    "animation": "Animação"
+  }
+}
+</i18n>
+
 <template>
   <div class="wg-theme-editor-form forms">
     <nav class="forms__nav">
-      <a v-for="(form, index) in forms" :key="index" 
-        :class="['form', {'form--active': formVisible === form.id}]" 
+      <a v-for="(form, index) in forms" 
+        :key="index"
+        :class="['form', { 
+          'form--active': formVisible === form.id 
+        }]"
         @click="showForm(form.id)">
           <span class="form__icon"><img :src="form.icon" :alt="form.title" /></span>
-          <span class="form__title">{{form.title}}</span>
+          <span class="form__title">{{$t(form.id)}}</span>
       </a>
     </nav>
     <div class="forms__components">
-      <component :is="`wg-theme-editor-form-${formVisible}`" 
-        v-bind="currentTheme"
+      <component v-bind="currentTheme"
+        :is="`wg-theme-editor-form-${formVisible}`"
         @change="onFormChange($event)"/>
     </div>
   </div> 
@@ -25,13 +45,6 @@ import WgThemeEditorFormLayout from './WgThemeEditorFormLayout'
 import WgThemeEditorFormAnimation from './WgThemeEditorFormAnimation'
 import WgBtn from '@/components/wg-uikit/WgBtn'
 
-const forms = [
-  { id: 'fonts', title: 'Fonts', icon: require('@/assets/img/wg-theme-editor/fonts-icon.svg') },
-  { id: 'colors', title: 'Colors', icon: require('@/assets/img/wg-theme-editor/colors-icon.svg') },
-  { id: 'layout', title: 'Layout', icon: require('@/assets/img/wg-theme-editor/layout-icon.svg') },
-  { id: 'animation', title: 'Animation', icon: require('@/assets/img/wg-theme-editor/animation-icon.svg') },
-]
-
 export default {
   name: 'WgThemeEditorForm',
   components: {
@@ -43,13 +56,30 @@ export default {
   },
   data () {
     return {
-      forms: forms,
       formVisible: 'fonts',
+      forms: [
+        { 
+          id: 'fonts',  
+          icon: require('@/assets/img/wg-theme-editor/fonts-icon.svg'),
+        },
+        { 
+          id: 'colors', 
+          icon: require('@/assets/img/wg-theme-editor/colors-icon.svg'), 
+        },
+        { 
+          id: 'layout', 
+          icon: require('@/assets/img/wg-theme-editor/layout-icon.svg'),
+        },
+        { 
+          id: 'animation', 
+          icon: require('@/assets/img/wg-theme-editor/animation-icon.svg'), 
+        },
+      ],
     }
   },
   computed: {
     ...mapState({
-      currentTheme: state => state.theme.editor.theme
+      currentTheme: state => state.theme.editor.theme,
     }),
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <wg-form-field :label="label"
+  <wg-form-field :label="t(label)"
     :success="success"
     :error="error"
     :cols="cols">
@@ -11,7 +11,7 @@
             :checked="model.indexOf(option.name) > -1"
             @change="onChange(option.name)"/>
           <label :for="`${option.name}_id`">              
-            {{option.title}}
+            {{t(option.title)}}
           </label>
       </div>
   </wg-form-field>

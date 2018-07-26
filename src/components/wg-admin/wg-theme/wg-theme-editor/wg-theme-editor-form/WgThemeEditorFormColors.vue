@@ -24,6 +24,7 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
+      :i18n="$i18n"
       @change="$emit('change', $event)">
     </wg-form>
   </div>
@@ -47,25 +48,25 @@ export default {
       default: '#222222'
     },
   },
-  computed: {
-    schema () {
-      return [
+  data () {
+    return {
+      schema: [
         {
-          label: this.$t('primary.label'),
+          label: 'primary.label',
           type: 'color', 
           name: 'colorPrimary', 
           id: 'colorPrimary',
           value: this.colorPrimary,
         },
         {
-          label: this.$t('secondary.label'),
+          label: 'secondary.label',
           type: 'color', 
           name: 'colorSecondary', 
           id: 'colorSecondary',
           value: this.colorSecondary,
         },
       ]
-    } 
+    }
   }
 }
 </script>

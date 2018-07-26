@@ -17,8 +17,8 @@ export default {
     }
   },
   watch: {
-    locale (val) {
-      this.$i18n.locale = val
+    locale (locale) {
+      this.$i18n.locale = locale
     }
   }
 }

@@ -14,7 +14,7 @@ export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => 
 }) 
 
 export const WgApiPost = ({url, ...data}) => new Promise((resolve, reject) => {
-  fetch(`http://localhost/wg3-api/${url}`, {
+  fetch(`http://10.153.200.178/wg3-api/${url}`, {
     method: 'POST',
     body: data
   })

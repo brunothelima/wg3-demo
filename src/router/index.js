@@ -20,6 +20,7 @@ const isUnauthorized = (to, from, next) => {
 
 export default new Router({
   mode: 'history',
+  // base: '/wg3/',
   routes: [
     {
       path: '/admin',

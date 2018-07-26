@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: '/wg3',
   css: {
     loaderOptions: {
       sass: {

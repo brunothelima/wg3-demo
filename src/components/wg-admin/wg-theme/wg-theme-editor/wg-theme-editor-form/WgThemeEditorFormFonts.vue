@@ -50,6 +50,7 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
+      :i18n="$i18n"
       @change="$emit('change', $event)">
     </wg-form>
   </div>
@@ -81,15 +82,15 @@ export default {
       default: 14
     },
   },
-  computed: {
-    schema () {
-      return [
+  data () {
+    return {
+      schema: [
         {
-          label: this.$t('primary.label'),
+          label: 'primary.label',
           type: 'select', 
           id: 'fontFamilyPrimary',
           name: 'fontFamilyPrimary', 
-          placeholder: this.$t('primary.placeholder'),
+          placeholder: 'primary.placeholder',
           value: this.fontFamilyPrimary,
           options: [
             { title: 'Arial', value: 'Arial' },
@@ -102,11 +103,11 @@ export default {
           ],
         },
         {
-          label: this.$t('secondary.label'),
+          label: 'secondary.label',
           type: 'select', 
           id: 'fontFamilySecondary',
           name: 'fontFamilySecondary', 
-          placeholder: this.$t('secondary.placeholder'),    
+          placeholder: 'secondary.placeholder',    
           value: this.fontFamilySecondary,
           options: [
             { title: 'Arial', value: 'Arial' },
@@ -120,7 +121,7 @@ export default {
         },
         {
           cols: 7,
-          label: this.$t('fontSize.label'),
+          label: 'fontSize.label',
           type: 'range', 
           name: 'fontSize', 
           id: 'fontSizeRange',
@@ -139,19 +140,19 @@ export default {
           unit: 'px'
         },
         {
-          label: this.$t('headings.label'),
+          label: 'headings.label',
           type: 'btn-group', 
           id: 'headingSize',
           name: 'headingSize', 
           value: this.headingSize,
           options: [
-            { title: this.$t('headings.options.small'), value: 14 },
-            { title: this.$t('headings.options.medium'), value: 16 },
-            { title: this.$t('headings.options.large'), value: 18 },
+            { title: 'headings.options.small', value: 14 },
+            { title: 'headings.options.medium', value: 16 },
+            { title: 'headings.options.large', value: 18 },
           ]
         },
       ]
-    } 
+    }
   }
 }
 </script>

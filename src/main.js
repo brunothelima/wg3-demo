@@ -9,7 +9,8 @@ const i18n = new VueI18n({
   locale: 'pt',
 })
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
+// process.env.NODE_ENV = true
 
 localStorage.removeItem('wg-content-post')
 localStorage.removeItem('wg-content-home')

@@ -26,6 +26,7 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
+      :i18n="$i18n"
       @change="onChange($event)">
         <div ref="animationDemo"
           :class="[{
@@ -60,14 +61,10 @@ export default {
     return {
       toggleAnimation: false,
       toggleInterval: null,
-    }
-  },
-  computed: {
-    schema () {
-      return [
+      schema: [
         {
           cols: 6,
-          label: this.$t('speed.label'),
+          label: 'speed.label',
           type: 'range', 
           name: 'transitionDuration', 
           id: 'transitionDurationRange',
@@ -86,11 +83,11 @@ export default {
           unit: 'ms'
         },
         {
-          label: this.$t('timing.label'),
+          label: 'timing.label',
           type: 'select', 
           id: 'transitionTimingFunction',
           name: 'transitionTimingFunction', 
-          placeholder: this.$t('timing.placeholder'),
+          placeholder: 'timing.placeholder',
           value: this.transitionTimingFunction,
           options: [
             { title: 'Linear', value: 'linear' },

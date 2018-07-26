@@ -1,5 +1,5 @@
 <template>
-  <wg-form-field :label="label"
+  <wg-form-field :label="t(label)"
     :success="success"
     :error="error"
     :cols="cols">
@@ -10,7 +10,7 @@
           <button v-for="(option, index) in options" :key="index"
             :class="{'active': model === option.value}"
             @click="onChange(option.value)">
-               {{option.title}}
+               {{t(option.title)}}
           </button>
       </div>
   </wg-form-field>

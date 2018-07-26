@@ -43,7 +43,7 @@
         <div class="panel__box">
           <div class="panel__head">{{ $t('continue') }}</div>
           <div class="panel__form">
-            <wg-form :schema="schema" :status="authState" @success="login($event)">
+            <wg-form :i18n="$i18n" :schema="schema" :status="authState" @success="login($event)">
               <template slot="submit">{{ $t('submit') }}</template>
             </wg-form>
             <div class="panel__footer">
@@ -78,32 +78,32 @@ export default {
     ...mapState({
       authState: state => state.admin.auth.status
     }),
-    schema () { 
-      return [
+  },
+  data () {
+    return {
+      schema: [
         {
-          label: this.$t('inputs.username.label'),
+          label: 'inputs.username.label',
           type: 'text', 
           id: 'username',
           name: 'username', 
-          placeholder: this.$t('inputs.username.placeholder'),
-          // value: '', 
+          placeholder: 'inputs.username.placeholder',
           validations: { 
             required: true, 
           }
         },
         {
-          label: this.$t('inputs.password.label'),
+          label: 'inputs.password.label',
           type: 'password', 
           id: 'password',
           name: 'passowrd', 
-          placeholder: this.$t('inputs.password.placeholder'),
-          // value: '', 
+          placeholder: 'inputs.password.placeholder',
           validations: { 
             required: true, 
           }
         },
       ]
-    },
+    }
   },
   created: function () {
     this.$store.commit('admin/shape/setPosition', 'right')
@@ -119,8 +119,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wg-login {
+$component: '.wg-login';
+#{$component} {
   height: 100%;
+  padding-top: var(--wg-gutter-xxl);
   .wg-container {
     display: flex;
     flex-wrap: wrap;
@@ -179,5 +181,8 @@ export default {
   /deep/ .wg-form__footer .wg-btn {
     min-width: 120px;
   }
+}
+@include wg-brakepoint ($component, $wg-brakepoint-minimal) {
+  padding-top: var(--wg-gutter-xxl);
 }
 </style>

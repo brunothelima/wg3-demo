@@ -1,5 +1,5 @@
 <template>
-  <wg-form-field :label="label"
+  <wg-form-field :label="t(label)"
     :success="success"
     :error="error"
     :cols="cols">
@@ -12,10 +12,10 @@
             <option v-for="(option, index) in options" :key="index"
               :selected="model === option.value"
               :value="option.value">
-                {{option.title}}
+                {{t(option.title)}}
             </option>
 				</select>
-				{{text || placeholder}}
+				{{text || t(placeholder)}}
         <i class="fa fa-caret-down"></i>
 			</div>
   </wg-form-field>

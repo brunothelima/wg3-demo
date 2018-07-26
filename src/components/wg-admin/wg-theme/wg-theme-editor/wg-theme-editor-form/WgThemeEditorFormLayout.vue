@@ -45,6 +45,7 @@
     <wg-form :schema="schema"
       :vuelidate="false"
       :button="false"
+      :i18n="$i18n"
       @change="$emit('change', $event)">
     </wg-form>
   </div>
@@ -80,12 +81,12 @@ export default {
       default: 0
     },
   },
-  computed: {
-    schema () {
-      return  [
+  data () {
+    return {
+      schema: [
         {
           cols: 7,
-          label: this.$t('gutter.label'),
+          label: 'gutter.label',
           type: 'range', 
           name: 'gutter', 
           id: 'gutterSizeRange',
@@ -105,7 +106,7 @@ export default {
         },
         {
           cols: 7,
-          label: this.$t('border.width.label'),
+          label: 'border.width.label',
           type: 'range', 
           name: 'borderWidth', 
           id: 'borderWidthRange',
@@ -125,7 +126,7 @@ export default {
         },
         {
           cols: 7,
-          label: this.$t('border.radius.label'),
+          label: 'border.radius.label',
           type: 'range', 
           name: 'borderRadius', 
           id: 'borderRadiusRange',
@@ -144,19 +145,28 @@ export default {
           unit: 'px'
         },
         {
-          label: this.$t('shadow.label'),
+          label: 'shadow.label',
           type: 'btn-group', 
           name: 'boxShadow', 
           id: 'boxShadow',
           value: this.boxShadow,
           options: [
-            { title: this.$t('shadow.options.small'), value: 8 },
-            { title: this.$t('shadow.options.medium'), value: 16 },
-            { title: this.$t('shadow.options.large'), value: 24 },
+            { 
+              title: 'shadow.options.small', 
+              value: 8
+            },
+            { 
+              title: 'shadow.options.medium', 
+              value: 16 
+            },
+            { 
+              title: 'shadow.options.large', 
+              value: 24 
+            },
           ]
         },
       ]
-    } 
+    }
   }
 }
 </script>

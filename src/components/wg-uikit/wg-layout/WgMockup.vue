@@ -38,11 +38,6 @@ export default {
       required: true,
     },
   },
-  computed: {
-    mockup: function () {
-      return require(`@/assets/img/wg-mockup/wg-${this.widget}-mockup.svg`)
-    }
-  }
 }
 </script>
 

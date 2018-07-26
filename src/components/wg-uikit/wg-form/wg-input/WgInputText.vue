@@ -1,5 +1,5 @@
 <template>
-  <wg-form-field :label="label"
+  <wg-form-field :label="t(label)"
     :success="success"
     :error="error"
     :cols="cols">
@@ -8,7 +8,7 @@
         :type="type"
         :id="id"
         :name="name"
-        :placeholder="placeholder" 
+        :placeholder="t(placeholder)" 
         :disabled="disabled"
         v-model="model"
         @input="onChange($event.target.value)">

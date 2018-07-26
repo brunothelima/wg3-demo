@@ -1,10 +1,10 @@
 <template>
-  <wg-form-field :label="label"
+  <wg-form-field :label="t(label)"
     :success="success"
     :error="error"
     :cols="cols">
 			<div class="wg-input-number">
-				{{model + unit || placeholder}}
+				{{model + unit || t(placeholder)}}
         <div class="wg-input-number__controlls">
           <button @click.prevent="plus()"><i class="fa fa-caret-up"></i></button>
           <button @click.prevent="minus()"><i class="fa fa-caret-down"></i></button>

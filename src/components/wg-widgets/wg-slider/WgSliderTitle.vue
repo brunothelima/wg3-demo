@@ -36,6 +36,7 @@ export default {
       options: {
         slidesPerView: 'auto',
         threshold: 24,
+        autoHeight: true,
         navigation: {
           prevEl: '.wg-slider-title__bottom .prev',
           nextEl: '.wg-slider-title__bottom .next',
