@@ -2,9 +2,11 @@
 	<picture class="wg-img">
 		<v-lazy-image
 			:src="src"
-			:srcset="srcset"
+			:srcset="`${large || src} 1200w, 
+				${medium || src} 972w, 
+				${small || src} 480w`"
 			:src-placeholder="placeholder"
-		></v-lazy-image>
+		/>
 		<slot />
 	</picture>
 </template>
@@ -22,13 +24,21 @@ export default {
 			required: true,
 			default: ''
 		},
-		srcset: {
+		large: {
 			type: String,
-			default: ''
+			default: null
+		},
+		medium: {
+			type: String,
+			default: null
+		},
+		small: {
+			type: String,
+			default: null
 		},
 		placeholder: {
 			type: String,
-			default: ''
+			default: null
 		},
 	},
 }

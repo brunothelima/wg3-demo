@@ -1,19 +1,18 @@
 <template>
-  <div class="wg-hero" ref="elem">
+  <div class="wg-hero" ref="hero">
     <div class="wg-hero__img">
-      <wg-img
-        :srcset="`http://picsum.photos/1200/400?image=${img} 1200w,
-        http://picsum.photos/940/400?image=${img} 972w,
-        http://picsum.photos/768/400?image=${img} 480w`"
-        :src="`http://picsum.photos/480/400?image=${img}`"
-        :placeholder="`http://picsum.photos/60/20?image=${img}`"
+      <wg-img :src="`http://picsum.photos/480/400?image=${img}`"
+        :large="`http://picsum.photos/1200/400?image=${img}`"
+        :medium="`http://picsum.photos/940/400?image=${img}`"
+        :small="`http://picsum.photos/768/400?image=${img}`"
+        :placeholder="`http://picsum.photos/20/6?image=${img}`"
       />
     </div>
     <div class="wg-hero__info">
       <wg-heading level="h2">{{title}}</wg-heading>
       <p class="wg-hero__subtitle">{{subtitle}}</p>
     </div>
-    <div class="wg-hero__help" @click="scrollDown">
+    <div class="wg-hero__scroll" @click="scrollDown">
       <span>Scroll down</span><br>
       <i class="fa fa-arrow-down"></i>
     </div>
@@ -47,7 +46,7 @@ export default {
   methods: {
     scrollDown: function () {
       window.scrollTo({
-        top: this.$refs.elem.offsetTop + this.$refs.elem.clientHeight ,
+        top: this.$refs.hero.offsetTop + this.$refs.hero.clientHeight ,
         behavior: 'smooth'
       });
     }
@@ -101,18 +100,28 @@ $component: '.wg-hero';
       color: $wg-color-sys-k;
     }
   }
-  &__help {
+  &__scroll {
     z-index: 3;
     position: absolute;
     bottom: var(--wg-gutter-l);
     text-align: center;
+    cursor: pointer;
     span, i {
       display: inline-block;
       color: var(--wg-color-primary);
+      transition: transform var(--wg-transition-duration) var(--wg-transition-timing-function);
     }
     span {
       margin-bottom: var(--wg-gutter);
       font-weight: $wg-font-weight-bold;
+    }
+    &:hover {
+      span {
+        transform: scale(1.025);
+      }
+      i {
+        transform: translateY(25%);
+      }
     }
   }
 }

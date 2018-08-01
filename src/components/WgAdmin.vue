@@ -22,7 +22,6 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-admin';
 #{$component} {
-  overflow: auto;
   box-sizing: border-box;
   height: 100vh;
   padding-top: calc(var(--wg-gutter-xl) + 32px);

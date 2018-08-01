@@ -26,7 +26,13 @@
 
 <script>  
 import { WgFormMixin } from '@/mixins/WgFormMixin'    
-import WgInputText from '@/components/wg-uikit/wg-form/wg-input/WgInputText'     
+import WgInputText from './wg-input/WgInputText'     
+import WgInputSelect from './wg-input/WgInputSelect'     
+import WgInputCheckbox from './wg-input/WgInputCheckbox'     
+import WgInputRange from './wg-input/WgInputRange'     
+import WgInputNumber from './wg-input/WgInputNumber'     
+import WgInputBtnGroup from './wg-input/WgInputBtnGroup'     
+import WgInputColor from './wg-input/WgInputColor'     
 import WgBtn from '@/components/wg-uikit/WgBtn'
 
 export default {
@@ -34,12 +40,12 @@ export default {
   mixins: [WgFormMixin],
   components: {
     'wg-input-text': WgInputText,
-    'wg-input-select': () => import('./wg-input/WgInputSelect'),
-    'wg-input-checkbox': () => import('./wg-input/WgInputCheckbox'),
-    'wg-input-range': () => import('./wg-input/WgInputRange'),
-    'wg-input-number': () => import('./wg-input/WgInputNumber'),
-    'wg-input-btn-group': () => import('./wg-input/WgInputBtnGroup'),
-    'wg-input-color': () => import('./wg-input/WgInputColor'),
+    'wg-input-select': WgInputSelect,
+    'wg-input-checkbox': WgInputCheckbox,
+    'wg-input-range': WgInputRange,
+    'wg-input-number': WgInputNumber,
+    'wg-input-btn-group': WgInputBtnGroup,
+    'wg-input-color': WgInputColor,
     'wg-btn': WgBtn,
   },
   props: {

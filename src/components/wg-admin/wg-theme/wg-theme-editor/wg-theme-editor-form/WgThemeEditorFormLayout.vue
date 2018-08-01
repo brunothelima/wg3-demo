@@ -13,7 +13,12 @@
       }
     },
     "shadow": {
-      "label": "Box shadow"
+      "label": "Box shadow",
+       "options": {
+        "small": "Small",
+        "medium": "Médium",
+        "large": "Large"
+      }
     }
   },
   "pt": {
@@ -151,18 +156,9 @@ export default {
           id: 'boxShadow',
           value: this.boxShadow,
           options: [
-            { 
-              title: 'shadow.options.small', 
-              value: 8
-            },
-            { 
-              title: 'shadow.options.medium', 
-              value: 16 
-            },
-            { 
-              title: 'shadow.options.large', 
-              value: 24 
-            },
+            { title: 'shadow.options.small', value: 8 },
+            { title: 'shadow.options.medium',  value: 16 },
+            { title: 'shadow.options.large', value: 24 },
           ]
         },
       ]

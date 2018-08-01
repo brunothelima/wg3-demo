@@ -2,7 +2,7 @@
   <div class="wg-home">
     <wg-hero v-if="home.hero" v-bind="home.hero" />
     <wg-container>
-      <div class="wg-home__featured featured grid" v-if="home.featured">
+      <div class="wg-home__featured grid grid--featured" v-if="home.featured">
         <div class="featured__main">
           <wg-content-cover v-bind="home.featured.big"/>
         </div>
@@ -21,7 +21,7 @@
     </wg-container>
     <div class="img-tile"></div>
     <wg-container>
-      <div class="wg-home__secondary secondary grid">
+      <div class="wg-home__secondary grid grid--secondary">
         <div class="secondary__main">
           <wg-slider-title v-if="cards" :items="cards" />
           <ul class="wg-row wg-home__complementary">
@@ -85,8 +85,7 @@ $component: '.wg-home';
   .wg-hero {
     margin-bottom: calc(var(--wg-gutter-xl) * 2);
   }
-  .featured,
-  .secondary {
+  .grid {
     display: grid;
     grid-template-rows: auto;
     grid-gap: var(--wg-gutter-l);
@@ -99,15 +98,18 @@ $component: '.wg-home';
     &__aside {
       grid-area: sidebar;
     }
-  }
-  .featured {
-    grid-template-columns: auto calc(25% - var(--wg-gutter-l));
-  }
-  .secondary {
-    grid-template-columns: auto minmax(320px, 30%);
-    &__main {
-      .wg-content-title {
-        margin-bottom: calc(var(--wg-gutter-xl) * 2);
+    > * {
+      min-width: 0;
+    }
+    &--featured {
+      grid-template-columns: auto calc(25% - var(--wg-gutter-l));
+    }
+    &--secondary {
+      grid-template-columns: auto minmax(298px, calc(33% - var(--wg-gutter)));
+      &__main {
+        .wg-content-title {
+          margin-bottom: calc(var(--wg-gutter-xl) * 2);
+        }
       }
     }
   }
@@ -127,12 +129,12 @@ $component: '.wg-home';
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-small) {
-  .secondary {
+  &__secondary.grid {
     display: block;
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-minimal) {
-  .featured {
+  &__featured.grid {
     display: block;
   }
 }

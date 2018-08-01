@@ -2,12 +2,11 @@
   <component :is="tag" class="wg-content-card">
     <a :href="href">
       <span class="wg-content-card__img">
-        <wg-img
-          :srcset="`http://picsum.photos/372/235?image=${img} 1200w,
-          http://picsum.photos/297/188?image=${img} 972w,
-          http://picsum.photos/352/221?image=${img} 480w`"
-          :src="`http://picsum.photos/480/303?image=${img}`"
-          :placeholder="`http://picsum.photos/60/38?image=${img}`"
+        <wg-img :src="`http://picsum.photos/480/303?image=${img}`"
+          :large="`http://picsum.photos/372/235?image=${img}`"
+          :medium="`http://picsum.photos/297/188?image=${img}`"
+          :small="`http://picsum.photos/352/221?image=${img}`"
+          :placeholder="`http://picsum.photos/20/13?image=${img}`"
         />
       </span>
       <span class="wg-content-card__info">

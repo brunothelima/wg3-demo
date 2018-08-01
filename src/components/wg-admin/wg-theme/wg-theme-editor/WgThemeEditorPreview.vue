@@ -48,12 +48,7 @@ export default {
   methods: {
     changeBrakepoint: function (brakepoint) {
       this.$store.commit('theme/editor/setPreview', brakepoint)
-      setTimeout(() => {
-        document.querySelectorAll('.swiper-container')
-          .forEach(slider => {
-            slider.swiper.update()
-          })
-      });
+      this.$emit('viewUpdate')
     },
     changeView: function (view) {
       this.$store.commit('theme/editor/setView', view)

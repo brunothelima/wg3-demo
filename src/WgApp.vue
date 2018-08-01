@@ -13,10 +13,11 @@ export default {
 <style lang="scss">
 @import './assets/fonts/fontawesome/css/fontawesome-all.min.css';
 @import './assets/scss/_wg-ccps.scss';
+@import './assets/scss/_wg-globals.scss';
 html, body {
   padding: 0;
   margin: 0;
-   -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -18,19 +18,20 @@
 <template>
   <section class="user">
     <wg-container> 
-      <wg-loader :loading="!isProfileLoaded"/>
-      <div class="intro" v-if="isProfileLoaded">
-        <div class="intro__icons">
-          <img src="@/assets/img/wg-theme-editor/fonts-icon.svg" alt="Fonts">
-          <img src="@/assets/img/wg-theme-editor/colors-icon.svg" alt="Colors">
-          <img src="@/assets/img/wg-theme-editor/layout-icon.svg" alt="Layout">
-          <img src="@/assets/img/wg-theme-editor/animation-icon.svg" alt="Animation">
+      <wg-loader :loading="!isProfileLoaded">
+        <div class="intro" v-if="isProfileLoaded">
+          <div class="intro__icons">
+            <img src="@/assets/img/wg-theme-editor/fonts-icon.svg" alt="Fonts">
+            <img src="@/assets/img/wg-theme-editor/colors-icon.svg" alt="Colors">
+            <img src="@/assets/img/wg-theme-editor/layout-icon.svg" alt="Layout">
+            <img src="@/assets/img/wg-theme-editor/animation-icon.svg" alt="Animation">
+          </div>
+          <wg-heading level="h3">{{$t('hello')}}, {{profile.name}}</wg-heading>
+          <p>{{$t('welcome')}}</p>
+          <wg-heading level="h6">{{$t('start')}}</wg-heading>
+          <wg-btn model="primary" tag="router-link" to="/admin/theme">{{$t('button')}}</wg-btn>
         </div>
-        <wg-heading level="h3">{{$t('hello')}}, {{profile.name}}</wg-heading>
-        <p>{{$t('welcome')}}</p>
-        <wg-heading level="h6">{{$t('start')}}</wg-heading>
-        <wg-btn model="primary" tag="router-link" to="/admin/theme">{{$t('button')}}</wg-btn>
-      </div>
+      </wg-loader>
     </wg-container>
   </section>
 </template>

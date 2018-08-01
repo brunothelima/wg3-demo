@@ -91,6 +91,7 @@ export default {
       this.$store.commit('theme/editor/setTheme', { 
         [field.name]: field.value 
       })
+      this.$emit('viewUpdate')
     },
   }, 
 }

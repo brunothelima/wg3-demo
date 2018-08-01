@@ -1,0 +1,17 @@
+{
+	"name": "WidGrid Prototype 3.0",
+	"short_name": "WG3 Demo",
+	"icons": [
+		{ 
+			"src": "/wg3/img/pwa-logo.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/wg3/",
+	"display": "standalone",
+	"scope": "/wg3/",
+	"orientation": "portrait",
+	"background_color": "#6f5bed",
+	"theme_color": "#472de8"
+}

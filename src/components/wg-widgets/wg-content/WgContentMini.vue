@@ -3,7 +3,7 @@
     <a :href="href">
       <span v-if="img" class="wg-content-mini__img">
         <wg-img :src="`http://picsum.photos/80/80?image=${img}`"
-          :placeholder="`http://picsum.photos/10/10?image=${img}`"
+          :placeholder="`http://picsum.photos/5/5?image=${img}`"
         />
       </span>
       <span class="wg-content-mini__info">

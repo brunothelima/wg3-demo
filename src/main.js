@@ -9,17 +9,6 @@ const i18n = new VueI18n({
   locale: 'pt',
 })
 
-// Vue.config.productionTip = false
-// process.env.NODE_ENV = true
-
-localStorage.removeItem('wg-content-post')
-localStorage.removeItem('wg-content-home')
-localStorage.removeItem('wg-content-list')
-localStorage.removeItem('wg-content-related')
-localStorage.removeItem('wg-admin-auth-token')
-localStorage.removeItem('wg-admin-user-profile')
-localStorage.removeItem('wg-theme-editor-tutorial-viewed')
-
 const app = new Vue({
   render: h => h(WgApp),
   router,

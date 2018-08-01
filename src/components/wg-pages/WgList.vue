@@ -3,7 +3,7 @@
     <wg-container>
       <div class="wg-list__headlines headlines">
         <wg-heading level="h2">Headlines</wg-heading>
-        <div class="headlines__grid">
+        <div class="headlines__grid grid">
           <div class="headlines__featured">
             <wg-mockup widget="content-mega" :counter="3" v-if="!headlines.featured"/>
             <ul v-else>
@@ -29,7 +29,7 @@
             <wg-content-card class="wg-cols-4" tag="li" v-for="(item, index) in spotlight.featured" :key="index" v-bind="item" />
           </ul>
         </div>
-        <div class="spotlight__grid">
+        <div class="spotlight__grid grid">
           <wg-mockup widget="content-mini" :cols="6" :counter="10" v-if="!spotlight.list"/>
           <div v-else>
             <ul class="wg-row">
@@ -99,19 +99,19 @@ $component: '.wg-list';
   h2 {
     margin-bottom: var(--wg-gutter-xxl);
   }
-  .headlines,
-  .spotlight {
-    .headlines__grid,
-    .spotlight__grid {
-      display: grid;
-      grid-template-columns: auto minmax(320px, 30%);
-      grid-template-rows: auto;
-      grid-gap: var(--wg-gutter-xl);
-      box-sizing: border-box;
-      grid-template-areas:
-      "content sidebar";
+  .grid {
+    display: grid;
+    grid-template-columns: auto minmax(298px, calc(33% - var(--wg-gutter)));
+    grid-template-rows: auto;
+    grid-gap: var(--wg-gutter-xl);
+    box-sizing: border-box;
+    grid-template-areas:
+    "content sidebar";
+    > * {
+      min-width: 0;
     }
   }
+
   .headlines {
     &__featured {
       grid-area: content;
@@ -140,8 +140,7 @@ $component: '.wg-list';
   }
 }
 @include wg-brakepoint ($component, $wg-brakepoint-small) {
-  .headlines .headlines__grid,
-  .spotlight .spotlight__grid {
+  .grid {
     display: block;
   }
 }

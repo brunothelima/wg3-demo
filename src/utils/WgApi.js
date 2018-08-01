@@ -1,5 +1,7 @@
+const server = 'localhost:8081';
+
 export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => {
-  fetch(`http://10.153.200.178/wg3-api/${url}`, {
+  fetch(`http://${server}/${url}`, {
     method: 'GET',
     body: filters
   })
@@ -14,7 +16,7 @@ export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => 
 }) 
 
 export const WgApiPost = ({url, ...data}) => new Promise((resolve, reject) => {
-  fetch(`http://10.153.200.178/wg3-api/${url}`, {
+  fetch(`http://${server}/${url}`, {
     method: 'POST',
     body: data
   })

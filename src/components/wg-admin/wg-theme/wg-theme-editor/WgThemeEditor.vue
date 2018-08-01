@@ -16,13 +16,19 @@
 <template>
   <div class="wg-theme-editor" :class="{'wg-theme-editor--active': panelVisible != 'tutorial'}">
     <wg-drag-resize ref="panel" class="panel" 
-      v-bind="{ w: 495, h: 588, x: panelCenterX, y: panelCenterY }" 
+      v-bind="{ 
+        w: 495, 
+        h: 588, 
+        x: panelCenterX, 
+        y: panelCenterY 
+      }" 
       :drag="panelVisible != 'tutorial'"
       :resize="panelVisible != 'tutorial'">
         <div class="panel__content">
           <component :is="`wg-theme-editor-${panelVisible}`"
             @formTabChange="shrinkPanel"
-            @tutorialConfirm="initEditor"/>
+            @tutorialConfirm="initEditor"
+            @viewUpdate="normalize"/>
           <div class="panel__actions" v-if="panelVisible != 'tutorial'">
             <wg-btn v-if="panelVisible === 'form'"
               class="panel__preview" 
@@ -62,7 +68,8 @@ export default {
   },
   data () {
     return {
-      panelVisible: 'tutorial'
+      panelVisible: 'tutorial',
+      normalizeTimeout: null,
     }
   },
   computed: {
@@ -83,8 +90,20 @@ export default {
     },
     initEditor: function () {
       this.showPanel('form')
-      this.$refs.panel.setCoords({ x: 32, y: 88, w: 282 });
+      this.$refs.panel.setCoords({ 
+        x: 32, 
+        y: 88, 
+        w: 282 
+      });
     },
+    normalize: function () {
+      clearTimeout(this.normalizeTimeout)
+      this.normalizeTimeout = setTimeout(() => {
+        document.querySelectorAll('.swiper-container').forEach(slider => {
+          slider.swiper.update()
+        })
+      }, 250);
+    }
   },
   // mounted: function () {
   //   if (localStorage.getItem('wg-theme-editor-tutorial-viewed')) {

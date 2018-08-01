@@ -13,6 +13,8 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-banner';
 #{$component} {
+  display: flex;
+  align-items: center; 
   box-sizing: border-box;
   padding: var(--wg-gutter-xl) 0;
   margin-bottom: var(--wg-gutter-xl);

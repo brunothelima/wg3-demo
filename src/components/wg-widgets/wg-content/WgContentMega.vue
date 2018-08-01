@@ -8,12 +8,12 @@
       </span>
       <span v-if="img" class="wg-content-mega__img">
         <i v-if="icon" :class="`wg-content-mega__icon fa fa-${icon}`"></i>
-        <wg-img :srcset="`http://picsum.photos/384/216?image=${img} 1200w,
-          http://picsum.photos/297/188?image=${img} 972w,
-          http://picsum.photos/352/221?image=${img} 480w`"
-          :src="`http://picsum.photos/480/303?image=${img}`"
-          :placeholder="`http://picsum.photos/60/35?image=${img}`">
-        </wg-img>
+        <wg-img :src="`http://picsum.photos/480/303?image=${img}`"
+          :large="`http://picsum.photos/384/216?image=${img}`"
+          :medium="`http://picsum.photos/297/188?image=${img}`"
+          :small="`http://picsum.photos/352/221?image=${img}`"
+          :placeholder="`http://picsum.photos/20/12?image=${img}`"
+        />
       </span>
     </a>
   </component>

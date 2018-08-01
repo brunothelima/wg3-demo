@@ -1,25 +1,17 @@
 <template>
   <header class="wg-header">
     <img src="@/assets/img/wg-logo.png" alt="Logo">
-    <select class="wg-header__language" v-model="locale">
-      <option value="pt" selected>PT</option>
-      <option value="en">EN</option>
-    </select>
+    <wg-i18n />
   </header>
 </template>
 
 <script>
+import WgI18n from '@/components/wg-uikit/WgI18n'
+
 export default {
   name: 'WgHeader',
-  data () {
-    return {
-      locale: 'pt'
-    }
-  },
-  watch: {
-    locale (locale) {
-      this.$i18n.locale = locale
-    }
+  components: {
+    'wg-i18n': WgI18n
   }
 }
 </script>
@@ -40,13 +32,12 @@ export default {
   img {
     display: block;
   }
-  select {
+  .wg-i18n {
     position: absolute;
     right: var(--wg-gutter-l);
     top: 0;
     bottom: 0;
     margin: auto;
-    height: $wg-input-height / 2;
   }
 }
 </style>

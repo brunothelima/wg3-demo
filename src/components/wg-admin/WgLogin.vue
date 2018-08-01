@@ -121,6 +121,7 @@ export default {
 <style lang="scss" scoped>
 $component: '.wg-login';
 #{$component} {
+  box-sizing: border-box;
   height: 100%;
   padding-top: var(--wg-gutter-xxl);
   .wg-container {
