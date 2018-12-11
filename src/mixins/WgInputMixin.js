@@ -51,18 +51,18 @@ export const WgInputMixin = {
     }
   },
   methods: {
-    t: function (str) {
+    t (str) {
       if (this.i18n && this.i18n.te(str)) {
         return this.i18n.t(str)
       }
       return str
     },
-    onChange: function () {
+    onChange () {
       this.$emit('change', this.model)
     },
   },
   watch: {
-    value: function (newVal) {
+    value (newVal) {
       this.model = newVal
     }
   }

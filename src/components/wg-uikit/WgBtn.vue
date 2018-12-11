@@ -74,10 +74,15 @@ $component: '.wg-btn';
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color var(--wg-transition-duration) var(--wg-transition-timing-function),
+  transition: transform var(--wg-transition-duration) var(--wg-transition-timing-function),
     color var(--wg-transition-duration) var(--wg-transition-timing-function),
+    background-color var(--wg-transition-duration) var(--wg-transition-timing-function),
     border-color var(--wg-transition-duration) var(--wg-transition-timing-function);
     margin: 5px;
+  &:active,  
+  &[active] {
+    transform: scale(0.96);
+  }
   &--default {
     background-color: $wg-color-sys-k;
     color: $wg-color-sys-g;
@@ -88,6 +93,7 @@ $component: '.wg-btn';
     &:active,  
     &[active] {
       background-color: $wg-color-sys-h;
+      transform: scale(0.9);
     }
     &#{$component}--outline {
       border-color: $wg-color-sys-g;
@@ -104,7 +110,7 @@ $component: '.wg-btn';
     &[active] {
       background-color: var(--wg-color-primary-lighter);
     }
-     &#{$component}--outline {
+    &#{$component}--outline {
       border-color: var(--wg-color-primary);
       color: var(--wg-color-primary);
       &:hover, 
@@ -114,9 +120,11 @@ $component: '.wg-btn';
         color: $wg-color-sys-k;
       }
     }
+    &:not(#{$component}--outline) {
+      background-color: var(--wg-color-primary);
+    }
   }
   &--secondary {
-    background-color: var(--wg-color-secondary);
     color: $wg-color-sys-k;
     &:hover, 
     &[hover] {
@@ -126,7 +134,7 @@ $component: '.wg-btn';
     &[active] {
       background-color: var(--wg-color-secondary-lighter);
     }
-     &#{$component}--outline {
+    &#{$component}--outline {
       border-color: var(--wg-color-secondary);
       color: var(--wg-color-secondary);
       &:hover, 
@@ -136,9 +144,12 @@ $component: '.wg-btn';
         color: $wg-color-sys-k;
       }
     }
+    &:not(#{$component}--outline) {
+      background-color: var(--wg-color-secondary);
+    }
   }
   &--outline {
-    background-color: transparent;
+    background-color: white;
     &:hover, 
     &[hover],
     &:active,  

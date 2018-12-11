@@ -22,10 +22,10 @@ import { mapState } from 'vuex'
 
 import { WgId } from '@/directives/WgId'
 
-import WgThemeEditor from './wg-theme-editor/WgThemeEditor'
-import WgPost from '@/components/wg-pages/WgPost'
-import WgList from '@/components/wg-pages/WgList'
-import WgHome from '@/components/wg-pages/WgHome'
+import WgThemeEditor from '@/components/wg-theme-editor/WgThemeEditor'
+import WgPost from '@/pages/WgPost'
+import WgList from '@/pages/WgList'
+import WgHome from '@/pages/WgHome'
 
 export default {
   name: 'WgTheme',

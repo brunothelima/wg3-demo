@@ -72,9 +72,8 @@ export default {
     }
   },
   async created () {
-    let id = 1
     this.home = await this.$store.dispatch('content/home/fetchData')
-    this.cards = await this.$store.dispatch('content/related/fetchByContentId', id)
+    this.cards = await this.$store.dispatch('content/related/fetchByContentId', 1)
   },
 }
 </script>

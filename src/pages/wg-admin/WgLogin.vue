@@ -105,14 +105,14 @@ export default {
       ]
     }
   },
-  created: function () {
+  created () {
     this.$store.commit('admin/shape/setPosition', 'right')
     this.$store.commit('admin/shape/setType', 'gradient')
   },
-  mounted: function () {
+  mounted () {
     this.$store.commit('admin/shape/toggle', true)
   },
-  destroyed: function () {
+  destroyed () {
     this.$store.commit('admin/shape/toggle', false)
   },
 }

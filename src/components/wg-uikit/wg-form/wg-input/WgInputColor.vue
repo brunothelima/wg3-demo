@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    onChange: function (colors) {
+    onChange (colors) {
       this.model = colors.hex
       this.$emit('change', this.model)
     }

@@ -72,9 +72,13 @@ $component: '.wg-content-mega';
     display: flex;
     overflow: hidden;
     border-radius: var(--wg-border-radius);
-    box-shadow: var(--wg-box-shadow-l);
+    box-shadow: var(--wg-box-shadow);
     text-decoration: none;
+    transition: transform var(--wg-transition-duration) var(--wg-transition-timing-function),
+      box-shadow var(--wg-transition-duration) var(--wg-transition-timing-function);
     &:hover {
+      box-shadow: var(--wg-box-shadow-xxl);
+      transform: translateY(calc(var(--wg-gutter) * -1));
       #{$component}__img {
         .wg-img /deep/ img {
           opacity: 0.6;
@@ -124,8 +128,8 @@ $component: '.wg-content-mega';
     position: relative;
     overflow: hidden;
     width: 100%;
-    border-top-left-radius: var(--wg-border-radius);
-    border-bottom-left-radius: var(--wg-border-radius);
+    border-top-right-radius: var(--wg-border-radius);
+    border-bottom-right-radius: var(--wg-border-radius);
     #{$component}__icon {
       display: flex;
       z-index: 1;

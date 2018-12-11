@@ -66,6 +66,7 @@ $component: '.wg-content-mini';
       /deep/ img { 
         width: 80px;
         max-width: unset;
+        border-radius: inherit;
       }
     }
     ~ #{$component}__info {

@@ -44,7 +44,7 @@ export default {
     width: 60vw;
     height: calc(100vh - var(--wg-gutter-xl));
     &:before {
-      background: url('../../../assets/img/wg-shape-gradient-vtc.svg') no-repeat;
+      background: url('../../assets/img/wg-shape-gradient-vtc.svg') no-repeat;
       background-size: auto 100%;
     }
   }
@@ -79,7 +79,7 @@ export default {
     width: 100vw;
     height: calc(100vh - var(--wg-gutter-xl));
     &:before {
-      background: url('../../../assets/img/wg-shape-gradient-hrz.svg') no-repeat;
+      background: url('../../assets/img/wg-shape-gradient-hrz.svg') no-repeat;
       background-size: 100% auto;
       background-position: left top;
     }

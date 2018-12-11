@@ -10,16 +10,10 @@ const actions = {
   fetchByContentId ({commit}, id) {
     return new Promise((resolve, reject) => {
       commit('fetchByContentId')
-      if (localStorage.getItem('wg-content-related')) {
-        commit('success')
-        resolve(JSON.parse(localStorage.getItem('wg-content-related')))
-        return   
-      }
       WgApiGet({ url: 'wg_content_related_fetch_by_id.php' }, {
         id: id
       }).then(resp => {
           commit('success')
-          localStorage.setItem('wg-content-related', JSON.stringify(resp.items))
           resolve(resp.items)
         })
         .catch(err => {

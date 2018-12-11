@@ -63,7 +63,7 @@ export default {
     }
   },
   methods: {
-    confirm: function () {
+    confirm () {
       this.$emit('tutorialConfirm')
       // localStorage.setItem('wg-theme-editor-tutorial-viewed', true)
     }

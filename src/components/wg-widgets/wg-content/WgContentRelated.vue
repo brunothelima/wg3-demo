@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgMockup from '@/components/wg-uikit/wg-mockup/WgMockup'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 import WgContentMini from './WgContentMini'
 

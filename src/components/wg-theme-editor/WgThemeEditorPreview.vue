@@ -46,11 +46,11 @@ export default {
     }),
   },
   methods: {
-    changeBrakepoint: function (brakepoint) {
+    changeBrakepoint (brakepoint) {
       this.$store.commit('theme/editor/setPreview', brakepoint)
       this.$emit('viewUpdate')
     },
-    changeView: function (view) {
+    changeView (view) {
       this.$store.commit('theme/editor/setView', view)
     }
   }

@@ -38,12 +38,12 @@ export default {
         threshold: 24,
         autoHeight: true,
         navigation: {
-          prevEl: '.wg-slider-title__bottom .prev',
-          nextEl: '.wg-slider-title__bottom .next',
+          prevEl: `[${this.$options._scopeId}] .prev`,
+          nextEl: `[${this.$options._scopeId}] .next`,
         },
         pagination: {
           clickable: true,
-          el: '.wg-slider-title__bottom .pagination',
+          el: `[${this.$options._scopeId}] .pagination`,
         }
       }
     }

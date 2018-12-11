@@ -1,23 +1,23 @@
 <i18n>
 {
   "en": {
-    "head": "Meeting colors",
-    "title": "Choose your colors!",
+    "head": "Meeting layout",
+    "title": "The possibility of change borders, shadow and gutter.",
     "subtitle": "Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more."
   },
   "pt": {
-   "head": "Conheça \"Cores\"",
-    "title": "Experimente todas!",
-    "subtitle": "Aqui você sera capaz de configurar as cores base do seu site, gerando automaticamente todas as suas variações"
+   "head": "Conheça \"Layout\"",
+    "title": "Possibilidade de alterar bordas, sombras e espaçamento.",
+    "subtitle": "Aqui você sera capaz de configurar espaçamentos, bordas, sombra de todos os elementos do seu site"
   }
 }
 </i18n>
 
 <template>
-  <div class="wg-theme-editor-tutorial-colors tutorial">
+  <div class="wg-theme-editor-tutorial-layout tutorial">
     <div class="tutorial__head">{{$t('head')}}</div>
     <div class="tutorial__illustration">
-      <img src="@/assets/img/wg-theme-editor/tutorial-colors.png" alt="Wg Themefier intro colors illustration">
+      <img src="@/assets/img/wg-theme-editor/tutorial-layout.png" alt="Wg Themefier intro layout illustration">
     </div>      
     <div class="tutorial__info">
       <div class="center">
@@ -32,7 +32,7 @@
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 
 export default {
-  name: 'WgThemeEditorTutorialColors',
+  name: 'WgThemeEditorTutorialLayout',
   components: {
     'wg-heading': WgHeading,
   },

@@ -12,12 +12,10 @@
           </div>
           <div class="headlines__aside">
             <wg-mockup widget="content-mini" :counter="4" v-if="!headlines.aside"/>
-            <div v-else>
-              <ul>
-                <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />
-              </ul>
-              <wg-newsletter />
-            </div>
+            <ul v-else>
+              <wg-content-mini tag="li" v-for="(item, index) in headlines.aside" :key="index" v-bind="item" />
+            </ul>
+            <wg-newsletter />
           </div>
         </div>
       </div>
@@ -49,7 +47,7 @@
 <script>
 import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
-import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgMockup from '@/components/wg-uikit/wg-mockup/WgMockup'
 import WgBtn from '@/components/wg-uikit/WgBtn'
 import WgContentMini from '@/components/wg-widgets/wg-content/WgContentMini'
 import WgContentMega from '@/components/wg-widgets/wg-content/WgContentMega'

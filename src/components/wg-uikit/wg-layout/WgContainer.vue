@@ -32,5 +32,6 @@ $component: '.wg-container';
 }
 @include wg-brakepoint ($component, $wg-brakepoint-minimal) {
   width: auto;
+  padding: 0 $wg-gutter;
 }
 </style>

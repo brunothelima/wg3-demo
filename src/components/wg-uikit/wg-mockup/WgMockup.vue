@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import WgMockupContentMini from './wg-mockup/WgMockupContentMini'
-import WgMockupContentCard from './wg-mockup/WgMockupContentCard'
-import WgMockupContentMega from './wg-mockup/WgMockupContentMega'
-import WgMockupPost from './wg-mockup/WgMockupPost'
+import WgMockupContentMini from './WgMockupContentMini'
+import WgMockupContentCard from './WgMockupContentCard'
+import WgMockupContentMega from './WgMockupContentMega'
+import WgMockupPost from './WgMockupPost'
 
 export default {
   name: 'WgMockup',
   components: {
-    'wg-mockup-content-mini': WgMockupContentMini,
+    'wg-mockup-content-mini':  WgMockupContentMini,
     'wg-mockup-content-card': WgMockupContentCard,
     'wg-mockup-content-mega': WgMockupContentMega,
     'wg-mockup-post': WgMockupPost,

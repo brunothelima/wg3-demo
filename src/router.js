@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import WgAdmin from '@/components/WgAdmin'
-import WgUser from '@/components/wg-admin/WgUser'
-import WgLogin from '@/components/wg-admin/WgLogin'
-import WgTheme from '@/components/wg-admin/wg-theme/WgTheme'
 import store from '@/store'
 
 Vue.use(Router)
@@ -24,12 +20,21 @@ export default new Router({
   routes: [
     {
       path: '/admin',
-      component: WgAdmin,
+      component: () => import('@/layouts/WgAdmin'),
       beforeEnter: isUnauthorized,
       children: [
-        { path: '', component: WgUser,},
-        { path: '/admin/login', component: WgLogin },
-        { path: '/admin/theme', component: WgTheme },
+        { 
+          path: '', 
+          component: () => import('@/pages/wg-admin/WgUser') 
+        },
+        { 
+          path: '/admin/login', 
+          component: () =>  import('@/pages/wg-admin/WgLogin') 
+        },
+        { 
+          path: '/admin/theme', 
+          component: () => import('@/pages/wg-admin/WgTheme') 
+        },
       ]
     },
   ],

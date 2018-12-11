@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-    onChange: function (value) {
+    onChange (value) {
       this.model = value
       this.$emit('change', value)
     }

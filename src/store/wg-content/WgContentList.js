@@ -17,7 +17,6 @@ const actions = {
         ...filters
       }).then(resp => {
           commit('success')
-          localStorage.setItem('wg-content-list', JSON.stringify(resp.items))
           resolve(resp.items)
         })
         .catch(err => {

@@ -39,14 +39,13 @@ export default {
   },
   data () {
     return {
-      text: this.options.find(opt => opt.value === this.value).title || ''
+      text: this.options.find(opt => opt.value === this.model).title || ''
     }
   },
   methods: {
-    onChange: function (value) {      
+    onChange (value) {      
       let selected = this.options.find(opt => opt.value === value)
       this.model = selected.value
-      this.text = selected.title
       this.$emit('change', this.model)
     }
   }

@@ -42,7 +42,7 @@ export default {
     },
   },
   methods: {
-    plus: function () {
+    plus () {
       let newVal = this.model + 1
       if (newVal > this.max) {
         return
@@ -50,7 +50,7 @@ export default {
       this.model = newVal
       this.$emit('change', this.model)
     },
-    minus: function () {
+    minus () {
       let newVal = this.model - 1
       if (newVal < this.min) {
         return

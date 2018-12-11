@@ -41,7 +41,7 @@ const getBoxShadowCCP = (name, value) => {
   let x = 0.001, rgb = '0,0,0'
   let CCP = `${name}: ${x}px ${value / 3}px ${value}px  rgba(${rgb}, ${value * 0.008});`
   CCP += `${name}-l: ${x}px ${value / 2.66}px ${value * 1.5}px  rgba(${rgb}, ${value * 0.010});`
-  CCP += `${name}-xl: ${x}px ${value / 2.33}px ${value * 2}px rgba(${rgb}, ${value * 0.12});`
+  CCP += `${name}-xl: ${x}px ${value / 2.33}px ${value * 2}px rgba(${rgb}, ${value * 0.012});`
   CCP += `${name}-xxl: ${x}px ${value / 2}px ${value * 2.5}px rgba(${rgb}, ${value * 0.014});`
   return CCP
 }

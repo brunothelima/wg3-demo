@@ -1,28 +1,29 @@
 <i18n>
 {
   "en": {
-    "head": "Meeting layout",
-    "title": "Choose your metrics!",
+    "head": "Meeting animations",
+    "title": "More life to your website with animations and easing.",
     "subtitle": "Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more."
   },
   "pt": {
-   "head": "Conheça \"Layout\"",
-    "title": "Medidas e Espaçamento!",
-    "subtitle": "Aqui você sera capaz de configurar espaçamentos, bordas, sombra de todos os elementos do seu site"
+   "head": "Conheça \"Animações\"",
+    "title": "Mais vida no seu site alterando animações e easing.",
+    "subtitle": "Aqui você sera capaz de configurar a velocidade e variação de todas as animações do seu site"
   }
 }
 </i18n>
 
 <template>
-  <div class="wg-theme-editor-tutorial-layout tutorial">
+  <div class="wg-theme-editor-tutorial-animation tutorial">
     <div class="tutorial__head">{{$t('head')}}</div>
     <div class="tutorial__illustration">
-      <img src="@/assets/img/wg-theme-editor/tutorial-layout.png" alt="Wg Themefier intro layout illustration">
+      <img src="@/assets/img/wg-theme-editor/tutorial-animation.png" alt="Wg Themefier intro animation illustration">
     </div>      
     <div class="tutorial__info">
       <div class="center">
         <wg-heading level="h3">{{$t('title')}}</wg-heading>
-        <p>{{$t('subtitle')}}</p>
+        <br><br>
+        <!-- <p>{{$t('subtitle')}}</p> -->
       </div>
     </div>
   </div>
@@ -32,7 +33,7 @@
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
 
 export default {
-  name: 'WgThemeEditorTutorialLayout',
+  name: 'WgThemeEditorTutorialAnimation',
   components: {
     'wg-heading': WgHeading,
   },

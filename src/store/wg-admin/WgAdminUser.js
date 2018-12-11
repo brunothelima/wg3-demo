@@ -3,7 +3,7 @@ import { WgApiGet } from '@/utils/WgApi'
 
 const state = { 
   status: '', 
-  profile: JSON.parse(localStorage.getItem('wg-admin-user-profile'))
+  profile: null
 }
 
 const getters = {
@@ -19,13 +19,11 @@ const actions = {
       }).then(profile => {
           commit('success')
           commit('setProfile', profile)
-          localStorage.setItem('wg-admin-user-profile', JSON.stringify(profile))
           resolve()
         })
         .catch(err => {
           commit('error')
           commit('setProfile', {})
-          localStorage.removeItem('wg-admin-user-profile')
           reject(err)
         })
     })

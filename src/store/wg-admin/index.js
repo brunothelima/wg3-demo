@@ -9,9 +9,7 @@ const actions = {
   },
   logout ({commit}) {
 		commit('auth/setToken', '')
-		commit('user/setProfile', {})
-		localStorage.removeItem('wg-admin-auth-token')
-		localStorage.removeItem('wg-admin-user-profile')
+		commit('user/setProfile', null)
   }
 }
 

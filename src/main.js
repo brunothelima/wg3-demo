@@ -17,7 +17,7 @@ const app = new Vue({
 })
 
 if (process.env.NODE_ENV !== 'production') {
-  setTimeout(() => { app.$mount('#wgApp'); }, 500);
+  setTimeout(() => { app.$mount('#wgApp') }, 500)
 } else {
-  app.$mount('#wgApp');
+  app.$mount('#wgApp')
 }

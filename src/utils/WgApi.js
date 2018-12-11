@@ -1,4 +1,4 @@
-const server = 'localhost:8081';
+const server = 'localhost/wg3-api';
 
 export const WgApiGet = ({url, ...filters}) => new Promise((resolve, reject) => {
   fetch(`http://${server}/${url}`, {

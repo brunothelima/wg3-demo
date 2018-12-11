@@ -73,22 +73,22 @@ export default {
     }
   },
   computed: {
-    panelCenterX: function () {
+    panelCenterX () {
       return (window.innerWidth - 495) / 2
     },
-    panelCenterY: function () {
+    panelCenterY () {
       return (window.innerHeight - 588) / 2
     },
   },
   methods: {
-    shrinkPanel: function () {
+    shrinkPanel () {
       this.$refs.panel.shrink()
     },
-    showPanel: function (panel) {
+    showPanel (panel) {
       this.panelVisible = panel
       this.shrinkPanel()
     },
-    initEditor: function () {
+    initEditor () {
       this.showPanel('form')
       this.$refs.panel.setCoords({ 
         x: 32, 
@@ -96,7 +96,7 @@ export default {
         w: 282 
       });
     },
-    normalize: function () {
+    normalize () {
       clearTimeout(this.normalizeTimeout)
       this.normalizeTimeout = setTimeout(() => {
         document.querySelectorAll('.swiper-container').forEach(slider => {
@@ -105,11 +105,6 @@ export default {
       }, 250);
     }
   },
-  // mounted: function () {
-  //   if (localStorage.getItem('wg-theme-editor-tutorial-viewed')) {
-  //     this.initEditor()
-  //   }
-  // }
 }
 </script>
 
@@ -127,7 +122,7 @@ $component: '.wg-theme-editor';
     height: 100vh;
     width: 100vw;
     background-color: rgba($wg-color-sys-g, 0.8);
-    transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+    transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);
   }
   &--active {
     &:before {
@@ -144,7 +139,7 @@ $component: '.wg-theme-editor';
   background-color: $wg-color-sys-k; 
   box-shadow: var(--wg-box-shadow-xxl);
   animation: panel-animation var(--wg-transition-duration) var(--wg-transition-timing-function) forwards;
-  transition: all var(--wg-transition-duration-faster) var(--wg-transition-timing-function);
+  transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);
   &__content {
     overflow: hidden;
   }

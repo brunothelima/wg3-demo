@@ -32,7 +32,7 @@
 <script>
 import WgContainer from '@/components/wg-uikit/wg-layout/WgContainer'
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
-import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgMockup from '@/components/wg-uikit/wg-mockup/WgMockup'
 import WgText from '@/components/wg-uikit/wg-text/WgText'
 import WgSocialShare from '@/components/wg-uikit/wg-social/WgSocialShare'
 import WgContentRelated from '@/components/wg-widgets/wg-content/WgContentRelated'

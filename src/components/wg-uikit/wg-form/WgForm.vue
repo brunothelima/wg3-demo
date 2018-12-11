@@ -81,22 +81,22 @@ export default {
     }
   },
   methods: {
-    getComponentByFieldType: function (type) {
+    getComponentByFieldType (type) {
       if (['text', 'email', 'password', 'tel'].indexOf(type) > -1) {
         return 'wg-input-text'
       } 
       return `wg-input-${type}`
     },
-    onInputChange: function (field, value) {
+    onInputChange (field, value) {
       
       this.$v.form[field.name].$model = value
       this.schema.filter(schemaField => schemaField.name === field.name)
-        .map(sameNameField => {
-          sameNameField.value = value
+        .map(mirrorField => {
+          mirrorField.value = value
         })
       this.$emit('change', { ...field, value: value })
     },
-    onSubmit: function () {
+    onSubmit () {
       this.$emit('submit', this.form)
       this.$v.$touch()
       if (!this.$v.$invalid) {

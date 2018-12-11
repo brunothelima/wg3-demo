@@ -10,14 +10,14 @@ export const WgFormMixin = {
 		},
 	},
 	methods: {
-		generateFormDataModel: function (formSchema) {
+		generateFormDataModel (formSchema) {
 			let formModel = {};
 			formSchema.map(field => {
 				formModel[field.name] = field.value || null
 			});
 			return formModel;
 		},
-		generateFormVuelidateModel: function (formSchema) {
+		generateFormVuelidateModel (formSchema) {
 			let vuelidateModel = {}
 			formSchema.map(field => {
 				vuelidateModel[field.name] = {}
@@ -29,7 +29,7 @@ export const WgFormMixin = {
 			})
 			return vuelidateModel
 		},
-		getVuelidation: function(validation, value) {
+		getVuelidation (validation, value) {
 			if (validation === 'required') {
 				return required
 			}

@@ -43,7 +43,7 @@ export default {
     }
   },
   methods: {
-    onChange: function (value) {      
+    onChange (value) {      
       if (this.model.indexOf(value) > -1) {
         this.model.splice(this.model.indexOf(value), 1)
       } else {

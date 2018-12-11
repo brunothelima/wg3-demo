@@ -101,7 +101,7 @@ export default {
     }
   },
   methods: {
-    setAnimationDemoProps: function (field) {
+    setAnimationDemoProps (field) {
       clearInterval(this.toggleInterval)
       let propName = `--wg-${camelCaseToDash(field.name)}`
       let propValue = (typeof field.value == 'number') ? `${field.value}ms` : field.value 
@@ -110,7 +110,7 @@ export default {
         this.toggleAnimation = !this.toggleAnimation
       }, 500);
     },
-    onChange: function (field) {
+    onChange (field) {
       this.setAnimationDemoProps(field)
       this.$emit('change', field)
     }

@@ -2,7 +2,7 @@ import { WgApiGet } from '@/utils/WgApi'
 
 const state = { 
   status: '',
-  token: localStorage.getItem('wg-admin-auth-token'), 
+  token: ''
 }
 
 const getters = {
@@ -17,13 +17,11 @@ const actions = {
         .then(response => {
           commit('success')
           commit('setToken', response.token)
-          localStorage.setItem('wg-admin-auth-token', response.token)
           resolve()
         })
         .catch(err => {
           commit('error')
           commit('setToken', '')
-          localStorage.removeItem('wg-admin-auth-token')
           reject(err)
         })
     })

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import WgHeader from '@/components/wg-uikit/wg-layout/WgHeader'
-import WgShape from '@/components/wg-uikit/wg-layout/WgShape'
+import WgHeader from '@/components/wg-admin/WgHeader'
+import WgShape from '@/components/wg-admin/WgShape'
 export default {
   name: 'WgContainer',
   components: {

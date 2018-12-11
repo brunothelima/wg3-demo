@@ -13,7 +13,7 @@
 
 <script>
 import WgHeading from '@/components/wg-uikit/wg-text/WgHeading'
-import WgMockup from '@/components/wg-uikit/wg-layout/WgMockup'
+import WgMockup from '@/components/wg-uikit/wg-mockup/WgMockup'
 import WgContentCard from '@/components/wg-widgets/wg-content/WgContentCard'
 
 export default {

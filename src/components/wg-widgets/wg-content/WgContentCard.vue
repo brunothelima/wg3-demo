@@ -70,7 +70,7 @@ $component: '.wg-content-card';
     overflow: hidden;
     height: 100%;
     border-radius: var(--wg-border-radius);
-    box-shadow: var(--wg-box-shadow-l);
+    box-shadow: var(--wg-box-shadow);
     background-color: $wg-color-sys-k;
     text-decoration: none;
     transition: all var(--wg-transition-duration) var(--wg-transition-timing-function);

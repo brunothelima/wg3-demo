@@ -83,11 +83,11 @@ export default {
     }),
   },
   methods: {
-    showForm: function (form) {
+    showForm (form) {
       this.formVisible = form
       this.$emit('formTabChange', this.formVisible)
     },
-    onFormChange: function (field) {
+    onFormChange (field) {
       this.$store.commit('theme/editor/setTheme', { 
         [field.name]: field.value 
       })

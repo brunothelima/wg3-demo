@@ -62,11 +62,11 @@ export default {
       profile: state => state.admin.user.profile,
     })
   },
-  created: function () {
+  created () {
     this.$store.commit('admin/shape/setPosition', 'top')
     this.$store.commit('admin/shape/setType', 'grayscale')
   },
-  destroyed: function () {
+  destroyed () {
     this.$store.commit('admin/shape/toggle', false)
   },
   watch: {

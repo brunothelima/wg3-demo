@@ -2,12 +2,12 @@
 {
   "en": {
     "head": "Meeting fonts",
-    "title": "Choose your typo!",
+    "title": "Change style and text size, simple!",
     "subtitle": "Here you will be able to set up the basics of your Widgrid website, such as color scheme, font styles and much more."
   },
   "pt": {
    "head": "Conheça \"Fontes\"",
-    "title": "Escolha sua fonte!",
+    "title": "Altere estilo e tamanho do texto de forma simples",
     "subtitle": "Aqui você sera capaz de configurar as famílias e tamanho des todas as fontes do seu site"
   }
 }
